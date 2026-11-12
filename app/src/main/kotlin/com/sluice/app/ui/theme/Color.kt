@@ -19,9 +19,9 @@
 package com.sluice.app.ui.theme
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF415F91)
+val primaryLight = Color(0xFF4C9AFF)   // ColorOS 17 淡蓝：按钮/强调色
 val onPrimaryLight = Color(0xFFFFFFFF)
-val primaryContainerLight = Color(0xFFD6E3FF)
+val primaryContainerLight = Color(0xFFE6F1FF)   // 极淡蓝：选中底色
 val onPrimaryContainerLight = Color(0xFF284777)
 val secondaryLight = Color(0xFF565F71)
 val onSecondaryLight = Color(0xFFFFFFFF)
@@ -35,14 +35,14 @@ val errorLight = Color(0xFFBA1A1A)
 val onErrorLight = Color(0xFFFFFFFF)
 val errorContainerLight = Color(0xFFFFDAD6)
 val onErrorContainerLight = Color(0xFF93000A)
-val backgroundLight = Color(0xFFF9F9FF)
+val backgroundLight = Color(0xFFFFFFFF)   // 纯白页面底色
 val onBackgroundLight = Color(0xFF191C20)
-val surfaceLight = Color(0xFFF9F9FF)
-val onSurfaceLight = Color(0xFF191C20)
+val surfaceLight = Color(0xFFFFFFFF)
+val onSurfaceLight = Color(0xFF111418)
 val surfaceVariantLight = Color(0xFFE0E2EC)
-val onSurfaceVariantLight = Color(0xFF44474E)
-val outlineLight = Color(0xFF74777F)
-val outlineVariantLight = Color(0xFFC4C6D0)
+val onSurfaceVariantLight = Color(0xFF6B7280)
+val outlineLight = Color(0xFF9AA3AF)
+val outlineVariantLight = Color(0xFFE3E8EF)
 val scrimLight = Color(0xFF000000)
 val inverseSurfaceLight = Color(0xFF2E3036)
 val inverseOnSurfaceLight = Color(0xFFF0F0F7)
@@ -51,7 +51,7 @@ val surfaceDimLight = Color(0xFFD9D9E0)
 val surfaceBrightLight = Color(0xFFF9F9FF)
 val surfaceContainerLowestLight = Color(0xFFFFFFFF)
 val surfaceContainerLowLight = Color(0xFFF3F3FA)
-val surfaceContainerLight = Color(0xFFEDEDF4)
+val surfaceContainerLight = Color(0xFFF5F7FA)   // 卡片：近白灰
 val surfaceContainerHighLight = Color(0xFFE7E8EE)
 val surfaceContainerHighestLight = Color(0xFFE2E2E9)
 

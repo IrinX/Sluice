@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui
 
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import com.itos.coui.topappbar.LargeTopAppBar as CouiLargeTopAppBar
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.itos.coui.layout.Scaffold as CouiScaffold
@@ -1096,6 +1098,9 @@ fun MainScreen(
     // 折叠标题状态提升到本层：跨页面共享，页面切换时折叠/展开状态保持不变
     // 用 exitUntilCollapsed（默认实现，含松手吸附）：滚动时标题先收起再滚内容；
     // 向上滚动回顶部过程中标题保持收起，只有列表到达最顶部后继续下拉（overscroll）才重新展开
+    // COUI 折叠顶栏：滚动折叠/到顶展开由它自己的 state 驱动（M3 的 TopAppBarScrollBehavior 接不过来）
+    val couiBarState = com.itos.coui.topappbar.rememberCouiCollapsingAppBarState()
+    val couiBarScroll = com.itos.coui.topappbar.rememberCouiTopAppBarScrollBehavior()
     val topAppBarState = rememberTopAppBarState()
     // ★ flingAnimationSpec = null 是「切页后首次快速滑动，列表恰好卡在标题收起完毕处」的修复：
     //   material3 AppBar.kt 的 ExitUntilCollapsedScrollBehavior.onPostFling → settleAppBar 里，
@@ -1171,10 +1176,11 @@ fun MainScreen(
                     //   展开时取 headlineMedium、收起时取 titleLarge，并在这两档之间做字号形变；
                     //   这两个 token 都解析到 MaterialTheme.typography（即本项目 Type.kt 的 22sp / 18sp SemiBold），
                     //   自己再传 style 会覆盖注入值，柔性形变直接失效。
-                    MediumFlexibleTopAppBar(
+                    CouiLargeTopAppBar(
                         title = {
                             Text(text = stringResource(currentTab.titleRes))
                         },
+                        scrollBehavior = couiBarScroll,
                         actions = {
                             // 公告入口：已接入公告服务时才显示（地址为空 = 未配置，见 AnnouncementApi.baseUrl）；
                             // 所有 Tab 都显示（收藏只在解析页出现，公告是全局入口），
@@ -1517,10 +1523,14 @@ fun MainScreen(
                             )
                         }
                     ) { innerPadding ->
+                        // 正文挂在折叠顶栏的 nestedScroll 上，并按 state 补偿逻辑滚动与弹簧的差值
+                        val density = androidx.compose.ui.platform.LocalDensity.current
+                        val padded = couiBarState.contentPadding(innerPadding, density)
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(innerPadding)
+                                .padding(padded)
+                                .nestedScroll(couiBarScroll.nestedScrollConnection)
                         ) {
                             tabContent()
                             SnackbarHost(

@@ -37,7 +37,7 @@ object ThemeController {
         private set
 
     /** 主题色模式：0=动态色彩，1=默认蓝色，2=自定义种子色 */
-    var colorMode by mutableStateOf(0)
+    var colorMode by mutableStateOf(1)
         private set
 
     /** 自定义主题种子色（ARGB） */
