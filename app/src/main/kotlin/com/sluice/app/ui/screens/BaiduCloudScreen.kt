@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCheckboxCompat
 import com.sluice.app.ui.SnackbarController
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
@@ -614,7 +615,7 @@ fun BaiduCloudScreen(
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(checked = neverShow, onCheckedChange = { neverShow = it })
+                        CouiCheckboxCompat(checked = neverShow, onCheckedChange = { neverShow = it })
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(stringResource(R.string.csa_do_not_show_again), style = MaterialTheme.typography.bodyMedium)
                     }

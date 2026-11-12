@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiCheckboxCompat
 import android.graphics.Bitmap
 import android.webkit.CookieManager
 import android.webkit.WebChromeClient
@@ -262,7 +263,7 @@ fun BaiduLoginScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.clickable { riskAcknowledged = !riskAcknowledged }
                     ) {
-                        Checkbox(
+                        CouiCheckboxCompat(
                             checked = riskAcknowledged,
                             onCheckedChange = { riskAcknowledged = it }
                         )

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiRadioButtonCompat
 import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -181,7 +182,7 @@ private fun LanguageRow(
             )
             Spacer(modifier = Modifier.width(12.dp))
             // onClick = null：点击交给整行处理，避免行与单选框各响应一次
-            RadioButton(selected = selected, onClick = null)
+            CouiRadioButtonCompat(selected = selected, onClick = null)
         }
     }
 }

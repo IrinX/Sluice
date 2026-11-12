@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCheckboxCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
 import com.sluice.app.util.AppStrings
@@ -493,7 +494,7 @@ private fun ImageGridCell(
             )
 
             if (selectionMode) {
-                Checkbox(
+                CouiCheckboxCompat(
                     checked = selected,
                     // null = 不接管点击：整格的 onClick 负责切换选中，避免点勾选框有两条路径
                     onCheckedChange = null,

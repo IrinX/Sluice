@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiSliderCompat
+import com.sluice.app.ui.components.CouiSwitchCompat
 import android.content.ComponentName
 import android.content.pm.PackageManager
 import android.os.Build
@@ -395,7 +397,7 @@ fun ThemeScreen(
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
                                     }
-                                    Switch(
+                                    CouiSwitchCompat(
                                         checked = ThemeController.colorMode == 0,
                                         onCheckedChange = { on ->
                                             ThemeController.setColorMode(context, if (on) 0 else 1)
@@ -805,13 +807,13 @@ internal fun ColorPickerDialog(
 
                 // 标准 Slider 提供值域、调节动作、焦点和方向键支持。
                 Text(stringResource(R.string.color_hue), style = MaterialTheme.typography.labelLarge)
-                Slider(value = hue, onValueChange = { hue = it }, valueRange = 0f..360f,
+                CouiSliderCompat(value = hue, onValueChange = { hue = it }, valueRange = 0f..360f,
                     modifier = Modifier.semantics { contentDescription = hueLabel })
                 Text(stringResource(R.string.color_saturation), style = MaterialTheme.typography.labelLarge)
-                Slider(value = saturation, onValueChange = { saturation = it },
+                CouiSliderCompat(value = saturation, onValueChange = { saturation = it },
                     modifier = Modifier.semantics { contentDescription = saturationLabel })
                 Text(stringResource(R.string.color_value), style = MaterialTheme.typography.labelLarge)
-                Slider(value = value, onValueChange = { value = it },
+                CouiSliderCompat(value = value, onValueChange = { value = it },
                     modifier = Modifier.semantics { contentDescription = valueLabel })
 
                 // 底部按钮

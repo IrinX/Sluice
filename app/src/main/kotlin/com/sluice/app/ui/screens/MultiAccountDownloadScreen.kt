@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiSwitchCompat
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -322,7 +323,7 @@ private fun MultiAccountSwitchRow(
             }
             Spacer(modifier = Modifier.width(12.dp))
             // onCheckedChange = null：点击交给整行处理，避免行与开关各响应一次
-            Switch(checked = checked, onCheckedChange = null, enabled = enabled)
+            CouiSwitchCompat(checked = checked, onCheckedChange = null, enabled = enabled)
         }
     }
 }

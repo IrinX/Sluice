@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiSwitchCompat
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -161,7 +162,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 },
                 checked = ThemeController.acceptPrereleaseUpdate,
                 trailing = {
-                    Switch(checked = ThemeController.acceptPrereleaseUpdate, onCheckedChange = null)
+                    CouiSwitchCompat(checked = ThemeController.acceptPrereleaseUpdate, onCheckedChange = null)
                 }
             )
 
@@ -346,7 +347,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.weight(1f)
                         )
-                        Switch(checked = tempEnabled, onCheckedChange = { tempEnabled = it })
+                        CouiSwitchCompat(checked = tempEnabled, onCheckedChange = { tempEnabled = it })
                     }
                     CouiOutlinedTextField(
                         value = tempHost,

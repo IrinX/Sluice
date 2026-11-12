@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCheckboxCompat
 import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -347,7 +348,7 @@ fun DownloadScreen(
                                 modifier = Modifier.size(48.dp),
                                 contentAlignment = Alignment.Center
                             ) {
-                                Checkbox(
+                                CouiCheckboxCompat(
                                     checked = deleteAllLocal,
                                     // null = 只作展示，点击统一由整行处理，避免两处各响应一次
                                     onCheckedChange = null
@@ -476,7 +477,7 @@ private fun DeleteConfirmDialog(
                             modifier = Modifier.size(48.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            Checkbox(
+                            CouiCheckboxCompat(
                                 checked = deleteLocal,
                                 // null = 只作展示，点击统一由整行处理，避免两处各响应一次
                                 onCheckedChange = null

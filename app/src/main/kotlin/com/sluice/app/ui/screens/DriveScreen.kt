@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiSwitchCompat
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
@@ -1180,7 +1181,7 @@ private fun DriveSortDialog(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
-                    Switch(checked = hideUnlogged, onCheckedChange = onToggleHide)
+                    CouiSwitchCompat(checked = hideUnlogged, onCheckedChange = onToggleHide)
                 }
                 HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                 Row(

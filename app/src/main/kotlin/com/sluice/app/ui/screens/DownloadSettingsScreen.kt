@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiRadioButtonCompat
+import com.sluice.app.ui.components.CouiSwitchCompat
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -267,7 +269,7 @@ fun DownloadSettingsScreen(
                     settingsRepo.quarkNoSaveDownload = quarkNoSave
                 },
                 checked = quarkNoSave,
-                trailing = { Switch(checked = quarkNoSave, onCheckedChange = null) }
+                trailing = { CouiSwitchCompat(checked = quarkNoSave, onCheckedChange = null) }
             )
 
             Spacer(modifier = Modifier.height(ListGroupGap))
@@ -288,7 +290,7 @@ fun DownloadSettingsScreen(
                     }
                 },
                 checked = keepLocked,
-                trailing = { Switch(checked = keepLocked, onCheckedChange = null) }
+                trailing = { CouiSwitchCompat(checked = keepLocked, onCheckedChange = null) }
             )
 
             Spacer(modifier = Modifier.height(ListGroupGap))
@@ -316,7 +318,7 @@ fun DownloadSettingsScreen(
                     }
                 },
                 checked = if (notificationsEnabled) showSpeed else null,
-                trailing = { Switch(checked = showSpeed, onCheckedChange = null) }
+                trailing = { CouiSwitchCompat(checked = showSpeed, onCheckedChange = null) }
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -351,7 +353,7 @@ fun DownloadSettingsScreen(
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            RadioButton(
+                            CouiRadioButtonCompat(
                                 selected = maxConcurrent == v,
                                 onClick = {
                                     maxConcurrent = v
@@ -418,7 +420,7 @@ fun DownloadSettingsScreen(
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            RadioButton(
+                            CouiRadioButtonCompat(
                                 selected = !isCustom && effective == v,
                                 onClick = { tempSelected = v }
                             )
@@ -434,7 +436,7 @@ fun DownloadSettingsScreen(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        RadioButton(
+                        CouiRadioButtonCompat(
                             selected = isCustom,
                             onClick = {
                                 tempSelected = -1L
@@ -502,7 +504,7 @@ fun DownloadSettingsScreen(
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            RadioButton(
+                            CouiRadioButtonCompat(
                                 selected = retryCount == v,
                                 onClick = {
                                     retryCount = v

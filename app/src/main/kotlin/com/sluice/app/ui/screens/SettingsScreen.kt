@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiRadioButtonCompat
+import com.sluice.app.ui.components.CouiSwitchCompat
 import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.ClipData
@@ -518,7 +520,7 @@ fun SettingsScreen(
             },
             checked = ThemeController.cloudThumbnails,
             trailing = {
-                Switch(checked = ThemeController.cloudThumbnails, onCheckedChange = null)
+                CouiSwitchCompat(checked = ThemeController.cloudThumbnails, onCheckedChange = null)
             }
         )
 
@@ -538,7 +540,7 @@ fun SettingsScreen(
             },
             checked = ThemeController.clipboardSuggestEnabled,
             trailing = {
-                Switch(checked = ThemeController.clipboardSuggestEnabled, onCheckedChange = null)
+                CouiSwitchCompat(checked = ThemeController.clipboardSuggestEnabled, onCheckedChange = null)
             }
         )
 
@@ -802,7 +804,7 @@ fun SettingsScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        Switch(
+                        CouiSwitchCompat(
                             checked = diagnosticOn,
                             onCheckedChange = { on ->
                                 diagnosticOn = on
@@ -840,7 +842,7 @@ fun SettingsScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        Switch(
+                        CouiSwitchCompat(
                             checked = downloadDebugOn,
                             onCheckedChange = { on ->
                                 if (on) {
@@ -882,7 +884,7 @@ fun SettingsScreen(
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
-                            Switch(
+                            CouiSwitchCompat(
                                 checked = fullShaOn,
                                 onCheckedChange = { on ->
                                     fullShaOn = on
@@ -1171,7 +1173,7 @@ private fun ExportAuthDialog(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RadioButton(
+                    CouiRadioButtonCompat(
                         selected = onlyLoggedIn,
                         onClick = { onlyLoggedIn = true }
                     )
@@ -1182,7 +1184,7 @@ private fun ExportAuthDialog(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RadioButton(
+                    CouiRadioButtonCompat(
                         selected = !onlyLoggedIn,
                         onClick = { onlyLoggedIn = false }
                     )
@@ -1362,7 +1364,7 @@ private fun RadioThreadRow(
             .padding(vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        RadioButton(
+        CouiRadioButtonCompat(
             selected = threads == value,
             onClick = { onSelect(value) }
         )

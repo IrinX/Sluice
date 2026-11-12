@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.resolve
 
+import com.sluice.app.ui.components.CouiCheckboxCompat
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -557,7 +558,7 @@ fun ShareDetailScreen(
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(checked = neverShow, onCheckedChange = { neverShow = it })
+                        CouiCheckboxCompat(checked = neverShow, onCheckedChange = { neverShow = it })
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             stringResource(R.string.rs_dont_show_again),
@@ -865,7 +866,7 @@ internal fun ShareFileRow(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 // 多选模式：行首复选框（仅多选列表显示）
                 if (showCheckbox) {
-                    Checkbox(
+                    CouiCheckboxCompat(
                         checked = selected,
                         onCheckedChange = { onClick() },
                         modifier = Modifier.size(36.dp)
