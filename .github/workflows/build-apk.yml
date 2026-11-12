@@ -74,9 +74,10 @@ jobs:
           fi
 
       # 从 Secrets 还原正式签名证书：KEYSTORE_BASE64 解码到 runner 临时目录
-      # （不落仓库、不进 Artifacts，runner 销毁即消失）。四项 Secrets 缺一即报错退出，
-      # 避免 nightly 悄悄产出未签名包（本地构建不经过这里 ⇒ release 仍是未签名包）。
-      # 用 printf 而不是 echo 解码，防止个别 shell 对长字符串加换行/截断。
+      # （不落仓库、不进 Artifacts，runner 销毁即消失）。
+      # ★ 四项 Secrets 任一缺失时**不再报错退出**：新仓库刚建好时本来就没配证书，
+      #   硬失败会让夜景跑每晚告警。改为降级构建未签名包（app-release-unsigned.apk），
+      #   同时打一条 notice 提醒去配 Secrets；配齐后自动恢复正式签名。
       - name: Restore release keystore
         if: env.SKIP_BUILD != '1'
         env:
@@ -86,17 +87,23 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           set -e
+          missing=0
           for name in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
             if [ -z "${!name}" ]; then
-              echo "::error::缺少 Secrets.$name（仓库 Settings → Secrets and variables → Actions）"
-              exit 1
+              echo "::notice::缺少 Secrets.$name，本次构建未签名包（配齐四项后自动恢复正式签名）"
+              missing=1
             fi
           done
+          if [ "$missing" = "1" ]; then
+            echo "SIGNED=0" >> "$GITHUB_ENV"
+            exit 0
+          fi
           KEYSTORE_FILE="$RUNNER_TEMP/yunx-release.jks"
           printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$KEYSTORE_FILE"
           # 先用 keytool 验一遍密钥库与口令、别名是否存在：早失败，别等 R8 跑完十分钟才发现
           keytool -list -keystore "$KEYSTORE_FILE" -storepass "$KEYSTORE_PASSWORD" -alias "$KEY_ALIAS" > /dev/null
           echo "YUNX_KEYSTORE_FILE=$KEYSTORE_FILE" >> "$GITHUB_ENV"
+          echo "SIGNED=1" >> "$GITHUB_ENV"
           echo "::notice::发布签名证书已就绪（别名 $KEY_ALIAS）"
 
       - name: Build release APK
@@ -113,10 +120,11 @@ jobs:
         run: |
           ./gradlew assembleRelease --no-daemon
 
-      # 自检：产物必须存在且真的带上正式证书（apksigner 随 runner 预装的 build-tools 提供）。
+      # 自检：配了证书时必须真的带上正式签名（apksigner 随 runner 预装的 build-tools 提供）。
       # 有这一步，签名配置写错（变量名打错、证书没生效）会在 CI 里立刻红，而不是发出一堆装不上的包。
+      # 未配证书（SIGNED=0）时跳过：产物本来就是 app-release-unsigned.apk。
       - name: Verify signed APK
-        if: env.SKIP_BUILD != '1'
+        if: env.SKIP_BUILD != '1' && env.SIGNED == '1'
         run: |
           set -e
           APK=app/build/outputs/apk/release/app-release.apk
@@ -141,5 +149,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: app/build/outputs/apk/release/app-release.apk
+          # 通配：配了证书是 app-release.apk，没配是 app-release-unsigned.apk
+          path: app/build/outputs/apk/release/*.apk
           if-no-files-found: error
