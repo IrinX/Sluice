@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
@@ -112,7 +114,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.action_back)
@@ -237,13 +239,13 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    TextButton(onClick = { mirrorInput = "" }) {
+                    CouiTextButtonCompat(onClick = { mirrorInput = "" }) {
                         Text(stringResource(R.string.action_restore_default))
                     }
                 }
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         val raw = mirrorInput.trim()
                         if (raw.isBlank()) {
@@ -264,7 +266,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 ) { Text(stringResource(R.string.action_confirm)) }
             },
             dismissButton = {
-                TextButton(onClick = { showMirrorDialog = false }) {
+                CouiTextButtonCompat(onClick = { showMirrorDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -295,7 +297,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 }
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         val raw = urlInput.trim()
                         when {
@@ -323,7 +325,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 ) { Text(stringResource(R.string.action_confirm)) }
             },
             dismissButton = {
-                TextButton(onClick = { showAnnouncementDialog = false }) {
+                CouiTextButtonCompat(onClick = { showAnnouncementDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -377,7 +379,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 }
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         if (tempEnabled) {
                             val host = tempHost.trim()
@@ -410,7 +412,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 ) { Text(stringResource(R.string.action_confirm)) }
             },
             dismissButton = {
-                TextButton(onClick = { showProxyDialog = false }) {
+                CouiTextButtonCompat(onClick = { showProxyDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }

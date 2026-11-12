@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import android.content.Context
@@ -180,14 +183,14 @@ fun Pan123LoginScreen(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_pan123_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = { if (!isSaving && !isSavingManual && !isLoggingIn) onBack() }) {
+                    CouiIconButtonCompat(onClick = { if (!isSaving && !isSavingManual && !isLoggingIn) onBack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.lg_back))
                     }
                 },
                 actions = {
                     // 「保存」与「粘贴」只对网页登录有意义，账号密码模式下不显示，避免误点
                     if (mode == MODE_WEB) {
-                        IconButton(
+                        CouiIconButtonCompat(
                             onClick = { if (!isSaving && !isSavingManual) showTokenDialog = true },
                             enabled = !isSaving && !isSavingManual
                         ) {
@@ -197,7 +200,7 @@ fun Pan123LoginScreen(
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        TextButton(
+                        CouiTextButtonCompat(
                             onClick = {
                                 scope.launch {
                                     isSaving = true
@@ -330,7 +333,7 @@ fun Pan123LoginScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
+                CouiTextButtonCompat(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
             }
         )
     }
@@ -359,7 +362,7 @@ fun Pan123LoginScreen(
                 }
             },
             confirmButton = {
-                Button(
+                CouiButtonCompat(
                     onClick = {
                         scope.launch {
                             isSavingManual = true
@@ -390,7 +393,7 @@ fun Pan123LoginScreen(
                 }
             },
             dismissButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = { if (!isSavingManual) showTokenDialog = false },
                     enabled = !isSavingManual
                 ) { Text(stringResource(R.string.lg_cancel)) }
@@ -449,7 +452,7 @@ private fun AccountPasswordForm(
             label = { Text(stringResource(R.string.lg_password)) },
             leadingIcon = { Icon(Icons.Outlined.Lock, contentDescription = null) },
             trailingIcon = {
-                IconButton(onClick = onTogglePasswordVisible) {
+                CouiIconButtonCompat(onClick = onTogglePasswordVisible) {
                     Icon(
                         imageVector = if (passwordVisible) Icons.Outlined.VisibilityOff else Icons.Outlined.Visibility,
                         contentDescription = if (passwordVisible) stringResource(R.string.lg_hide_password) else stringResource(R.string.lg_show_password)
@@ -470,7 +473,7 @@ private fun AccountPasswordForm(
                 color = MaterialTheme.colorScheme.error
             )
         }
-        Button(
+        CouiButtonCompat(
             onClick = onSubmit,
             modifier = Modifier.fillMaxWidth().height(48.dp),
             enabled = account.isNotBlank() && password.isNotEmpty() && !busy

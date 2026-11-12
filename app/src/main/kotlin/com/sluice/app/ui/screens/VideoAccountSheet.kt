@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
@@ -236,7 +238,7 @@ internal fun VideoAccountSheet(
                 Text(stringResource(R.string.sh_logout_all_confirm, platform.displayName, accounts.size))
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showRemoveAll = false
                         onRemoveAll()
@@ -245,7 +247,7 @@ internal fun VideoAccountSheet(
                     Text(stringResource(R.string.sh_logout_all), color = MaterialTheme.colorScheme.error)
                 }
             },
-            dismissButton = { TextButton(onClick = { showRemoveAll = false }) { Text(stringResource(R.string.sh_cancel)) } }
+            dismissButton = { CouiTextButtonCompat(onClick = { showRemoveAll = false }) { Text(stringResource(R.string.sh_cancel)) } }
         )
     }
 }
@@ -300,7 +302,7 @@ private fun VideoAccountRow(
             )
         }
         Box {
-            IconButton(onClick = { menuExpanded = true }) {
+            CouiIconButtonCompat(onClick = { menuExpanded = true }) {
                 Icon(
                     imageVector = Icons.Outlined.MoreVert,
                     contentDescription = stringResource(R.string.sh_account_actions),
@@ -350,14 +352,14 @@ private fun VideoAccountRow(
                 }
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showRename = false
                         onRename(account.id, input)
                     }
                 ) { Text(stringResource(R.string.sh_save)) }
             },
-            dismissButton = { TextButton(onClick = { showRename = false }) { Text(stringResource(R.string.sh_cancel)) } }
+            dismissButton = { CouiTextButtonCompat(onClick = { showRename = false }) { Text(stringResource(R.string.sh_cancel)) } }
         )
     }
 
@@ -369,7 +371,7 @@ private fun VideoAccountRow(
                 Text(stringResource(R.string.sh_logout_confirm, displayName))
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showRemove = false
                         onRemove(account.id)
@@ -378,7 +380,7 @@ private fun VideoAccountRow(
                     Text(stringResource(R.string.sh_logout), color = MaterialTheme.colorScheme.error)
                 }
             },
-            dismissButton = { TextButton(onClick = { showRemove = false }) { Text(stringResource(R.string.sh_cancel)) } }
+            dismissButton = { CouiTextButtonCompat(onClick = { showRemove = false }) { Text(stringResource(R.string.sh_cancel)) } }
         )
     }
 }

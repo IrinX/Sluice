@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.resolve
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
@@ -128,7 +130,7 @@ fun DownloadLinkDialog(
                         overflow = TextOverflow.Ellipsis
                     )
                 }
-                TextButton(onClick = {
+                CouiTextButtonCompat(onClick = {
                     copyToClipboard(context, link.downloadUrl)
                     SnackbarController.show(AppStrings.get(R.string.sh_download_link_copied))
                 }) {
@@ -146,7 +148,7 @@ fun DownloadLinkDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 onClick = { onDownload() }
             ) {
                 Icon(
@@ -159,7 +161,7 @@ fun DownloadLinkDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
+            CouiTextButtonCompat(onClick = onDismiss) {
                 Text(stringResource(R.string.sh_close))
             }
         },

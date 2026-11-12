@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
@@ -215,7 +218,7 @@ fun ThemeScreen(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.theme_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.action_back))
                     }
                 },
@@ -824,9 +827,9 @@ internal fun ColorPickerDialog(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
+                    CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
                     Spacer(modifier = Modifier.width(8.dp))
-                    Button(onClick = { onColorSelected(currentColor.toArgb().toLong() and 0xFFFFFFFFL) }) {
+                    CouiButtonCompat(onClick = { onColorSelected(currentColor.toArgb().toLong() and 0xFFFFFFFFL) }) {
                         Text(stringResource(R.string.action_apply))
                     }
                 }

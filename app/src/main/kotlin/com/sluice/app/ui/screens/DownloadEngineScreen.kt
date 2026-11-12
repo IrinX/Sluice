@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
@@ -332,7 +335,7 @@ fun DownloadEngineScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.dl_engine_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.action_back))
                     }
                 },
@@ -496,7 +499,7 @@ fun DownloadEngineScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                                         }
                                     )
                                     if (storageBlocked) {
-                                        TextButton(onClick = { requestStoragePermission() }) {
+                                        CouiTextButtonCompat(onClick = { requestStoragePermission() }) {
                                             Icon(
                                                 Icons.Outlined.FolderOpen,
                                                 contentDescription = null,
@@ -572,7 +575,7 @@ fun DownloadEngineScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                                     // 而且只留「重启」——都切到 Gopeed 了，单独「停止引擎」这个动作没有意义；
                                     // 引擎卡住时能自救的才是重启（停止 + 再启动，stop 是幂等的）。
                                     if (engineOn) {
-                                        TextButton(onClick = {
+                                        CouiTextButtonCompat(onClick = {
                                             action {
                                                 withContext(Dispatchers.IO) {
                                                     GopeedEngine.stop()
@@ -595,7 +598,7 @@ fun DownloadEngineScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                                             Text(stringResource(R.string.dl_engine_restart))
                                         }
                                     }
-                                    TextButton(onClick = {
+                                    CouiTextButtonCompat(onClick = {
                                         action {
                                             withContext(Dispatchers.IO) {
                                                 // uninstall 不允许在运行中删（Go core 还占着 .so），先停掉
@@ -810,7 +813,7 @@ private fun KernelCloudSheet(
 
             // ① 主按钮：说明里有「[网盘下载](…)」才给网盘通道
             if (release.panUrl != null) {
-                Button(
+                CouiButtonCompat(
                     onClick = onPan,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -844,7 +847,7 @@ private fun KernelCloudSheet(
                     Text(stringResource(R.string.dl_kernel_github_download))
                 }
             } else {
-                Button(
+                CouiButtonCompat(
                     onClick = onGithub,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -867,7 +870,7 @@ private fun KernelCloudSheet(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = onDismiss) {
+                CouiTextButtonCompat(onClick = onDismiss) {
                     Text(stringResource(R.string.action_cancel), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
@@ -887,7 +890,7 @@ private fun KernelGithubDialog(
         title = { Text(stringResource(R.string.dl_kernel_github_download)) },
         text = {
             Column {
-                Button(onClick = onDirect, modifier = Modifier.fillMaxWidth()) {
+                CouiButtonCompat(onClick = onDirect, modifier = Modifier.fillMaxWidth()) {
                     Icon(
                         imageVector = Icons.Outlined.Download,
                         contentDescription = null,
@@ -909,7 +912,7 @@ private fun KernelGithubDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) {
+            CouiTextButtonCompat(onClick = onDismiss) {
                 Text(stringResource(R.string.action_cancel), color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
@@ -1047,9 +1050,9 @@ private fun KernelProgressDialog(
         },
         confirmButton = {
             if (finished) {
-                TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_close)) }
+                CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.action_close)) }
             } else {
-                TextButton(onClick = onCancel) {
+                CouiTextButtonCompat(onClick = onCancel) {
                     Text(stringResource(R.string.action_cancel), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }

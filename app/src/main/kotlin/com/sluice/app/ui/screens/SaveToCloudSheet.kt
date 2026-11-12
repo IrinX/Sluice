@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
 
@@ -160,7 +162,7 @@ internal fun SaveToCloudContent(
                             textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        TextButton(onClick = { cloudViewModel.loadRoot() }) {
+                        CouiTextButtonCompat(onClick = { cloudViewModel.loadRoot() }) {
                             Text(stringResource(R.string.sh_retry))
                         }
                     }
@@ -208,7 +210,7 @@ internal fun SaveToCloudContent(
             // 转存按钮
             val currentDirName =
                 (cloudState as? QuarkCloudUiState.Loaded)?.pathNames?.lastOrNull() ?: stringResource(R.string.sh_root_dir)
-            Button(
+            CouiButtonCompat(
                 onClick = {
                     val dirFid = (cloudState as? QuarkCloudUiState.Loaded)?.dirFid ?: "0"
                     resolveViewModel.saveToCloud(dirFid)

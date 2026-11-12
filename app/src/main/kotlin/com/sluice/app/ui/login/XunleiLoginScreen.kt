@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiOutlinedTextField
@@ -145,7 +148,7 @@ fun XunleiLoginScreen(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_xunlei_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.lg_back))
                     }
                 },
@@ -216,7 +219,7 @@ fun XunleiLoginScreen(
                         singleLine = true,
                         shape = MaterialTheme.shapes.large
                     )
-                    Button(
+                    CouiButtonCompat(
                         onClick = { viewModel.loginWithSms(username, smsCode, smsStep.smsCreditKey, smsStep.smsToken) },
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         enabled = smsCode.isNotBlank()
@@ -235,7 +238,7 @@ fun XunleiLoginScreen(
                     )
                     // 短信发不出时的应用内验证兜底（应用内 WebView 承载验证页；核心验证仍走自有短信流）
                     if (smsStep.reviewUrl.isNotBlank()) {
-                        TextButton(
+                        CouiTextButtonCompat(
                             onClick = {
                                 // 用与登录请求一致的设备签名（deviceSign = div101.xxx）：
                                 // 验证页会把 URL 里的 deviceid 原样当 devicesign 用，
@@ -283,7 +286,7 @@ fun XunleiLoginScreen(
                             singleLine = true,
                             shape = MaterialTheme.shapes.large
                         )
-                        Button(
+                        CouiButtonCompat(
                             onClick = {
                                 viewModel.loginWithSms(
                                     smsMobile, smsCode,
@@ -327,7 +330,7 @@ fun XunleiLoginScreen(
                         label = { Text(stringResource(R.string.lg_password)) },
                         leadingIcon = { Icon(Icons.Outlined.Lock, contentDescription = null) },
                         trailingIcon = {
-                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                            CouiIconButtonCompat(onClick = { passwordVisible = !passwordVisible }) {
                                 Icon(
                                     imageVector = if (passwordVisible) Icons.Outlined.VisibilityOff else Icons.Outlined.Visibility,
                                     contentDescription = if (passwordVisible) stringResource(R.string.lg_hide_password) else stringResource(R.string.lg_show_password)
@@ -339,7 +342,7 @@ fun XunleiLoginScreen(
                         singleLine = true,
                         shape = MaterialTheme.shapes.large
                     )
-                    Button(
+                    CouiButtonCompat(
                         onClick = { viewModel.login(username, password) },
                         modifier = Modifier.fillMaxWidth().height(48.dp),
                         enabled = username.isNotBlank() && password.isNotBlank()
@@ -371,7 +374,7 @@ fun XunleiLoginScreen(
 
             if (mode == MODE_PASSWORD && step?.needSms != true) {
                 // 未设置密码：跳转迅雷官网设置（浏览器打开）
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         runCatching {
                             context.startActivity(
@@ -428,7 +431,7 @@ private fun ColumnScope.SmsSendButton(
             }
         }
     } else {
-        TextButton(
+        CouiTextButtonCompat(
             onClick = onSend,
             modifier = Modifier.align(Alignment.CenterHorizontally),
             enabled = canClick

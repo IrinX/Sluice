@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -159,7 +161,7 @@ internal fun XunleiSaveContent(
                             textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        TextButton(onClick = { cloudViewModel.loadRoot() }) {
+                        CouiTextButtonCompat(onClick = { cloudViewModel.loadRoot() }) {
                             Text(stringResource(R.string.csb_cloud_retry))
                         }
                     }
@@ -207,7 +209,7 @@ internal fun XunleiSaveContent(
             // 转存按钮
             val currentDirName =
                 (cloudState as? XunleiCloudUiState.Loaded)?.pathNames?.lastOrNull() ?: stringResource(R.string.csb_move_root_dir)
-            Button(
+            CouiButtonCompat(
                 onClick = {
                     val dirFid = (cloudState as? XunleiCloudUiState.Loaded)?.dirFid ?: ""
                     resolveViewModel.saveToCloud(dirFid)

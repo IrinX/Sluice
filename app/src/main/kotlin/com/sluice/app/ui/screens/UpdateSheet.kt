@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import android.content.Intent
 import android.net.Uri
@@ -197,7 +199,7 @@ fun UpdateSheet(
 
             // ① 主按钮：命中网盘链接时走网盘更新，否则从 GitHub 下载
             if (netdiskUrl != null) {
-                Button(
+                CouiButtonCompat(
                     onClick = { onNetdiskUpdate(netdiskUrl) },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -212,7 +214,7 @@ fun UpdateSheet(
                     Text(stringResource(R.string.vm_update_netdisk))
                 }
             } else {
-                Button(
+                CouiButtonCompat(
                     onClick = onDownload,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -271,11 +273,11 @@ fun UpdateSheet(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = onIgnore) {
+                CouiTextButtonCompat(onClick = onIgnore) {
                     Text(stringResource(R.string.vm_update_ignore), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
                 Spacer(modifier = Modifier.width(8.dp))
-                TextButton(onClick = onLater) {
+                CouiTextButtonCompat(onClick = onLater) {
                     Text(stringResource(R.string.vm_update_later), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
@@ -289,7 +291,7 @@ fun UpdateSheet(
             title = { Text(stringResource(R.string.vm_update_github_download)) },
             text = {
                 Column {
-                    Button(
+                    CouiButtonCompat(
                         onClick = {
                             showGithubOptions = false
                             onDownload()
@@ -343,7 +345,7 @@ fun UpdateSheet(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showGithubOptions = false }) {
+                CouiTextButtonCompat(onClick = { showGithubOptions = false }) {
                     Text(stringResource(R.string.vm_cancel), color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }

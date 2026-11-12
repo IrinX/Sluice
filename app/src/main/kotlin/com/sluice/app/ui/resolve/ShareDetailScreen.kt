@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.resolve
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -265,7 +268,7 @@ fun ShareDetailScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         if (viewModel.multiSelectMode) {
                             // 多选模式：取消选择
-                            IconButton(onClick = { viewModel.exitMultiSelect() }) {
+                            CouiIconButtonCompat(onClick = { viewModel.exitMultiSelect() }) {
                                 Icon(
                                     Icons.AutoMirrored.Filled.ArrowBack,
                                     contentDescription = stringResource(R.string.rs_cancel_selection)
@@ -290,7 +293,7 @@ fun ShareDetailScreen(
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
-                            TextButton(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
+                            CouiTextButtonCompat(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
                                 Text(
                                     if (viewModel.selected.size == displayFiles.size) {
                                         stringResource(R.string.rs_deselect_all)
@@ -300,7 +303,7 @@ fun ShareDetailScreen(
                                 )
                             }
                         } else {
-                            IconButton(onClick = onExit) {
+                            CouiIconButtonCompat(onClick = onExit) {
                                 Icon(
                                     Icons.AutoMirrored.Filled.ArrowBack,
                                     contentDescription = stringResource(R.string.rs_back)
@@ -330,14 +333,14 @@ fun ShareDetailScreen(
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
-                            IconButton(onClick = { showAddBookmark = true }) {
+                            CouiIconButtonCompat(onClick = { showAddBookmark = true }) {
                                 Icon(
                                     imageVector = Icons.Outlined.BookmarkAdd,
                                     contentDescription = stringResource(R.string.rs_add_to_bookmark),
                                     tint = MaterialTheme.colorScheme.primary
                                 )
                             }
-                            IconButton(onClick = { showSearch = !showSearch }) {
+                            CouiIconButtonCompat(onClick = { showSearch = !showSearch }) {
                                 Icon(
                                     imageVector = Icons.Outlined.Search,
                                     contentDescription = if (showSearch) {
@@ -383,7 +386,7 @@ fun ShareDetailScreen(
                                 leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null) },
                                 trailingIcon = {
                                     if (searchQuery.isNotEmpty()) {
-                                        IconButton(onClick = { searchQuery = "" }) {
+                                        CouiIconButtonCompat(onClick = { searchQuery = "" }) {
                                             Icon(
                                                 Icons.Filled.Close,
                                                 contentDescription = stringResource(R.string.rs_clear_search)
@@ -569,7 +572,7 @@ fun ShareDetailScreen(
                 }
             },
             confirmButton = {
-                Button(
+                CouiButtonCompat(
                     onClick = {
                         showBaiduLimitDialog = false
                         baiduSettings.baiduLimitHintDismissed = neverShow
@@ -580,7 +583,7 @@ fun ShareDetailScreen(
                 ) { Text(stringResource(R.string.rs_continue_download)) }
             },
             dismissButton = {
-                TextButton(onClick = { showBaiduLimitDialog = false }) {
+                CouiTextButtonCompat(onClick = { showBaiduLimitDialog = false }) {
                     Text(stringResource(R.string.rs_cancel))
                 }
             }
@@ -593,7 +596,7 @@ fun ShareDetailScreen(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {
-                TextButton(onClick = { viewModel.cancelBatch() }) {
+                CouiTextButtonCompat(onClick = { viewModel.cancelBatch() }) {
                     Text(stringResource(R.string.rs_interrupt), color = MaterialTheme.colorScheme.error)
                 }
             },
@@ -912,7 +915,7 @@ internal fun ShareFileRow(
         trailing = {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (onMore != null) {
-                    IconButton(onClick = onMore, modifier = Modifier.size(36.dp)) {
+                    CouiIconButtonCompat(onClick = onMore, modifier = Modifier.size(36.dp)) {
                         Icon(
                             imageVector = Icons.Outlined.MoreVert,
                             contentDescription = stringResource(R.string.rs_more),

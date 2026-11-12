@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -289,7 +292,7 @@ internal fun CloudAddMenu(
 ) {
     var expanded by remember { mutableStateOf(false) }
     Box {
-        IconButton(onClick = { expanded = true }) {
+        CouiIconButtonCompat(onClick = { expanded = true }) {
             Icon(
                 imageVector = Icons.Outlined.Add,
                 contentDescription = stringResource(R.string.csa_cd_new),
@@ -377,7 +380,7 @@ internal fun CreateFolderDialog(
             }
         },
         confirmButton = {
-            TextButton(
+            CouiTextButtonCompat(
                 onClick = { onConfirm(name.trim()) },
                 enabled = error == null
             ) {
@@ -385,7 +388,7 @@ internal fun CreateFolderDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.csa_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.csa_cancel)) }
         }
     )
 }
@@ -607,7 +610,7 @@ internal fun QuarkMoveStep(
 
         Spacer(modifier = Modifier.height(16.dp))
         val dirName = (moveState as? QuarkCloudUiState.Loaded)?.pathNames?.lastOrNull() ?: stringResource(R.string.csa_root_dir)
-        Button(
+        CouiButtonCompat(
             onClick = {
                 val to = (moveState as? QuarkCloudUiState.Loaded)?.dirFid ?: "0"
                 viewModel.moveFile(to)
@@ -771,7 +774,7 @@ private fun ShareStep(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Button(
+        CouiButtonCompat(
             onClick = {
                 // 提取码规则决定提交内容：
                 // - OPTIONAL：按用户选择决定是否带提取码
@@ -854,7 +857,7 @@ private fun RenameStep(
             shape = MaterialTheme.shapes.large
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Button(
+        CouiButtonCompat(
             onClick = { onRename(name.trim()) },
             enabled = !operating && nameError == null && name.trim() != file.fname,
             modifier = Modifier
@@ -895,7 +898,7 @@ private fun ConfirmDeleteContent(
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Button(
+        CouiButtonCompat(
             onClick = onConfirm,
             enabled = !operating,
             colors = ButtonDefaults.buttonColors(
@@ -909,7 +912,7 @@ private fun ConfirmDeleteContent(
             Text(stringResource(R.string.csa_delete))
         }
         Spacer(modifier = Modifier.height(8.dp))
-        TextButton(
+        CouiTextButtonCompat(
             onClick = onCancel,
             enabled = !operating,
             modifier = Modifier
@@ -1020,7 +1023,7 @@ internal fun ShareResultDialog(
             }
         },
         confirmButton = {
-            TextButton(
+            CouiTextButtonCompat(
                 onClick = {
                     val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                     cm.setPrimaryClip(ClipData.newPlainText("share_text", shareText))
@@ -1033,7 +1036,7 @@ internal fun ShareResultDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.csa_done)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.csa_done)) }
         }
     )
 }
@@ -1047,7 +1050,7 @@ internal fun StepHeader(
     modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = onBack, enabled = !LocalFileOperationBusy.current) {
+        CouiIconButtonCompat(onClick = onBack, enabled = !LocalFileOperationBusy.current) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.csa_back)
@@ -1326,7 +1329,7 @@ internal fun UploadProgressDialog(progress: UploadProgress, onCancel: () -> Unit
             }
         },
         confirmButton = {
-            TextButton(onClick = onCancel, enabled = !progress.cancelling) {
+            CouiTextButtonCompat(onClick = onCancel, enabled = !progress.cancelling) {
                 Text(if (progress.cancelling) stringResource(R.string.csa_cancelling) else stringResource(R.string.csa_cancel))
             }
         }

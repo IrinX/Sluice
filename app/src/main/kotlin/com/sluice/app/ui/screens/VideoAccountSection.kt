@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
@@ -211,8 +212,8 @@ private fun VideoPlatformCardContent(
 
         when {
             !enabled -> Unit
-            account != null -> TextButton(onClick = { onManage(platform) }) { Text(stringResource(R.string.sh_manage)) }
-            else -> TextButton(onClick = { onLogin(platform) }) { Text(stringResource(R.string.sh_login)) }
+            account != null -> CouiTextButtonCompat(onClick = { onManage(platform) }) { Text(stringResource(R.string.sh_manage)) }
+            else -> CouiTextButtonCompat(onClick = { onLogin(platform) }) { Text(stringResource(R.string.sh_login)) }
         }
     }
 }

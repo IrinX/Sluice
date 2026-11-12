@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import android.content.ClipboardManager
 import android.content.Context
@@ -315,7 +318,7 @@ fun ResolveScreen(
                         {
                             val parent = viewModel.githubParentFullName
                             if (parent != null) {
-                                TextButton(
+                                CouiTextButtonCompat(
                                     onClick = { viewModel.openGitHubParentRepo() },
                                     contentPadding = PaddingValues(vertical = 4.dp)
                                 ) {
@@ -568,7 +571,7 @@ private fun ResolveInputContent(
             leadingIcon = { Icon(Icons.Outlined.Link, contentDescription = null) },
             trailingIcon = {
                 if (link.isNotEmpty()) {
-                    IconButton(onClick = onClearLink) {
+                    CouiIconButtonCompat(onClick = onClearLink) {
                         Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.rs_clear_link))
                     }
                 }
@@ -586,7 +589,7 @@ private fun ResolveInputContent(
             placeholder = { Text(stringResource(R.string.rs_auto_or_manual)) },
             trailingIcon = {
                 if (pwd.isNotEmpty()) {
-                    IconButton(onClick = onClearPwd) {
+                    CouiIconButtonCompat(onClick = onClearPwd) {
                         Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.rs_clear_code))
                     }
                 }
@@ -595,7 +598,7 @@ private fun ResolveInputContent(
             shape = MaterialTheme.shapes.large
         )
 
-        Button(
+        CouiButtonCompat(
             onClick = {
                 // 统一入口：先试视频、再试 GitHub / 网盘（分流在 ViewModel 内完成）
                 viewModel.startVideoResolve(link, pwd)
@@ -682,7 +685,7 @@ private fun HomeShortcutsSection(
                 style = MaterialTheme.typography.titleSmall,
                 modifier = Modifier.weight(1f)
             )
-            TextButton(onClick = onOpenBookmarks) {
+            CouiTextButtonCompat(onClick = onOpenBookmarks) {
                 Icon(
                     imageVector = Icons.Outlined.BookmarkBorder,
                     contentDescription = null,
@@ -759,7 +762,7 @@ private fun HomeShortcutsSection(
                 )
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         onRemove(bookmark)
                         removing = null
@@ -769,7 +772,7 @@ private fun HomeShortcutsSection(
                 }
             },
             dismissButton = {
-                TextButton(onClick = { removing = null }) {
+                CouiTextButtonCompat(onClick = { removing = null }) {
                     Text(text = stringResource(R.string.rs_cancel))
                 }
             }
@@ -951,11 +954,11 @@ private fun ClipboardSuggestCard(
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = onDismiss) {
+                CouiTextButtonCompat(onClick = onDismiss) {
                     Text(stringResource(R.string.rs_ignore), color = MaterialTheme.colorScheme.onPrimaryContainer)
                 }
                 Spacer(modifier = Modifier.width(4.dp))
-                Button(
+                CouiButtonCompat(
                     onClick = onPaste,
                     colors = androidx.compose.material3.ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary,

@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -156,7 +158,7 @@ internal fun C139SaveContent(
                             textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        TextButton(onClick = { cloudViewModel.loadRoot() }) {
+                        CouiTextButtonCompat(onClick = { cloudViewModel.loadRoot() }) {
                             Text(stringResource(R.string.csa_retry))
                         }
                     }
@@ -203,7 +205,7 @@ internal fun C139SaveContent(
 
             val currentDirName =
                 (cloudState as? C139CloudUiState.Loaded)?.pathNames?.lastOrNull() ?: stringResource(R.string.csa_root_dir)
-            Button(
+            CouiButtonCompat(
                 onClick = {
                     val dirId = (cloudState as? C139CloudUiState.Loaded)?.dirId ?: "/"
                     resolveViewModel.saveToCloud(dirId)

@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import androidx.activity.compose.BackHandler
@@ -104,12 +107,12 @@ fun ILanzouLoginScreen(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_ilanzou_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = { if (!isSaving) onBack() }) {
+                    CouiIconButtonCompat(onClick = { if (!isSaving) onBack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.lg_back))
                     }
                 },
                 actions = {
-                    IconButton(onClick = { showTutorial = true }, enabled = !isSaving) {
+                    CouiIconButtonCompat(onClick = { showTutorial = true }, enabled = !isSaving) {
                         Icon(
                             Icons.Outlined.Info,
                             contentDescription = stringResource(R.string.lg_login_tutorial),
@@ -162,7 +165,7 @@ fun ILanzouLoginScreen(
                 visualTransformation = if (passwordVisible) VisualTransformation.None
                 else PasswordVisualTransformation(),
                 trailingIcon = {
-                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    CouiIconButtonCompat(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(
                             if (passwordVisible) Icons.Outlined.VisibilityOff else Icons.Outlined.Visibility,
                             contentDescription = if (passwordVisible) stringResource(R.string.lg_hide_password) else stringResource(R.string.lg_show_password)
@@ -181,7 +184,7 @@ fun ILanzouLoginScreen(
                 )
             }
 
-            Button(
+            CouiButtonCompat(
                 onClick = {
                     scope.launch {
                         isSaving = true
@@ -229,7 +232,7 @@ fun ILanzouLoginScreen(
                     )
                 }
             },
-            confirmButton = { TextButton(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) } }
+            confirmButton = { CouiTextButtonCompat(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) } }
         )
     }
 }

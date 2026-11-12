@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
@@ -189,7 +191,7 @@ private fun AccountRow(
             )
         }
         Box {
-            IconButton(onClick = { menuExpanded = true }) {
+            CouiIconButtonCompat(onClick = { menuExpanded = true }) {
                 Icon(
                     imageVector = Icons.Outlined.MoreVert,
                     contentDescription = stringResource(R.string.sh_account_actions),
@@ -239,14 +241,14 @@ private fun AccountRow(
                 }
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showRename = false
                         onRename(account.id, input)
                     }
                 ) { Text(stringResource(R.string.sh_save)) }
             },
-            dismissButton = { TextButton(onClick = { showRename = false }) { Text(stringResource(R.string.sh_cancel)) } }
+            dismissButton = { CouiTextButtonCompat(onClick = { showRename = false }) { Text(stringResource(R.string.sh_cancel)) } }
         )
     }
 
@@ -258,7 +260,7 @@ private fun AccountRow(
                 Text(stringResource(R.string.sh_logout_confirm, displayName))
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showRemove = false
                         onRemove(account.id)
@@ -267,7 +269,7 @@ private fun AccountRow(
                     Text(stringResource(R.string.sh_logout), color = MaterialTheme.colorScheme.error)
                 }
             },
-            dismissButton = { TextButton(onClick = { showRemove = false }) { Text(stringResource(R.string.sh_cancel)) } }
+            dismissButton = { CouiTextButtonCompat(onClick = { showRemove = false }) { Text(stringResource(R.string.sh_cancel)) } }
         )
     }
 }

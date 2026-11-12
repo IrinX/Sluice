@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import androidx.compose.ui.platform.LocalContext
 import com.sluice.app.ui.SnackbarController
 import androidx.activity.compose.BackHandler
@@ -208,7 +211,7 @@ fun GuangYaCloudScreen(
                         Spacer(modifier = Modifier.height(16.dp))
                         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             OutlinedButton(onClick = onExit) { Text(stringResource(R.string.csa_back)) }
-                            TextButton(onClick = { viewModel.loadRoot() }) { Text(stringResource(R.string.csa_retry)) }
+                            CouiTextButtonCompat(onClick = { viewModel.loadRoot() }) { Text(stringResource(R.string.csa_retry)) }
                         }
                     }
                 }
@@ -241,7 +244,7 @@ fun GuangYaCloudScreen(
                                 Column(modifier = Modifier.padding(bottom = 8.dp)) {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         if (viewModel.multiSelectMode) {
-                                            IconButton(onClick = { viewModel.exitMultiSelect() }) {
+                                            CouiIconButtonCompat(onClick = { viewModel.exitMultiSelect() }) {
                                                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.csa_cd_cancel_selection))
                                             }
                                             Column(modifier = Modifier.weight(1f)) {
@@ -256,11 +259,11 @@ fun GuangYaCloudScreen(
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                                 )
                                             }
-                                            TextButton(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
+                                            CouiTextButtonCompat(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
                                                 Text(if (viewModel.selected.size == displayFiles.size) stringResource(R.string.csa_deselect_all) else stringResource(R.string.csa_select_all))
                                             }
                                         } else {
-                                            IconButton(onClick = onExit) {
+                                            CouiIconButtonCompat(onClick = onExit) {
                                                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.csa_back))
                                             }
                                             Column(modifier = Modifier.weight(1f)) {
@@ -278,7 +281,7 @@ fun GuangYaCloudScreen(
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                                 )
                                             }
-                                            IconButton(onClick = { showSearch = !showSearch }) {
+                                            CouiIconButtonCompat(onClick = { showSearch = !showSearch }) {
                                                 Icon(
                                                     imageVector = Icons.Outlined.Search,
                                                     contentDescription = if (showSearch) stringResource(R.string.csa_cd_close_search) else stringResource(R.string.csa_cd_search_files),
@@ -317,7 +320,7 @@ fun GuangYaCloudScreen(
                                                 leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null) },
                                                 trailingIcon = {
                                                     if (searchQuery.isNotEmpty()) {
-                                                        IconButton(onClick = { searchQuery = "" }) {
+                                                        CouiIconButtonCompat(onClick = { searchQuery = "" }) {
                                                             Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.csa_cd_clear_search))
                                                         }
                                                     }
@@ -509,7 +512,7 @@ fun GuangYaCloudScreen(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {
-                TextButton(onClick = { viewModel.cancelDownload() }) {
+                CouiTextButtonCompat(onClick = { viewModel.cancelDownload() }) {
                     Text(stringResource(R.string.csa_interrupt), color = MaterialTheme.colorScheme.error)
                 }
             },
@@ -605,7 +608,7 @@ private fun GuangYaMoveStep(
         }
         Spacer(modifier = Modifier.height(16.dp))
         val dirName = (moveState as? GuangYaCloudUiState.Loaded)?.pathNames?.lastOrNull() ?: stringResource(R.string.csa_root_dir)
-        Button(
+        CouiButtonCompat(
             onClick = {
                 val to = (moveState as? GuangYaCloudUiState.Loaded)?.dirId ?: ""
                 if (viewModel.multiSelectMode) viewModel.moveSelected(to) else viewModel.moveFile(to)

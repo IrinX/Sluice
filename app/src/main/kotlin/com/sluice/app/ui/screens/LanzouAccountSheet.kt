@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
@@ -210,11 +211,11 @@ fun LanzouAccountSheet(
                     )
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
                         if (truncated) {
-                            TextButton(onClick = { showFullToken = !showFullToken }) {
+                            CouiTextButtonCompat(onClick = { showFullToken = !showFullToken }) {
                                 Text(if (showFullToken) stringResource(R.string.sh_collapse) else stringResource(R.string.sh_expand_all))
                             }
                         }
-                        TextButton(
+                        CouiTextButtonCompat(
                             onClick = {
                                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 clipboard.setPrimaryClip(ClipData.newPlainText("lanzou_cookie", account.cookie))

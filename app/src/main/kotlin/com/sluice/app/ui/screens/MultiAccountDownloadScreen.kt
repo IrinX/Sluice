@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
@@ -103,7 +105,7 @@ fun MultiAccountDownloadScreen(onBack: () -> Unit, modifier: Modifier = Modifier
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.dl_ma_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.action_back))
                     }
                 },
@@ -216,7 +218,7 @@ fun MultiAccountDownloadScreen(onBack: () -> Unit, modifier: Modifier = Modifier
             title = { Text(stringResource(risk.titleRes)) },
             text = { Text(stringResource(risk.messageRes)) },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         when (risk) {
                             SwitchRisk.MULTI_ACCOUNT -> {
@@ -237,7 +239,7 @@ fun MultiAccountDownloadScreen(onBack: () -> Unit, modifier: Modifier = Modifier
                 }
             },
             dismissButton = {
-                TextButton(onClick = { pendingRisk = null }) {
+                CouiTextButtonCompat(onClick = { pendingRisk = null }) {
                     Text(text = stringResource(R.string.action_cancel))
                 }
             }

@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
@@ -152,12 +155,12 @@ fun BookmarkScreen(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.rs_bookmarks_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.rs_back))
                     }
                 },
                 actions = {
-                    IconButton(onClick = { showAddDialog = true }) {
+                    CouiIconButtonCompat(onClick = { showAddDialog = true }) {
                         Icon(Icons.Outlined.Add, contentDescription = stringResource(R.string.rs_add_bookmark))
                     }
                 },
@@ -437,7 +440,7 @@ private fun EmptyBookmark(onAdd: () -> Unit) {
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = onAdd) {
+        CouiButtonCompat(onClick = onAdd) {
             Icon(Icons.Outlined.Add, contentDescription = null, modifier = Modifier.size(18.dp))
             Spacer(modifier = Modifier.width(6.dp))
             Text(stringResource(R.string.rs_add_bookmark))
@@ -549,7 +552,7 @@ private fun AddBookmarkDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 enabled = link.isNotBlank() && !(isCustom && customCategory.isBlank()),
                 onClick = {
                     onConfirm(
@@ -562,7 +565,7 @@ private fun AddBookmarkDialog(
             ) { Text(stringResource(R.string.rs_bookmark)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
         }
     )
 }
@@ -641,7 +644,7 @@ internal fun AddToBookmarkDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 enabled = !(isCustom && customCategory.isBlank()),
                 onClick = {
                     onConfirm(
@@ -652,7 +655,7 @@ internal fun AddToBookmarkDialog(
             ) { Text(stringResource(R.string.rs_bookmark)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
         }
     )
 }
@@ -726,7 +729,7 @@ private fun EditCategoryDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 enabled = !(isCustom && customCategory.isBlank()),
                 onClick = {
                     onConfirm(if (isCustom) customCategory.trim() else selectedCategory)
@@ -734,7 +737,7 @@ private fun EditCategoryDialog(
             ) { Text(stringResource(R.string.rs_confirm)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
         }
     )
 }
@@ -762,22 +765,22 @@ private fun BookmarkMenuDialog(
         },
         text = {
             Column {
-                TextButton(onClick = onResolve, modifier = Modifier.fillMaxWidth()) {
+                CouiTextButtonCompat(onClick = onResolve, modifier = Modifier.fillMaxWidth()) {
                     Icon(Icons.Outlined.Link, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(stringResource(R.string.rs_resolve))
                 }
-                TextButton(onClick = onCopy, modifier = Modifier.fillMaxWidth()) {
+                CouiTextButtonCompat(onClick = onCopy, modifier = Modifier.fillMaxWidth()) {
                     Icon(Icons.Outlined.ContentCopy, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(stringResource(R.string.rs_copy_link))
                 }
-                TextButton(onClick = onEditCategory, modifier = Modifier.fillMaxWidth()) {
+                CouiTextButtonCompat(onClick = onEditCategory, modifier = Modifier.fillMaxWidth()) {
                     Icon(Icons.Outlined.Edit, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(stringResource(R.string.rs_edit_category))
                 }
-                TextButton(onClick = onToggleHome, modifier = Modifier.fillMaxWidth()) {
+                CouiTextButtonCompat(onClick = onToggleHome, modifier = Modifier.fillMaxWidth()) {
                     Icon(
                         imageVector = if (bookmark.homePinned) {
                             Icons.Outlined.RemoveCircleOutline
@@ -792,7 +795,7 @@ private fun BookmarkMenuDialog(
                 }
                 // 色块文字只有主页快捷方式用得到，所以只在已添加时给入口
                 if (bookmark.homePinned) {
-                    TextButton(onClick = onEditLabel, modifier = Modifier.fillMaxWidth()) {
+                    CouiTextButtonCompat(onClick = onEditLabel, modifier = Modifier.fillMaxWidth()) {
                         Icon(
                             Icons.Outlined.TextFields,
                             contentDescription = null,
@@ -802,7 +805,7 @@ private fun BookmarkMenuDialog(
                         Text(stringResource(R.string.rs_custom_icon_text))
                     }
                 }
-                TextButton(onClick = onDelete, modifier = Modifier.fillMaxWidth()) {
+                CouiTextButtonCompat(onClick = onDelete, modifier = Modifier.fillMaxWidth()) {
                     Icon(
                         Icons.Outlined.Delete,
                         contentDescription = null,
@@ -816,7 +819,7 @@ private fun BookmarkMenuDialog(
         },
         confirmButton = {},
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
         }
     )
 }
@@ -853,10 +856,10 @@ private fun HomeLabelDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = { onConfirm(text) }) { Text(stringResource(R.string.rs_save)) }
+            CouiTextButtonCompat(onClick = { onConfirm(text) }) { Text(stringResource(R.string.rs_save)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.rs_cancel)) }
         }
     )
 }

@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.itos.coui.layout.Scaffold as CouiScaffold
 import com.itos.coui.navigation.CouiNavigationItem
 import com.itos.coui.navigation.NavigationBar as CouiNavigationBar
@@ -1189,7 +1191,7 @@ fun MainScreen(
                                     modifier = Modifier.size(48.dp),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    IconButton(
+                                    CouiIconButtonCompat(
                                         onClick = {
                                             // 从图标进 = 先看列表（清掉上次「查看详情」直接进详情的请求）
                                             announcementDetailId = null
@@ -1222,7 +1224,7 @@ fun MainScreen(
                             }
                             // 解析页标题右上角：收藏网盘链接入口
                             if (currentTab == MainTab.Resolve) {
-                                IconButton(
+                                CouiIconButtonCompat(
                                     onClick = { showBookmarks = true },
                                     // ★ 收藏页就是从这个图标进来的：图标本身当"源"，用同一个 key 做容器变换，
                                     //   打开时图标长成整页、关闭时收回图标（与设置页那三行的做法完全一致）
@@ -1238,7 +1240,7 @@ fun MainScreen(
                             // ★ 只在账号列表上显示：进了某个网盘的浏览子页时排序没有意义，
                             //   由 DriveScreen 通过 onSubPageChange 通知本层隐藏。
                             if (currentTab == MainTab.Drive && !driveSubPageOpen) {
-                                IconButton(onClick = { showDriveSort = true }) {
+                                CouiIconButtonCompat(onClick = { showDriveSort = true }) {
                                     Icon(
                                         imageVector = Icons.Outlined.SwapVert,
                                         contentDescription = stringResource(R.string.vm_main_sort_drives)
@@ -1716,7 +1718,7 @@ fun MainScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     // 那四步是让人在电脑上手翻路径，手机上翻不动 —— 直接给一个跳到预填好权限的表单的入口
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             // 与设置页「GitHub 仓库」同一口径：没有可用浏览器就复制链接，不静默失败
                             if (!AppLinks.openGitHubTokenPage(context)) {
@@ -1752,7 +1754,7 @@ fun MainScreen(
                         visualTransformation = if (passwordVisible) VisualTransformation.None
                         else PasswordVisualTransformation(),
                         trailingIcon = {
-                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                            CouiIconButtonCompat(onClick = { passwordVisible = !passwordVisible }) {
                                 Icon(
                                     if (passwordVisible) Icons.Outlined.Visibility
                                     else Icons.Outlined.VisibilityOff,
@@ -1768,7 +1770,7 @@ fun MainScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = {
+                CouiTextButtonCompat(onClick = {
                     val input = tokenInput.trim()
                     if (input.isBlank()) {
                         // 清空即清除 Token（无需联网校验）
@@ -1803,7 +1805,7 @@ fun MainScreen(
                 }) { Text(stringResource(R.string.vm_save)) }
             },
             dismissButton = {
-                TextButton(onClick = { showGitHubTokenDialog = false }) { Text(stringResource(R.string.vm_cancel)) }
+                CouiTextButtonCompat(onClick = { showGitHubTokenDialog = false }) { Text(stringResource(R.string.vm_cancel)) }
             }
         )
     }
@@ -1815,7 +1817,7 @@ fun MainScreen(
             title = { Text(stringResource(R.string.vm_github_clear_token_title)) },
             text = { Text(stringResource(R.string.vm_github_clear_token_message)) },
             confirmButton = {
-                TextButton(onClick = {
+                CouiTextButtonCompat(onClick = {
                     GitHubTokenStore.setToken(context, null)
                     githubHasTokenState = false
                     showGitHubClearConfirm = false
@@ -1823,7 +1825,7 @@ fun MainScreen(
                 }) { Text(stringResource(R.string.vm_clear), color = MaterialTheme.colorScheme.error) }
             },
             dismissButton = {
-                TextButton(onClick = { showGitHubClearConfirm = false }) { Text(stringResource(R.string.vm_cancel)) }
+                CouiTextButtonCompat(onClick = { showGitHubClearConfirm = false }) { Text(stringResource(R.string.vm_cancel)) }
             }
         )
     }

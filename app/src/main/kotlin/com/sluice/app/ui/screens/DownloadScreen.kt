@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiFabCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
@@ -371,7 +374,7 @@ fun DownloadScreen(
                 }
             },
             confirmButton = {
-                Button(
+                CouiButtonCompat(
                     onClick = {
                         showDeleteAllConfirm = false
                         viewModel.removeAll(deleteAllLocal)
@@ -382,7 +385,7 @@ fun DownloadScreen(
                 ) { Text(stringResource(R.string.dl_delete_all_confirm)) }
             },
             dismissButton = {
-                TextButton(onClick = { showDeleteAllConfirm = false }) { Text(stringResource(R.string.action_cancel)) }
+                CouiTextButtonCompat(onClick = { showDeleteAllConfirm = false }) { Text(stringResource(R.string.action_cancel)) }
             }
         )
     }
@@ -403,7 +406,7 @@ private fun DownloadBatchBar(
             .padding(horizontal = 16.dp, vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TextButton(onClick = onPauseAll, enabled = hasActive) {
+        CouiTextButtonCompat(onClick = onPauseAll, enabled = hasActive) {
             Icon(
                 imageVector = Icons.Outlined.Pause,
                 contentDescription = null,
@@ -412,7 +415,7 @@ private fun DownloadBatchBar(
             Spacer(modifier = Modifier.width(4.dp))
             Text(stringResource(R.string.dl_pause_all))
         }
-        TextButton(onClick = onResumeAll, enabled = hasResumable) {
+        CouiTextButtonCompat(onClick = onResumeAll, enabled = hasResumable) {
             Icon(
                 imageVector = Icons.Outlined.PlayArrow,
                 contentDescription = null,
@@ -422,7 +425,7 @@ private fun DownloadBatchBar(
             Text(stringResource(R.string.dl_resume_all))
         }
         Spacer(modifier = Modifier.weight(1f))
-        TextButton(onClick = onDeleteAll) {
+        CouiTextButtonCompat(onClick = onDeleteAll) {
             Icon(
                 imageVector = Icons.Outlined.Delete,
                 contentDescription = null,
@@ -506,7 +509,7 @@ private fun DeleteConfirmDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 onClick = { onConfirm(deleteLocal) },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.error
@@ -514,7 +517,7 @@ private fun DeleteConfirmDialog(
             ) { Text(stringResource(R.string.dl_delete)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
         }
     )
 }
@@ -797,25 +800,25 @@ private fun DownloadSubTaskRow(
                 // 主操作（暂停/继续/重试/打开）
                 when (task.status) {
                     DownloadTaskEntity.STATUS_DOWNLOADING,
-                    DownloadTaskEntity.STATUS_PENDING -> IconButton(onClick = onPause, modifier = Modifier.size(48.dp)) {
+                    DownloadTaskEntity.STATUS_PENDING -> CouiIconButtonCompat(onClick = onPause, modifier = Modifier.size(48.dp)) {
                         Icon(
                             Icons.Outlined.Pause, contentDescription = stringResource(R.string.dl_pause),
                             tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(18.dp)
                         )
                     }
-                    DownloadTaskEntity.STATUS_PAUSED -> IconButton(onClick = onResume, modifier = Modifier.size(48.dp)) {
+                    DownloadTaskEntity.STATUS_PAUSED -> CouiIconButtonCompat(onClick = onResume, modifier = Modifier.size(48.dp)) {
                         Icon(
                             Icons.Outlined.PlayArrow, contentDescription = stringResource(R.string.dl_resume),
                             tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(18.dp)
                         )
                     }
-                    DownloadTaskEntity.STATUS_FAILED -> IconButton(onClick = onResume, modifier = Modifier.size(48.dp)) {
+                    DownloadTaskEntity.STATUS_FAILED -> CouiIconButtonCompat(onClick = onResume, modifier = Modifier.size(48.dp)) {
                         Icon(
                             Icons.Outlined.Refresh, contentDescription = stringResource(R.string.dl_retry),
                             tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(18.dp)
                         )
                     }
-                    DownloadTaskEntity.STATUS_COMPLETED -> IconButton(
+                    DownloadTaskEntity.STATUS_COMPLETED -> CouiIconButtonCompat(
                         onClick = { openSavedFile(context, task.savePath) },
                         modifier = Modifier.size(48.dp)
                     ) {
@@ -826,7 +829,7 @@ private fun DownloadSubTaskRow(
                     }
                 }
                 // 删除
-                IconButton(onClick = onRemove, modifier = Modifier.size(48.dp)) {
+                CouiIconButtonCompat(onClick = onRemove, modifier = Modifier.size(48.dp)) {
                     Icon(
                         Icons.Outlined.Delete, contentDescription = stringResource(R.string.dl_delete),
                         tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(18.dp)
@@ -869,7 +872,7 @@ private fun DownloadSubTaskRow(
                 },
                 text = {
                     Column {
-                        TextButton(onClick = {
+                        CouiTextButtonCompat(onClick = {
                             showMenu = false
                             copyToClipboard(context, task.url)
                             SnackbarController.show(AppStrings.get(R.string.dl_url_copied))
@@ -878,7 +881,7 @@ private fun DownloadSubTaskRow(
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(stringResource(R.string.dl_copy_url))
                         }
-                        TextButton(onClick = {
+                        CouiTextButtonCompat(onClick = {
                             showMenu = false
                             onRedownload()
                         }) {
@@ -886,7 +889,7 @@ private fun DownloadSubTaskRow(
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(stringResource(R.string.dl_redownload))
                         }
-                        TextButton(onClick = {
+                        CouiTextButtonCompat(onClick = {
                             showMenu = false
                             onRemove()
                         }) {
@@ -895,7 +898,7 @@ private fun DownloadSubTaskRow(
                             Text(stringResource(R.string.dl_delete_task))
                         }
                         if (downloadDebug) {
-                            TextButton(onClick = {
+                            CouiTextButtonCompat(onClick = {
                                 showMenu = false
                                 onOpenDebug(task.id)
                             }) {
@@ -907,7 +910,7 @@ private fun DownloadSubTaskRow(
                     }
                 },
                 confirmButton = {
-                    TextButton(onClick = { showMenu = false }) { Text(stringResource(R.string.action_cancel)) }
+                    CouiTextButtonCompat(onClick = { showMenu = false }) { Text(stringResource(R.string.action_cancel)) }
                 }
             )
         }
@@ -986,19 +989,19 @@ private fun DownloadTaskCard(
                 // 主操作按钮
                 when (task.status) {
                     DownloadTaskEntity.STATUS_DOWNLOADING,
-                    DownloadTaskEntity.STATUS_PENDING -> IconButton(onClick = onPause) {
+                    DownloadTaskEntity.STATUS_PENDING -> CouiIconButtonCompat(onClick = onPause) {
                         Icon(Icons.Outlined.Pause, contentDescription = stringResource(R.string.dl_pause), tint = MaterialTheme.colorScheme.primary)
                     }
-                    DownloadTaskEntity.STATUS_PAUSED -> IconButton(onClick = onResume) {
+                    DownloadTaskEntity.STATUS_PAUSED -> CouiIconButtonCompat(onClick = onResume) {
                         Icon(Icons.Outlined.PlayArrow, contentDescription = stringResource(R.string.dl_resume), tint = MaterialTheme.colorScheme.primary)
                     }
-                    DownloadTaskEntity.STATUS_FAILED -> IconButton(onClick = onResume) {
+                    DownloadTaskEntity.STATUS_FAILED -> CouiIconButtonCompat(onClick = onResume) {
                         Icon(Icons.Outlined.Refresh, contentDescription = stringResource(R.string.dl_retry), tint = MaterialTheme.colorScheme.error)
                     }
                                         DownloadTaskEntity.STATUS_COMPLETED -> Row {
                         // APK 文件：额外显示「安装」按钮
                         if (task.fileName.endsWith(".apk", true)) {
-                            IconButton(onClick = { installApk(context, task.savePath, task.fileName) }) {
+                            CouiIconButtonCompat(onClick = { installApk(context, task.savePath, task.fileName) }) {
                                 Icon(
                                     imageVector = Icons.Outlined.SystemUpdate,
                                     contentDescription = stringResource(R.string.dl_install),
@@ -1006,7 +1009,7 @@ private fun DownloadTaskCard(
                                 )
                             }
                         }
-                        IconButton(onClick = {
+                        CouiIconButtonCompat(onClick = {
                             openSavedFile(context, task.savePath)
                         }) {
                             Icon(Icons.Outlined.OpenInNew, contentDescription = stringResource(R.string.dl_open), tint = MaterialTheme.colorScheme.primary)
@@ -1101,7 +1104,7 @@ private fun DownloadTaskCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.weight(1f)
                 )
-                TextButton(onClick = onRemove) {
+                CouiTextButtonCompat(onClick = onRemove) {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = null,
@@ -1128,7 +1131,7 @@ private fun DownloadTaskCard(
                 },
                 text = {
                     Column {
-                        TextButton(onClick = {
+                        CouiTextButtonCompat(onClick = {
                             showMenu = false
                             copyToClipboard(context, task.url)
                             SnackbarController.show(AppStrings.get(R.string.dl_url_copied))
@@ -1137,7 +1140,7 @@ private fun DownloadTaskCard(
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(stringResource(R.string.dl_copy_url))
                         }
-                        TextButton(onClick = {
+                        CouiTextButtonCompat(onClick = {
                             showMenu = false
                             onRedownload()
                         }) {
@@ -1145,7 +1148,7 @@ private fun DownloadTaskCard(
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(stringResource(R.string.dl_redownload))
                         }
-                        TextButton(onClick = {
+                        CouiTextButtonCompat(onClick = {
                             showMenu = false
                             onRemove()
                         }) {
@@ -1154,7 +1157,7 @@ private fun DownloadTaskCard(
                             Text(stringResource(R.string.dl_delete_task))
                         }
                         if (downloadDebug) {
-                            TextButton(onClick = {
+                            CouiTextButtonCompat(onClick = {
                                 showMenu = false
                                 onOpenDebug(task.id)
                             }) {
@@ -1166,7 +1169,7 @@ private fun DownloadTaskCard(
                     }
                 },
                 confirmButton = {
-                    TextButton(onClick = { showMenu = false }) { Text(stringResource(R.string.action_cancel)) }
+                    CouiTextButtonCompat(onClick = { showMenu = false }) { Text(stringResource(R.string.action_cancel)) }
                 }
             )
         }
@@ -1372,14 +1375,14 @@ private fun AddDownloadDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 onClick = { onConfirm(url.trim(), name.trim()) },
                 // 磁力允许留空文件名：真正的名字要等引擎拿到元数据（DownloadManager 会自己兜底）
                 enabled = url.isNotBlank() && (name.isNotBlank() || isMagnet)
             ) { Text(stringResource(R.string.dl_start_download)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
         }
     )
 }

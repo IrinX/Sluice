@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
@@ -229,11 +230,11 @@ fun Pan115AccountSheet(
                         horizontalArrangement = Arrangement.End
                     ) {
                         if (cookieTruncated) {
-                            TextButton(onClick = { showFullCookie = !showFullCookie }) {
+                            CouiTextButtonCompat(onClick = { showFullCookie = !showFullCookie }) {
                                 Text(if (showFullCookie) stringResource(R.string.sh_collapse) else stringResource(R.string.sh_expand_all))
                             }
                         }
-                        TextButton(
+                        CouiTextButtonCompat(
                             onClick = {
                                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 clipboard.setPrimaryClip(ClipData.newPlainText("pan115_cookie", account.cookie))

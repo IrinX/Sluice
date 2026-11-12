@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.items
 
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -80,7 +81,7 @@ internal fun MultiSelectBar(
                     tooltip = { PlainTooltip { Text(action.label) } },
                     state = rememberTooltipState()
                 ) {
-                    IconButton(onClick = action.onClick, enabled = count > 0 && !busy) {
+                    CouiIconButtonCompat(onClick = action.onClick, enabled = count > 0 && !busy) {
                         Icon(
                             imageVector = action.icon,
                             contentDescription = action.label,

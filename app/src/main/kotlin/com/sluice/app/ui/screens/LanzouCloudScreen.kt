@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
@@ -205,7 +208,7 @@ fun LanzouCloudScreen(
                         Spacer(modifier = Modifier.height(16.dp))
                         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             OutlinedButton(onClick = onExit) { Text(stringResource(R.string.csb_cloud_back)) }
-                            TextButton(onClick = { viewModel.loadRoot() }) { Text(stringResource(R.string.csb_cloud_retry)) }
+                            CouiTextButtonCompat(onClick = { viewModel.loadRoot() }) { Text(stringResource(R.string.csb_cloud_retry)) }
                         }
                     }
                 }
@@ -238,7 +241,7 @@ fun LanzouCloudScreen(
                                 Column(modifier = Modifier.padding(bottom = 8.dp)) {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         if (viewModel.multiSelectMode) {
-                                            IconButton(onClick = { viewModel.exitMultiSelect() }) {
+                                            CouiIconButtonCompat(onClick = { viewModel.exitMultiSelect() }) {
                                                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.csb_cloud_cancel_select))
                                             }
                                             Column(modifier = Modifier.weight(1f)) {
@@ -253,11 +256,11 @@ fun LanzouCloudScreen(
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                                 )
                                             }
-                                            TextButton(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
+                                            CouiTextButtonCompat(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
                                                 Text(if (viewModel.selected.size == displayFiles.size) stringResource(R.string.csb_cloud_deselect_all) else stringResource(R.string.csb_cloud_select_all))
                                             }
                                         } else {
-                                            IconButton(onClick = onExit) {
+                                            CouiIconButtonCompat(onClick = onExit) {
                                                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.csb_cloud_back))
                                             }
                                             Column(modifier = Modifier.weight(1f)) {
@@ -275,7 +278,7 @@ fun LanzouCloudScreen(
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                                 )
                                             }
-                                            IconButton(onClick = { showSearch = !showSearch }) {
+                                            CouiIconButtonCompat(onClick = { showSearch = !showSearch }) {
                                                 Icon(
                                                     imageVector = Icons.Outlined.Search,
                                                     contentDescription = if (showSearch) stringResource(R.string.csb_cloud_close_search) else stringResource(R.string.csb_cloud_search_files),
@@ -314,7 +317,7 @@ fun LanzouCloudScreen(
                                                 leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null) },
                                                 trailingIcon = {
                                                     if (searchQuery.isNotEmpty()) {
-                                                        IconButton(onClick = { searchQuery = "" }) {
+                                                        CouiIconButtonCompat(onClick = { searchQuery = "" }) {
                                                             Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.csb_cloud_clear_search))
                                                         }
                                                     }
@@ -506,7 +509,7 @@ fun LanzouCloudScreen(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {
-                TextButton(onClick = { viewModel.cancelDownload() }) {
+                CouiTextButtonCompat(onClick = { viewModel.cancelDownload() }) {
                     Text(stringResource(R.string.csb_cloud_interrupt), color = MaterialTheme.colorScheme.error)
                 }
             },
@@ -602,7 +605,7 @@ private fun LanzouMoveStep(
         }
         Spacer(modifier = Modifier.height(16.dp))
         val dirName = (moveState as? LanzouCloudUiState.Loaded)?.pathNames?.lastOrNull() ?: stringResource(R.string.csb_move_root_dir)
-        Button(
+        CouiButtonCompat(
             onClick = {
                 val to = (moveState as? LanzouCloudUiState.Loaded)?.dirId ?: "-1"
                 if (viewModel.multiSelectMode) viewModel.moveSelected(to) else viewModel.moveFile(to)

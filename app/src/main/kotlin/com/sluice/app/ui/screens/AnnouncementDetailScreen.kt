@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import androidx.compose.animation.AnimatedVisibility
@@ -125,14 +127,14 @@ fun AnnouncementDetailPage(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.vm_announcement_detail_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.vm_back))
                     }
                 },
                 actions = {
                     // 只有真的拿到内容才给刷新：加载中/失败态下重试按钮已经在页面中间了
                     if (state is AnnouncementViewModel.DetailUiState.Loaded) {
-                        IconButton(onClick = onRefresh) {
+                        CouiIconButtonCompat(onClick = onRefresh) {
                             Icon(Icons.Outlined.Refresh, contentDescription = stringResource(R.string.vm_announcement_refresh))
                         }
                     }
@@ -535,6 +537,6 @@ private fun AnnouncementDetailError(
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = onRetry) { Text(stringResource(R.string.vm_retry)) }
+        CouiButtonCompat(onClick = onRetry) { Text(stringResource(R.string.vm_retry)) }
     }
 }

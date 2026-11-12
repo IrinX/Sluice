@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
 import androidx.compose.ui.res.stringResource
@@ -273,7 +276,7 @@ private fun VideoResultTopBar(result: VideoParseResult, onBack: () -> Unit) {
             .padding(start = 4.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = onBack) {
+        CouiIconButtonCompat(onClick = onBack) {
             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.sh_back))
         }
         // 平台 Logo：按图标自身形状原样画（不裁圆、不垫底色，理由见 PlatformLogos 的 KDoc）
@@ -320,7 +323,7 @@ private fun ImageSelectionTopBar(
             .padding(start = 4.dp, end = 8.dp, top = 8.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = onExit) {
+        CouiIconButtonCompat(onClick = onExit) {
             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.sh_exit_multi_select))
         }
         Column(modifier = Modifier.weight(1f)) {
@@ -335,7 +338,7 @@ private fun ImageSelectionTopBar(
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
-        TextButton(onClick = onToggleSelectAll) {
+        CouiTextButtonCompat(onClick = onToggleSelectAll) {
             Text(if (allSelected) stringResource(R.string.sh_deselect_all) else stringResource(R.string.sh_select_all))
         }
     }
@@ -429,8 +432,8 @@ private fun ImagePagerBar(page: Int, pageCount: Int, total: Int, onPageChange: (
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f)
         )
-        TextButton(onClick = { onPageChange(page - 1) }, enabled = page > 0) { Text(stringResource(R.string.sh_prev_page)) }
-        TextButton(onClick = { onPageChange(page + 1) }, enabled = page < pageCount - 1) { Text(stringResource(R.string.sh_next_page)) }
+        CouiTextButtonCompat(onClick = { onPageChange(page - 1) }, enabled = page > 0) { Text(stringResource(R.string.sh_prev_page)) }
+        CouiTextButtonCompat(onClick = { onPageChange(page + 1) }, enabled = page < pageCount - 1) { Text(stringResource(R.string.sh_next_page)) }
     }
 }
 
@@ -502,7 +505,7 @@ private fun ImageGridCell(
                     modifier = Modifier.align(Alignment.TopEnd)
                 )
             } else {
-                IconButton(
+                CouiIconButtonCompat(
                     onClick = onDownload,
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
@@ -548,7 +551,7 @@ private fun DownloadAllBar(result: VideoParseResult, onDownloadAll: () -> Unit) 
     // 没有媒体时不占位（空结果通常意味着解析没拿到直链）
     if (result.medias.isEmpty()) return
     Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
-        Button(
+        CouiButtonCompat(
             onClick = onDownloadAll,
             modifier = Modifier
                 .fillMaxWidth()
@@ -707,7 +710,7 @@ private fun VideoMediaRow(
             trailingContent = {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     // 预览：图片/视频/音频都能直接在线看，不必先下载
-                    IconButton(onClick = onPreview, modifier = Modifier.size(36.dp)) {
+                    CouiIconButtonCompat(onClick = onPreview, modifier = Modifier.size(36.dp)) {
                         Icon(
                             imageVector = Icons.Outlined.Visibility,
                             contentDescription = stringResource(R.string.sh_preview),
@@ -717,7 +720,7 @@ private fun VideoMediaRow(
                     }
                     // 仅下载音频：只有视频才有音轨（图片没有，音频本身就是音频）
                     if (media.kind == VideoMediaKind.VIDEO) {
-                        IconButton(onClick = onDownloadAudio, modifier = Modifier.size(36.dp)) {
+                        CouiIconButtonCompat(onClick = onDownloadAudio, modifier = Modifier.size(36.dp)) {
                             Icon(
                                 imageVector = Icons.Outlined.MusicNote,
                                 contentDescription = stringResource(R.string.sh_download_audio_only),
@@ -726,7 +729,7 @@ private fun VideoMediaRow(
                             )
                         }
                     }
-                    TextButton(onClick = onDownload) {
+                    CouiTextButtonCompat(onClick = onDownload) {
                         Text(stringResource(R.string.sh_download))
                     }
                 }

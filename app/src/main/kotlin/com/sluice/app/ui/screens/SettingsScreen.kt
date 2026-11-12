@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiRadioButtonCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import android.Manifest
@@ -442,7 +444,7 @@ fun SettingsScreen(
             },
             trailing = if (dirCustomized) {
                 {
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             if (engineOn) {
                                 engineDirPath = ""
@@ -651,7 +653,7 @@ fun SettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = {
+                CouiTextButtonCompat(onClick = {
                     val dir = runCatching { GopeedEngine.prepareDownloadDir(engineDirInput) }
                         .getOrElse { e ->
                             SnackbarController.show(e.message ?: AppStrings.get(R.string.snack_dir_not_writable))
@@ -666,7 +668,7 @@ fun SettingsScreen(
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showEngineDirDialog = false }) {
+                CouiTextButtonCompat(onClick = { showEngineDirDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -686,7 +688,7 @@ fun SettingsScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             showLogDialog = false
                             scope.launch {
@@ -702,7 +704,7 @@ fun SettingsScreen(
                     ) {
                         Text(stringResource(R.string.dialog_log_share))
                     }
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             showLogDialog = false
                             scope.launch {
@@ -719,7 +721,7 @@ fun SettingsScreen(
                     ) {
                         Text(stringResource(R.string.dialog_log_save))
                     }
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             showLogDialog = false
                             scope.launch {
@@ -738,7 +740,7 @@ fun SettingsScreen(
                     }
                     // 诊断模式开着时额外提供 zip：把 diagnostic_logs 下的分模块日志一次带走
                     if (settingsRepo.diagnosticMode) {
-                        TextButton(
+                        CouiTextButtonCompat(
                             onClick = {
                                 showLogDialog = false
                                 scope.launch {
@@ -758,7 +760,7 @@ fun SettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showLogDialog = false }) {
+                CouiTextButtonCompat(onClick = { showLogDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -772,7 +774,7 @@ fun SettingsScreen(
             title = { Text(stringResource(R.string.dialog_dev_title)) },
             text = {
                 Column {
-                    Button(
+                    CouiButtonCompat(
                         onClick = {
                             showDevMenu = false
                             // 调试用途：直接拿 MainScreen 已获取到的真实 Release 弹出更新弹窗（不再发请求、不比较版本号）
@@ -901,7 +903,7 @@ fun SettingsScreen(
                     Spacer(modifier = Modifier.height(8.dp))
 
                     // 导出入口（zip 名 sluice_diagnostic_logs_yyyyMMdd_HHmmss.zip，导出前会先 flush）
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             showDevMenu = false
                             scope.launch {
@@ -918,7 +920,7 @@ fun SettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showDevMenu = false }) {
+                CouiTextButtonCompat(onClick = { showDevMenu = false }) {
                     Text(stringResource(R.string.action_close))
                 }
             }
@@ -932,7 +934,7 @@ fun SettingsScreen(
             title = { Text(stringResource(R.string.dialog_disable_debug_title)) },
             text = { Text(stringResource(R.string.dialog_disable_debug_message)) },
             confirmButton = {
-                TextButton(onClick = {
+                CouiTextButtonCompat(onClick = {
                     showDisableDownloadDebugConfirm = false
                     downloadDebugOn = false
                     ThemeController.setDownloadDebug(context, false)
@@ -946,7 +948,7 @@ fun SettingsScreen(
                 }) { Text(stringResource(R.string.action_close_and_clear)) }
             },
             dismissButton = {
-                TextButton(onClick = { showDisableDownloadDebugConfirm = false }) {
+                CouiTextButtonCompat(onClick = { showDisableDownloadDebugConfirm = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -1013,7 +1015,7 @@ fun SettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showThreadsDialog = false }) {
+                CouiTextButtonCompat(onClick = { showThreadsDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -1055,7 +1057,7 @@ fun SettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showPlatformThreadDialog = false }) {
+                CouiTextButtonCompat(onClick = { showPlatformThreadDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -1194,13 +1196,13 @@ private fun ExportAuthDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 onClick = { onConfirm(password, onlyLoggedIn) },
                 enabled = password.length >= 8
             ) { Text(stringResource(R.string.action_export)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
         }
     )
 }
@@ -1234,13 +1236,13 @@ private fun ImportAuthDialog(
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 onClick = { onConfirm(password) },
                 enabled = password.isNotBlank()
             ) { Text(stringResource(R.string.action_decrypt_import)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
         }
     )
 }

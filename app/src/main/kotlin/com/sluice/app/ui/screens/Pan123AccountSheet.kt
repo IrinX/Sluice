@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
@@ -224,11 +225,11 @@ fun Pan123AccountSheet(
                         horizontalArrangement = Arrangement.End
                     ) {
                         if (tokenTruncated) {
-                            TextButton(onClick = { showFullToken = !showFullToken }) {
+                            CouiTextButtonCompat(onClick = { showFullToken = !showFullToken }) {
                                 Text(if (showFullToken) stringResource(R.string.sh_collapse) else stringResource(R.string.sh_expand_all))
                             }
                         }
-                        TextButton(
+                        CouiTextButtonCompat(
                             onClick = {
                                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 clipboard.setPrimaryClip(ClipData.newPlainText("pan123_token", account.accessToken))

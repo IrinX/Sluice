@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
@@ -134,8 +135,8 @@ fun UCAccountSheet(
                     Text(displayCookie, style = MaterialTheme.typography.labelSmall.copy(fontFamily = FontFamily.Monospace, fontSize = 11.sp, lineHeight = 15.sp),
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                        if (cookieTruncated) TextButton(onClick = { showFullCookie = !showFullCookie }) { Text(if (showFullCookie) stringResource(R.string.sh_collapse) else stringResource(R.string.sh_expand_all)) }
-                        TextButton(onClick = {
+                        if (cookieTruncated) CouiTextButtonCompat(onClick = { showFullCookie = !showFullCookie }) { Text(if (showFullCookie) stringResource(R.string.sh_collapse) else stringResource(R.string.sh_expand_all)) }
+                        CouiTextButtonCompat(onClick = {
                             copyToClipboard(context, account.cookie)
                             SnackbarController.show(AppStrings.get(R.string.sh_cookie_copied))
                         }) {

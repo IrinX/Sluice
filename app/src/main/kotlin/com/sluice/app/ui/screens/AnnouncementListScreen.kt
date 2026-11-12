@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
@@ -122,17 +125,17 @@ fun AnnouncementListPage(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.vm_announcements_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.vm_back))
                     }
                 },
                 actions = {
                     if (state.items.isNotEmpty()) {
-                        IconButton(onClick = onMarkAllRead) {
+                        CouiIconButtonCompat(onClick = onMarkAllRead) {
                             Icon(Icons.Outlined.DoneAll, contentDescription = stringResource(R.string.vm_announcement_mark_all_read))
                         }
                     }
-                    IconButton(onClick = onRefresh) {
+                    CouiIconButtonCompat(onClick = onRefresh) {
                         Icon(Icons.Outlined.Refresh, contentDescription = stringResource(R.string.vm_refresh))
                     }
                 },
@@ -395,7 +398,7 @@ private fun LoadMoreFooter(loading: Boolean, onClick: () -> Unit) {
                 strokeWidth = 2.dp
             )
         } else {
-            TextButton(onClick = onClick) { Text(stringResource(R.string.vm_load_more)) }
+            CouiTextButtonCompat(onClick = onClick) { Text(stringResource(R.string.vm_load_more)) }
         }
     }
 }
@@ -450,6 +453,6 @@ private fun AnnouncementErrorState(
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = onRetry) { Text(stringResource(R.string.vm_retry)) }
+        CouiButtonCompat(onClick = onRetry) { Text(stringResource(R.string.vm_retry)) }
     }
 }

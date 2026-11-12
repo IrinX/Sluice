@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -613,7 +615,7 @@ private fun OnboardingBottomBar(
             exit = fadeOut(effectsFast()),
             modifier = Modifier.align(Alignment.CenterStart)
         ) {
-            TextButton(
+            CouiTextButtonCompat(
                 onClick = onPrev,
                 contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
             ) {
@@ -635,7 +637,7 @@ private fun OnboardingBottomBar(
             label = "onboardingAction"
         ) { p ->
             val last = p == pageCount - 1
-            Button(
+            CouiButtonCompat(
                 onClick = { if (last) onFinish() else onNext() },
                 // 只有最后一页可能被禁用（Android 9- 未授予存储权限）
                 enabled = !last || finishEnabled,

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.preview
 
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import android.content.Context
@@ -151,7 +152,7 @@ fun MediaPreviewScreen(
                         )
                     },
                     navigationIcon = {
-                        IconButton(onClick = onClose) {
+                        CouiIconButtonCompat(onClick = onClose) {
                             Icon(
                                 Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = stringResource(R.string.rs_back)
@@ -160,7 +161,7 @@ fun MediaPreviewScreen(
                     },
                     actions = {
                         if (downloadCurrent != null) {
-                            IconButton(onClick = { downloadCurrent(currentPage) }) {
+                            CouiIconButtonCompat(onClick = { downloadCurrent(currentPage) }) {
                                 Icon(
                                     Icons.Outlined.Download,
                                     contentDescription = stringResource(R.string.rs_download)

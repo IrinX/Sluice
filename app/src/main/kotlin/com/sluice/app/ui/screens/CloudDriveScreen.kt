@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.R
 import com.sluice.app.ui.SnackbarController
 import androidx.activity.compose.BackHandler
@@ -225,7 +227,7 @@ fun CloudDriveScreen(
                     Spacer(modifier = Modifier.height(16.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         OutlinedButton(onClick = onExit) { Text(stringResource(R.string.csb_cloud_back)) }
-                        TextButton(onClick = { viewModel.loadRoot() }) { Text(stringResource(R.string.csb_cloud_retry)) }
+                        CouiTextButtonCompat(onClick = { viewModel.loadRoot() }) { Text(stringResource(R.string.csb_cloud_retry)) }
                     }
                 }
             }
@@ -261,7 +263,7 @@ fun CloudDriveScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         if (viewModel.multiSelectMode) {
                             // 多选模式：取消选择
-                            IconButton(onClick = { viewModel.exitMultiSelect() }) {
+                            CouiIconButtonCompat(onClick = { viewModel.exitMultiSelect() }) {
                                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.csb_cloud_cancel_select))
                             }
                             Column(modifier = Modifier.weight(1f)) {
@@ -276,11 +278,11 @@ fun CloudDriveScreen(
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
-                            TextButton(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
+                            CouiTextButtonCompat(onClick = { viewModel.toggleSelectAll(displayFiles) }) {
                                 Text(if (viewModel.selected.size == displayFiles.size) stringResource(R.string.csb_cloud_deselect_all) else stringResource(R.string.csb_cloud_select_all))
                             }
                         } else {
-                            IconButton(onClick = onExit) {
+                            CouiIconButtonCompat(onClick = onExit) {
                                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.csb_cloud_back))
                             }
                             Column(modifier = Modifier.weight(1f)) {
@@ -299,7 +301,7 @@ fun CloudDriveScreen(
                                 )
                             }
                             // 放大镜：点击展开/收起搜索框
-                            IconButton(onClick = { showSearch = !showSearch }) {
+                            CouiIconButtonCompat(onClick = { showSearch = !showSearch }) {
                                 Icon(
                                     imageVector = Icons.Outlined.Search,
                                     contentDescription = if (showSearch) stringResource(R.string.csb_cloud_close_search) else stringResource(R.string.csb_cloud_search_files),
@@ -344,7 +346,7 @@ fun CloudDriveScreen(
                                 leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null) },
                                 trailingIcon = {
                                     if (searchQuery.isNotEmpty()) {
-                                        IconButton(onClick = { searchQuery = "" }) {
+                                        CouiIconButtonCompat(onClick = { searchQuery = "" }) {
                                             Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.csb_cloud_clear_search))
                                         }
                                     }
@@ -569,7 +571,7 @@ fun CloudDriveScreen(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {
-                TextButton(onClick = { viewModel.cancelDownload() }) {
+                CouiTextButtonCompat(onClick = { viewModel.cancelDownload() }) {
                     Text(stringResource(R.string.csb_cloud_interrupt), color = MaterialTheme.colorScheme.error)
                 }
             },

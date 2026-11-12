@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import androidx.activity.compose.BackHandler
@@ -156,12 +159,12 @@ fun GuangYaLoginScreen(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_guangya_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = { if (!isSaving && !isSendingSms) onBack() }) {
+                    CouiIconButtonCompat(onClick = { if (!isSaving && !isSendingSms) onBack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.lg_back))
                     }
                 },
                 actions = {
-                    IconButton(onClick = { showTutorial = true }, enabled = !isSaving && !isSendingSms) {
+                    CouiIconButtonCompat(onClick = { showTutorial = true }, enabled = !isSaving && !isSendingSms) {
                         Icon(
                             Icons.Outlined.Info,
                             contentDescription = stringResource(R.string.lg_login_tutorial),
@@ -217,7 +220,7 @@ fun GuangYaLoginScreen(
                     visualTransformation = if (passwordVisible) VisualTransformation.None
                     else PasswordVisualTransformation(),
                     trailingIcon = {
-                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        CouiIconButtonCompat(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(
                                 if (passwordVisible) Icons.Outlined.VisibilityOff else Icons.Outlined.Visibility,
                                 contentDescription = if (passwordVisible) stringResource(R.string.lg_hide_password) else stringResource(R.string.lg_show_password)
@@ -236,7 +239,7 @@ fun GuangYaLoginScreen(
                     )
                 }
 
-                Button(
+                CouiButtonCompat(
                     onClick = {
                         scope.launch {
                             isSaving = true
@@ -264,7 +267,7 @@ fun GuangYaLoginScreen(
                 }
 
                 // 登录按键下方的「验证码登录」入口：切到手机号短信验证码表单
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         smsMode = true
                         error = null
@@ -340,7 +343,7 @@ fun GuangYaLoginScreen(
                     )
                 }
 
-                Button(
+                CouiButtonCompat(
                     onClick = {
                         scope.launch {
                             isSaving = true
@@ -369,7 +372,7 @@ fun GuangYaLoginScreen(
                     }
                 }
 
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         smsMode = false
                         error = null
@@ -407,7 +410,7 @@ fun GuangYaLoginScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
+                CouiTextButtonCompat(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
             }
         )
     }

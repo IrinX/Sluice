@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
@@ -873,7 +875,7 @@ fun DriveScreen(
                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
                 )
                 // 浏览我的主页
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showGitHubSheet = false
                         onGitHubBrowseHome()
@@ -881,7 +883,7 @@ fun DriveScreen(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
                 ) { Text(stringResource(R.string.csb_drive_github_browse_home), modifier = Modifier.fillMaxWidth()) }
                 // 配置 Token
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showGitHubSheet = false
                         onGitHubTokenClick()
@@ -889,7 +891,7 @@ fun DriveScreen(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
                 ) { Text(stringResource(R.string.csb_drive_github_config_token), modifier = Modifier.fillMaxWidth()) }
                 // 清除 Token
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showGitHubSheet = false
                         onGitHubClearToken()
@@ -1055,7 +1057,7 @@ private fun DriveAccountCardContent(
         }
 
         when {
-            account.isLoggedIn && onMoreClick != null -> IconButton(onClick = onMoreClick) {
+            account.isLoggedIn && onMoreClick != null -> CouiIconButtonCompat(onClick = onMoreClick) {
                 Icon(
                     imageVector = Icons.Outlined.MoreVert,
                     contentDescription = stringResource(R.string.csb_drive_more),
@@ -1196,7 +1198,7 @@ private fun DriveSortDialog(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.weight(1f)
                     )
-                    TextButton(onClick = onReset) { Text(stringResource(R.string.csb_drive_restore_default)) }
+                    CouiTextButtonCompat(onClick = onReset) { Text(stringResource(R.string.csb_drive_restore_default)) }
                 }
                 // 11 行会超出 AlertDialog 的默认高度：给高度上限再滚动，别把「完成」顶出屏幕
                 Column(
@@ -1234,7 +1236,7 @@ private fun DriveSortDialog(
                                 )
                             }
                             // 首行禁用上移、末行禁用下移：边界点不动，避免「点了没反应」的疑惑
-                            IconButton(
+                            CouiIconButtonCompat(
                                 onClick = { onMove(index, index - 1) },
                                 enabled = index > 0
                             ) {
@@ -1243,7 +1245,7 @@ private fun DriveSortDialog(
                                     contentDescription = stringResource(R.string.csb_drive_move_up, account.name)
                                 )
                             }
-                            IconButton(
+                            CouiIconButtonCompat(
                                 onClick = { onMove(index, index + 1) },
                                 enabled = index < accounts.lastIndex
                             ) {
@@ -1258,7 +1260,7 @@ private fun DriveSortDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.csb_drive_done)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.csb_drive_done)) }
         }
     )
 }

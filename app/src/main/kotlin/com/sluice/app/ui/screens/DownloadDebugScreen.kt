@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -139,7 +141,7 @@ internal fun DownloadDebugScreen(
                     .padding(horizontal = 4.dp, vertical = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = onBack) {
+                CouiIconButtonCompat(onClick = onBack) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.action_back))
                 }
                 Text(
@@ -317,13 +319,13 @@ private fun DebugTaskCard(
                 }
                 when (task.status) {
                     DownloadTaskEntity.STATUS_DOWNLOADING,
-                    DownloadTaskEntity.STATUS_PENDING -> IconButton(onClick = onPause) {
+                    DownloadTaskEntity.STATUS_PENDING -> CouiIconButtonCompat(onClick = onPause) {
                         Icon(Icons.Outlined.Pause, contentDescription = stringResource(R.string.dl_pause), tint = MaterialTheme.colorScheme.primary)
                     }
-                    DownloadTaskEntity.STATUS_PAUSED -> IconButton(onClick = onResume) {
+                    DownloadTaskEntity.STATUS_PAUSED -> CouiIconButtonCompat(onClick = onResume) {
                         Icon(Icons.Outlined.PlayArrow, contentDescription = stringResource(R.string.dl_resume), tint = MaterialTheme.colorScheme.primary)
                     }
-                    DownloadTaskEntity.STATUS_FAILED -> IconButton(onClick = onResume) {
+                    DownloadTaskEntity.STATUS_FAILED -> CouiIconButtonCompat(onClick = onResume) {
                         Icon(Icons.Outlined.Refresh, contentDescription = stringResource(R.string.dl_retry), tint = MaterialTheme.colorScheme.error)
                     }
                     else -> Unit // 已完成：调试页不提供「打开/删除」，回下载页操作
@@ -468,7 +470,7 @@ private fun ChunkRow(chunk: ChunkDebug, onForceReconnect: () -> Unit) {
                     }
                 )
             }
-            TextButton(onClick = onForceReconnect) {
+            CouiTextButtonCompat(onClick = onForceReconnect) {
                 Icon(Icons.Outlined.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(stringResource(R.string.dl_debug_reconnect))
@@ -484,12 +486,12 @@ private fun DebugActions(onCopySnapshot: () -> Unit, onExportLog: () -> Unit) {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        TextButton(onClick = onCopySnapshot) {
+        CouiTextButtonCompat(onClick = onCopySnapshot) {
             Icon(Icons.Outlined.ContentCopy, contentDescription = null, modifier = Modifier.size(16.dp))
             Spacer(modifier = Modifier.width(4.dp))
             Text(stringResource(R.string.dl_debug_copy_snapshot))
         }
-        TextButton(onClick = onExportLog) {
+        CouiTextButtonCompat(onClick = onExportLog) {
             Icon(Icons.Outlined.Download, contentDescription = null, modifier = Modifier.size(16.dp))
             Spacer(modifier = Modifier.width(4.dp))
             Text(stringResource(R.string.dl_debug_export_log))

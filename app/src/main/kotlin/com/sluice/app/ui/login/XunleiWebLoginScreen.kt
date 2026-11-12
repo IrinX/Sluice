@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import android.graphics.Bitmap
@@ -172,12 +175,12 @@ fun XunleiWebLoginScreen(
             CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_xunlei_web_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
-                    IconButton(onClick = { if (!isSaving && !isSavingManual) onBack() }) {
+                    CouiIconButtonCompat(onClick = { if (!isSaving && !isSavingManual) onBack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.lg_back))
                     }
                 },
                 actions = {
-                    IconButton(
+                    CouiIconButtonCompat(
                         onClick = { if (!isSaving && !isSavingManual) showPasteDialog = true },
                         enabled = !isSaving && !isSavingManual
                     ) {
@@ -187,7 +190,7 @@ fun XunleiWebLoginScreen(
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             scope.launch {
                                 isSaving = true
@@ -259,7 +262,7 @@ fun XunleiWebLoginScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
+                CouiTextButtonCompat(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
             }
         )
     }
@@ -287,7 +290,7 @@ fun XunleiWebLoginScreen(
                 }
             },
             confirmButton = {
-                Button(
+                CouiButtonCompat(
                     onClick = {
                         scope.launch {
                             isSavingManual = true
@@ -315,7 +318,7 @@ fun XunleiWebLoginScreen(
                 }
             },
             dismissButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = { if (!isSavingManual) showPasteDialog = false },
                     enabled = !isSavingManual
                 ) { Text(stringResource(R.string.lg_cancel)) }

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
@@ -226,11 +227,11 @@ fun QuarkAccountSheet(
                         horizontalArrangement = Arrangement.End
                     ) {
                         if (cookieTruncated) {
-                            TextButton(onClick = { showFullCookie = !showFullCookie }) {
+                            CouiTextButtonCompat(onClick = { showFullCookie = !showFullCookie }) {
                                 Text(if (showFullCookie) stringResource(R.string.sh_collapse) else stringResource(R.string.sh_expand_all))
                             }
                         }
-                        TextButton(
+                        CouiTextButtonCompat(
                             onClick = {
                                 copyToClipboard(context, account.cookie)
                                 SnackbarController.show(AppStrings.get(R.string.sh_cookie_copied))

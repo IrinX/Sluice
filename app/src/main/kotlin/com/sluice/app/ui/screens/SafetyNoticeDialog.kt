@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -142,7 +144,7 @@ fun SafetyNoticeDialog() {
             }
         },
         confirmButton = {
-            Button(
+            CouiButtonCompat(
                 onClick = {
                     visible = false
                     acknowledge(context)
@@ -159,7 +161,7 @@ fun SafetyNoticeDialog() {
             }
         },
         dismissButton = {
-            TextButton(onClick = { copyUrl(context) }) {
+            CouiTextButtonCompat(onClick = { copyUrl(context) }) {
                 Text(TextCipher.dCopy)
             }
         }

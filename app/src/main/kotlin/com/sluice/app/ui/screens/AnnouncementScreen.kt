@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -371,7 +373,7 @@ private fun AnnouncementImageViewerPage(
                     translationY = offset.y
                 )
         )
-        IconButton(
+        CouiIconButtonCompat(
             onClick = onClose,
             modifier = Modifier
                 .align(Alignment.TopStart)
@@ -531,10 +533,10 @@ fun AnnouncementPopupDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onDetail) { Text(stringResource(R.string.vm_announcement_view_detail)) }
+            CouiTextButtonCompat(onClick = onDetail) { Text(stringResource(R.string.vm_announcement_view_detail)) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.vm_got_it)) }
+            CouiTextButtonCompat(onClick = onDismiss) { Text(stringResource(R.string.vm_got_it)) }
         }
     )
 }

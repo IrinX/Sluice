@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiButtonCompat
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
@@ -286,14 +289,14 @@ fun VideoLoginScreen(
                     Text(stringResource(R.string.lg_platform_login_title, platform.displayName), style = MaterialTheme.typography.titleLarge)
                 },
                 navigationIcon = {
-                    IconButton(onClick = { if (!isSaving && !isSavingManual) onBack() }) {
+                    CouiIconButtonCompat(onClick = { if (!isSaving && !isSavingManual) onBack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.lg_back))
                     }
                 },
                 actions = {
                     // 刷新：登录流程里的失败（验证码 token 失效、页面状态过期）平台自己会提示「请刷新网页」，
                     // 得给用户一个能刷的入口 —— 以前只能返回再进来
-                    IconButton(
+                    CouiIconButtonCompat(
                         onClick = {
                             if (!isSaving && !isSavingManual) {
                                 loadError = null
@@ -310,7 +313,7 @@ fun VideoLoginScreen(
                         )
                     }
                     // 手动输入 Cookie
-                    IconButton(
+                    CouiIconButtonCompat(
                         onClick = { if (!isSaving && !isSavingManual) showCookieDialog = true },
                         enabled = !isSaving && !isSavingManual
                     ) {
@@ -320,7 +323,7 @@ fun VideoLoginScreen(
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
-                    TextButton(
+                    CouiTextButtonCompat(
                         onClick = {
                             scope.launch {
                                 isSaving = true
@@ -400,7 +403,7 @@ fun VideoLoginScreen(
                             textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(14.dp))
-                        Button(
+                        CouiButtonCompat(
                             onClick = {
                                 loadError = null
                                 isLoading = true
@@ -441,7 +444,7 @@ fun VideoLoginScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
+                CouiTextButtonCompat(onClick = { showTutorial = false }) { Text(stringResource(R.string.lg_got_it)) }
             }
         )
     }
@@ -470,7 +473,7 @@ fun VideoLoginScreen(
                 }
             },
             confirmButton = {
-                Button(
+                CouiButtonCompat(
                     onClick = {
                         scope.launch {
                             isSavingManual = true
@@ -498,7 +501,7 @@ fun VideoLoginScreen(
                 }
             },
             dismissButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = { if (!isSavingManual) showCookieDialog = false },
                     enabled = !isSavingManual
                 ) { Text(stringResource(R.string.lg_cancel)) }
@@ -570,7 +573,7 @@ private fun ManualCookieLoginScreen(
                     Text(stringResource(R.string.lg_platform_login_title, platform.displayName), style = MaterialTheme.typography.titleLarge)
                 },
                 navigationIcon = {
-                    IconButton(onClick = { if (!isSaving) onBack() }) {
+                    CouiIconButtonCompat(onClick = { if (!isSaving) onBack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.lg_back))
                     }
                 },
@@ -644,7 +647,7 @@ private fun ManualCookieLoginScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Button(
+            CouiButtonCompat(
                 onClick = {
                     scope.launch {
                         isSaving = true

@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTextButtonCompat
+import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiTopAppBarCompat
 import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
@@ -175,7 +177,7 @@ fun DownloadSettingsScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    CouiIconButtonCompat(onClick = onBack) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.action_back)
@@ -385,7 +387,7 @@ fun DownloadSettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showConcurrencyDialog = false }) {
+                CouiTextButtonCompat(onClick = { showConcurrencyDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -464,7 +466,7 @@ fun DownloadSettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         if (isCustom) {
                             val kb = customKb.toLongOrNull()?.coerceAtLeast(1L)
@@ -482,7 +484,7 @@ fun DownloadSettingsScreen(
                 ) { Text(stringResource(R.string.action_confirm)) }
             },
             dismissButton = {
-                TextButton(onClick = { showSpeedDialog = false }) {
+                CouiTextButtonCompat(onClick = { showSpeedDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -526,7 +528,7 @@ fun DownloadSettingsScreen(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { showRetryDialog = false }) {
+                CouiTextButtonCompat(onClick = { showRetryDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
@@ -545,7 +547,7 @@ fun DownloadSettingsScreen(
                 )
             },
             confirmButton = {
-                TextButton(
+                CouiTextButtonCompat(
                     onClick = {
                         showBatteryDialog = false
                         runCatching {
@@ -560,7 +562,7 @@ fun DownloadSettingsScreen(
                 ) { Text(stringResource(R.string.action_go_settings)) }
             },
             dismissButton = {
-                TextButton(onClick = { showBatteryDialog = false }) {
+                CouiTextButtonCompat(onClick = { showBatteryDialog = false }) {
                     Text(stringResource(R.string.action_not_now))
                 }
             }
