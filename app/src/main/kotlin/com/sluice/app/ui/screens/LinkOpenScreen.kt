@@ -79,7 +79,7 @@ import com.sluice.app.util.LinkOpener
  * 「链接唤起」（深链接注册项）设置页。
  *
  * 每行对应清单里一个 activity-alias：关掉就是把那个 alias 置为 DISABLED，
- * 系统随即不再把那种链接派给开闸（详见 [LinkOpenTarget] / [LinkOpener]）。
+ * 系统随即不再把那种链接派给 Sluice（详见 [LinkOpenTarget] / [LinkOpener]）。
  *
  * ★ 页面只是开关的「用户意愿」，真正生效的组件状态由 [LinkOpener.apply] 立刻同步 —— 不写回就不会生效，
  *   所以这里每次切换都同时做三件事：改本地状态、写 prefs、同步组件。
@@ -298,7 +298,7 @@ private fun LinkOpenRow(
 }
 
 /**
- * 打开系统的「默认打开 / 打开支持的链接」页 —— 用户在那里把网盘域名手动关联给开闸。
+ * 打开系统的「默认打开 / 打开支持的链接」页 —— 用户在那里把网盘域名手动关联给 Sluice。
  *
  * 这是免选择器直开的**唯一**落地方式：域名验证要求每个网盘域名自己托管 assetlinks.json，
  * 第三方 App 做不到（官方文档「在您的应用中打开您的应用无法验证的网域」一节给的就是手动关联）。

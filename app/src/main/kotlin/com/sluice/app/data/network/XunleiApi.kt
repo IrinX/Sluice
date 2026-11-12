@@ -763,7 +763,7 @@ class XunleiApi(
             false
         }
 
-    /** 确保「开闸临时转存」目录存在，返回其 id */
+    /** 确保「Sluice 临时转存」目录存在，返回其 id */
     suspend fun ensureTempDir(
         accessToken: String,
         deviceId: String,

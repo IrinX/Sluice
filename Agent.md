@@ -1,4 +1,4 @@
-# Agent.md — Sluice（开闸）AI 协作指南
+# Agent.md — SluiceAI 协作指南
 
 本文件面向在本仓库工作的 AI 编码代理（Claude Code / Cursor / Copilot Agent 等）。
 目标：让代理无需反复摸索即可写出**符合本项目既有约定**的代码。
@@ -9,7 +9,7 @@
 
 ## 1. 项目速览
 
-**Sluice（开闸）** 是一个 Android 网盘分享链接解析与高速下载应用。用户粘贴分享链接 → 浏览分享内容 → 取直链 → 分片并发下载到本地。
+**Sluice** 是一个 Android 网盘分享链接解析与高速下载应用。用户粘贴分享链接 → 浏览分享内容 → 取直链 → 分片并发下载到本地。
 
 | 项 | 值 |
 |---|---|
@@ -305,7 +305,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
   `BookmarkScreen.onResolve` 与主页快捷方式都要走 GitHub 分支，GitHub 收藏（`platform = "GITHUB"`，即 `currentPlatform.name`）不能在网盘解析里被吞掉。
 - `FileNameText` 增加了带默认值的 `maxLines` / `textAlign` 参数（既有调用不受影响）：需要多行/居中的场景传参，不要绕开组件自己写 `Text`。
 
-### 3.15 叠加页容器变换（关于开闸 / 支持开发 / 主题与外观 / 收藏）：源必须真的被移出组合
+### 3.15 叠加页容器变换（关于 Sluice / 支持开发 / 主题与外观 / 收藏）：源必须真的被移出组合
 
 `MainScreen.kt` 里四个叠加页共用一套「容器变换」（Container Transform），改这条链路前先读完本节：
 
@@ -325,7 +325,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 
 ### 3.16 深色模式字体发黑：全屏页必须有 `Surface`（`LocalContentColor` 默认是黑色）
 
-**症状**：深色模式下个别文字仍是黑色（历史案例：引导页第 1 页「开闸」、第 2 页「使用前请阅读」）。
+**症状**：深色模式下个别文字仍是黑色（历史案例：引导页第 1 页「Sluice」、第 2 页「使用前请阅读」）。
 **根因**：`LocalContentColor` 的默认值是 `Color.Black`，**只有 `Surface` / `Scaffold`（以及 Button、Card 这类自绘容器）才会把它设成
 `contentColorFor(底色)`**（如 `surface → onSurface`）。页面只要不在这些容器里，`Text` 不写 `color` 就是黑字 ——
 浅色模式看不出来，深色模式立刻暴露。
@@ -333,7 +333,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 **本项目的雷区**（都是「手动铺底色」、绕开了 Scaffold 的地方）：
 - `ui/screens/OnboardingScreen.kt`：`MainScreen.kt` 里 `if (showOnboarding) { OnboardingScreen(...); return }` 的提前返回全屏覆盖页；
   已用 `Surface(modifier = modifier.fillMaxSize(), color = colorScheme.surface)` 包住整页（底色与 `BlobBackground` 的 base 一致，观感不变），
-  第 1 页「开闸」与第 2 页「使用前请阅读」另外显式写了 `color = colorScheme.onSurface`。
+  第 1 页「Sluice」与第 2 页「使用前请阅读」另外显式写了 `color = colorScheme.onSurface`。
 - `ui/MainScreen.kt` 的**横屏分支**：手动 `Row(NavigationRail + 内容)`，原先只有 `Box.background(background)`；
   同样已换成 `Surface(color = colorScheme.background)` 包住内容与 Snackbar（此前横屏 + 深色模式下，列表里没写 color 的文件名会是黑字）。
 - 其它页面（登录页 / 关于 / 支持 / 主题 / 收藏 / 各 Tab 页）都有 `Scaffold`，或本身就是 `AlertDialog` / `ModalBottomSheet`（自带 Surface），不受影响。
@@ -606,7 +606,7 @@ QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/sluice/app/
 - 入口清单：`app/src/main/kotlin/com/sluice/app/ui/screens/OnboardingScreen.kt` 的 `QQGroupPill`（欢迎页 GitHub 卡片下方，点击拉起 QQ 群卡片）；
   `app/src/main/kotlin/com/sluice/app/ui/screens/SettingsScreen.kt` 的「关于」组最后两项 —— 「QQ 交流群」（点击拉起 QQ 群卡片，长按复制群号）、
   「GitHub 仓库」（系统浏览器打开，没有可用浏览器时退化为复制链接）。同组分段圆角随之变为
-  `FIRST`（关于开闸）→ `MIDDLE`（支持开发）→ `MIDDLE`（QQ 交流群）→ `LAST`（GitHub 仓库）。
+  `FIRST`（关于 Sluice）→ `MIDDLE`（支持开发）→ `MIDDLE`（QQ 交流群）→ `LAST`（GitHub 仓库）。
 - **QQ 入口 = 先跳 QQ、失败再复制**（需求：能直接进群就别让人手动复制）：
   `AppLinks.qqGroupScheme()` 拼 `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=<群号>&card_type=group&source=qrcode`，
   `AppLinks.openQQGroup(context)` 负责 `startActivity` 并返回是否成功；返回 false 时调用方 `copyToClipboard(群号)` + 提示「未安装 QQ，群号已复制」。
@@ -684,7 +684,7 @@ QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/sluice/app/
    再确认 `appversion` 接口是否改版（`CLIENT_UA` 是否刷新成功）。
 7. **分享大文件要「先转存到自己网盘，再取电脑端直链」**：分享侧没有已验证的 proapi 等价接口，所以
    `Pan115ResolveRepository.getShareDownloadLink()` 的顺序是「先试 `share/downurl`」→ 失败且**已登录**时走 `downloadViaTempTransfer()`：
-   `ensureTempDir()` 在根目录建 `开闸临时转存/tr_<nanoTime>` → `share/receive` 转存 → 轮询列目录认领新 `fid`（同名会变 `xxx(1).后缀`）
+   `ensureTempDir()` 在根目录建 `Sluice 临时转存/tr_<nanoTime>` → `share/receive` 转存 → 轮询列目录认领新 `fid`（同名会变 `xxx(1).后缀`）
    → `getAppDownloadLink()` 取链，并把临时目录 cid 放进 `DownloadLink.cleanupDirFid`；下载完成、失败或弹窗关闭时由 `ResolveViewModel`
    调 `currentRepo().cleanupTempDir()` 删除。未登录时直接抛原始错误（提示先到「网盘」页登录 115）。
    **这条路径会在用户网盘里留下临时目录，改动时务必保证清理链路不被破坏。**
@@ -1096,7 +1096,7 @@ Gopeed 段里还带着：**引擎状态**（未导入内核 / 已导入，未启
 （`effectsDefault`，与 `OnboardingScreen.kt` 里指示点颜色同一口径），切换引擎时「选中态」是渐变过去的而不是硬切；
 内核就绪后才出现的下载目录/权限那一段用 `AnimatedVisibility` 淡入淡出。
 
-**容器变换（Container Transform）接线**（和「主题与外观 / 关于开闸 / 支持开发」三行完全同款，用户点名要这效果）：
+**容器变换（Container Transform）接线**（和「主题与外观 / 关于 Sluice / 支持开发」三行完全同款，用户点名要这效果）：
 源侧 = `MainScreen.kt` 在 `SharedTransitionLayout` 作用域里构造
 `Modifier.sharedBounds(rememberSharedContentState(OVERLAY_KEY_GOPEED), animatedVisibilityScope = sourceScope)`，
 作为 `engineRowModifier` 传给 `SettingsScreen`，再挂到那一行的 `SettingsItem(modifier = engineRowModifier)`；
@@ -1658,7 +1658,7 @@ org.json/Uri 空壳条目）、`DownloadPlatform.MAGNET`、`DownloadManager`（`
 另外 `writeLogLines()` 会丢掉混进来的 NUL（`\u0000`）：上一版导出文件里就带着它，
 整个 txt 被当成二进制，文本工具打不开、看着像乱码。
 
-**② 诊断模式开关**：设置 → 「关于开闸」长按 → 开发调试 → **诊断模式**（`SettingsRepository.diagnosticMode`，
+**② 诊断模式开关**：设置 → 「关于 Sluice」长按 → 开发调试 → **诊断模式**（`SettingsRepository.diagnosticMode`，
 键 `diagnostic_mode`，默认关）。`DiagnosticLog.setEnabled` 立刻起/停写线程（关闭前先 flush），
 `SluiceApp.onCreate` 里 `DiagnosticLog.install(this)` 读开关并定目录。
 

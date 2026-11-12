@@ -86,7 +86,7 @@ import com.sluice.app.ui.items.logoRes
 import com.sluice.app.util.AppLinks
 
 /**
- * 关于开闸页：应用介绍、支持平台、功能特性、技术栈与免责声明。
+ * 关于 Sluice 页：应用介绍、支持平台、功能特性、技术栈与免责声明。
  * Material3 风格：卡片分区 + 主题色 + 动态色适配。
  */
 @OptIn(ExperimentalMaterial3Api::class)

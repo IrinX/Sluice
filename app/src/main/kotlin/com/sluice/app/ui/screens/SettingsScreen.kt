@@ -211,7 +211,7 @@ fun SettingsScreen(
     scrollBehavior: TopAppBarScrollBehavior,
     /**
      * 容器变换（Container Transform）源侧修饰符：由 MainScreen 在 SharedTransitionLayout 作用域内构造
-     * （设置页自己拿不到那个作用域），分别挂到「主题与外观 / 关于开闸 / 下载引擎」这三行上。
+     * （设置页自己拿不到那个作用域），分别挂到「主题与外观 / 关于 Sluice / 下载引擎」这三行上。
      */
     themeRowModifier: Modifier = Modifier,
     aboutRowModifier: Modifier = Modifier,
@@ -773,7 +773,7 @@ fun SettingsScreen(
         )
     }
 
-    // 隐藏开发调试菜单（长按「关于开闸」打开）
+    // 隐藏开发调试菜单（长按「关于 Sluice」打开）
     if (showDevMenu) {
         AlertDialog(
             onDismissRequest = { showDevMenu = false },

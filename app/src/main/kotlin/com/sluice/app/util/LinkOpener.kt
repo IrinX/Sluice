@@ -29,7 +29,7 @@ import com.sluice.app.data.prefs.SettingsRepository
  * 深链接注册项的启停。
  *
  * 清单里的 `intent-filter` 运行时改不了，所以每种链接挂一个 activity-alias，
- * 用户在设置里关掉某个平台 = 把对应 alias 置为 DISABLED，系统就不会再把那种链接派给开闸
+ * 用户在设置里关掉某个平台 = 把对应 alias 置为 DISABLED，系统就不会再把那种链接派给 Sluice
  * （与桌面动态图标同一套机制，见 `ThemeScreen`）。
  *
  * ★ 用 `DONT_KILL_APP`：改组件状态不该把用户正在跑的下载杀掉。

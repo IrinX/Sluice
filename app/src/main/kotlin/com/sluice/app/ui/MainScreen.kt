@@ -1825,7 +1825,7 @@ private fun copyToClipboard(context: Context, text: String) {
 }
 
 /**
- * 叠加页容器（关于开闸 / 支持开发 / 主题与外观 / 收藏）：整屏 + 不透明底色 + 可选的 sharedBounds 形变。
+ * 叠加页容器（关于 Sluice / 支持开发 / 主题与外观 / 收藏）：整屏 + 不透明底色 + 可选的 sharedBounds 形变。
  *
  * ★ 它与主界面的关系是「互斥」而不是「叠加」：两者是同一个 SharedTransitionLayout 下两个
  *   `AnimatedVisibility`，叠加页打开时**主界面会被移出组合**。这一点是硬要求，不是洁癖——

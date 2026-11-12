@@ -1,5 +1,5 @@
 <!--
-    Sluice (开闸) - A network drive share-link parser and high-speed downloader for Android.
+    Sluice - A network drive share-link parser and high-speed downloader for Android.
     Copyright (C) 2026 CYQawa
 
     This program is free software: you can redistribute it and/or modify
@@ -192,8 +192,8 @@
     <string name="rs_save">保存</string>
 
     <!-- 引导页 -->
-    <string name="rs_app_name">开闸</string>
-    <string name="rs_app_icon_desc">开闸图标</string>
+    <string name="rs_app_name">Sluice</string>
+    <string name="rs_app_icon_desc">Sluice 图标</string>
     <string name="rs_onboarding_tagline">网盘与视频链接解析 · 在线预览 · 高速下载</string>
     <string name="rs_fact_drives">10 大网盘</string>
     <string name="rs_fact_video_platforms">7 大视频平台</string>
@@ -201,7 +201,7 @@
     <string name="rs_fact_free">完全免费</string>
     <string name="rs_open_source_repo">开源仓库</string>
     <string name="rs_read_before_use">使用前请阅读</string>
-    <string name="rs_terms_intro">开闸是开源工具，以下是使用条款与免责说明</string>
+    <string name="rs_terms_intro">Sluice 是开源工具，以下是使用条款与免责说明</string>
     <string name="rs_terms_title">用户协议</string>
     <string name="rs_terms_1">本应用是开源的网盘分享链接解析与下载工具，仅供个人学习、技术交流使用，请勿用于任何商业用途。</string>
     <string name="rs_terms_2">请遵守你所使用网盘的服务条款及当地法律法规；不得利用本应用下载、传播侵权或违法内容。</string>
@@ -219,15 +219,15 @@
 
     <!-- 权限准备 -->
     <string name="rs_permissions_title">权限准备</string>
-    <string name="rs_permissions_intro_required">开闸只用下面这几项系统授权。存储权限是 Android 9 及以下保存文件的必要权限，必须授权；其余两项可以跳过，之后也能在「设置」里随时更改</string>
-    <string name="rs_permissions_intro_optional">开闸只用下面这几项系统授权，都可以跳过，之后也能在「设置」里随时更改</string>
+    <string name="rs_permissions_intro_required">Sluice 只用下面这几项系统授权。存储权限是 Android 9 及以下保存文件的必要权限，必须授权；其余两项可以跳过，之后也能在「设置」里随时更改</string>
+    <string name="rs_permissions_intro_optional">Sluice 只用下面这几项系统授权，都可以跳过，之后也能在「设置」里随时更改</string>
     <string name="rs_perm_notification_title">通知权限</string>
     <string name="rs_perm_notification_desc">下载进度、完成提醒显示在通知栏，也能让前台服务更稳地活下去；关闭后下载照常进行，只是看不到进度。</string>
     <string name="rs_perm_granted">已开启</string>
     <string name="rs_perm_grant">授权</string>
     <string name="rs_perm_go_settings">去设置</string>
     <string name="rs_perm_background_title">后台运行</string>
-    <string name="rs_perm_background_desc">把开闸加入「忽略电池优化」白名单，锁屏或切到后台后下载不会被系统冻结（推荐开启）。</string>
+    <string name="rs_perm_background_desc">把 Sluice 加入「忽略电池优化」白名单，锁屏或切到后台后下载不会被系统冻结（推荐开启）。</string>
     <string name="rs_perm_whitelisted">已加入白名单</string>
     <string name="rs_perm_storage_title">存储权限</string>
     <string name="rs_perm_storage_desc_required">保存文件到系统「下载」目录需要存储权限；Android 9 及以下这是必要权限，必须授权才能保存文件。</string>

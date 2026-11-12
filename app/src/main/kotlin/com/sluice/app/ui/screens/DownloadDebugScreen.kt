@@ -95,7 +95,7 @@ private const val STUCK_MIN_AGE_MS = 30_000L
 /**
  * 下载调试页（下载页长按任务 → 「调试信息」）。
  *
- * 需先在「设置 → 关于开闸 → 长按 → 开发调试 → 下载调试」打开开关；否则菜单里不会出现入口。
+ * 需先在「设置 → 关于 Sluice → 长按 → 开发调试 → 下载调试」打开开关；否则菜单里不会出现入口。
  * 页面在「下载」Tab 内全屏展开（与 ResolveScreen 内嵌 ShareDetailScreen 同款），自上而下：
  * 任务卡（可暂停/继续）→ 全局资源 → 每个线程（在飞分片）在干什么 → 调试操作 → 实时日志跟随。
  *
@@ -545,7 +545,7 @@ private fun buildSnapshotText(
     resources: DownloadResourceDebug?,
     env: String
 ): String = buildString {
-    appendLine("开闸（Sluice）下载调试快照")
+    appendLine("Sluice 下载调试快照")
     appendLine("任务 id：${task.id}　文件名：${task.fileName}")
     appendLine("状态：${DownloadTaskEntity.statusText(task.status)}　平台：${task.platform.ifBlank { "-" }}")
     appendLine("执行器：${task.engineTaskId.ifBlank { "内置分片下载器" }}")

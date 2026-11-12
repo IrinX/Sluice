@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="app/src/main/res/drawable/icon.png" width="120" alt="开闸 Sluice" />
+<img src="app/src/main/res/drawable/icon.png" width="120" alt="Sluice" />
 
-# 开闸 · Sluice
+# Sluice
 
 **粘贴分享链接，直接高速下载 —— 一个开源的 Android 网盘 / 视频解析下载应用**
 
@@ -23,10 +23,10 @@
 
 ***
 
-> **开闸永远免费开源。** 如果你是在任何地方"花钱买到"的，说明你被骗了，请立即退款。
+> **Sluice 永远免费开源。** 如果你是在任何地方"花钱买到"的，说明你被骗了，请立即退款。
 > 任何收费版本均为二次打包的诈骗版本，与本项目无关。
 
-> **开闸使用AGPL-3.0开源协议** 如果你使用了开闸的代码，未经授权请遵守协议，同样以AGPL-3.0开放源代码
+> **Sluice 使用AGPL-3.0开源协议** 如果你使用了 Sluice 的代码，未经授权请遵守协议，同样以AGPL-3.0开放源代码
 
 > 本仓库为 Android 端 App；官方 PC 端见 [Sluice-Desktop](https://github.com/tidain/Sluice-Desktop)
 
@@ -160,7 +160,7 @@ git clone https://github.com/IrinX/Sluice.git
 
 ## 反倒卖
 
-> 开闸完全免费开源。如果你下载到要钱的版本，那么你就是被骗了，请立马去退款。
+> Sluice 完全免费开源。如果你下载到要钱的版本，那么你就是被骗了，请立马去退款。
 
 - 倒卖狗 🐶：`qq1360735243`
 

@@ -35,7 +35,7 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
 /**
- * 诊断日志（设置 → 关于开闸 → 长按 → 开发调试 → 诊断模式）。
+ * 诊断日志（设置 → 关于 Sluice → 长按 → 开发调试 → 诊断模式）。
  *
  * 与 [LogExporter] 的区别：那边导的是 **logcat**（系统缓冲，重启/闪退后按 pid 过滤会丢历史），
  * 这边是**应用自己写文件**，落在私有目录、按模块分文件、跨重启保留，专门用来复现疑难问题。

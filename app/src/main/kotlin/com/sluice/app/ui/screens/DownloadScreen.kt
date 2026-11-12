@@ -132,7 +132,7 @@ import java.io.File
 fun DownloadScreen(
     scrollBehavior: TopAppBarScrollBehavior,
     viewModel: DownloadViewModel,
-    /** 下载调试开关（设置 → 关于开闸 → 长按 → 开发调试）：开启后长按任务菜单里出现「调试信息」 */
+    /** 下载调试开关（设置 → 关于 Sluice → 长按 → 开发调试）：开启后长按任务菜单里出现「调试信息」 */
     downloadDebug: Boolean = false,
     /** 深链接进来的直链 / 磁力：预填「添加下载任务」弹窗，用户确认后入队；null = 没有 */
     incomingAddUrl: String? = null,

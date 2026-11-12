@@ -25,7 +25,7 @@ import com.sluice.app.R
  * 深链接（网盘分享链接一键唤起）的注册项。
  *
  * ★ [alias] 必须与 `AndroidManifest.xml` 里 `com.sluice.app.link.*` 的 activity-alias **逐字一致**：
- *   清单里的 intent-filter 改不了，用户在设置里改「哪些链接由开闸接管」只能靠启停这些组件
+ *   清单里的 intent-filter 改不了，用户在设置里改「哪些链接由 Sluice 接管」只能靠启停这些组件
  *   （见 [com.sluice.app.util.LinkOpener]），类名对不上就会静默失效。
  *
  * 默认全部启用；[prefKey] 里存的是用户意愿（true/false）。

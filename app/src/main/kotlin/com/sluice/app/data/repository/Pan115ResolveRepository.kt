@@ -101,7 +101,7 @@ class Pan115ResolveRepository(private val api: Pan115Api) : ShareResolveReposito
     )
 
     /**
-     * 确保「开闸临时转存」下的**唯一子目录**存在，返回子目录 cid。
+     * 确保「Sluice 临时转存」下的**唯一子目录**存在，返回子目录 cid。
      *
      * 只在分享直链被 115 拒发（大文件 `50029`）时用到：转存进去 → 用电脑端接口取链 →
      * 下载完成后由 [cleanupTempDir] 连目录带文件一起删掉。

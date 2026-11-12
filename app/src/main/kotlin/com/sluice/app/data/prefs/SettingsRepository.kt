@@ -201,7 +201,7 @@ class SettingsRepository(context: Context) {
         }
 
     /**
-     * 诊断模式（设置 → 关于开闸 → 长按 → 开发调试）：默认关，开启后把 db / crypto / download /
+     * 诊断模式（设置 → 关于 Sluice → 长按 → 开发调试）：默认关，开启后把 db / crypto / download /
      * webview / network / operation 六个模块的详细日志写进私有目录（见 `DiagnosticLog`）。
      * ★ 这里只存开关值，运行态由 `DiagnosticLog` 自己缓存（改完立刻生效，不必重启）。
      */
@@ -212,7 +212,7 @@ class SettingsRepository(context: Context) {
         }
 
     /**
-     * 下载调试（设置 → 关于开闸 → 长按 → 开发调试）：默认关。
+     * 下载调试（设置 → 关于 Sluice → 长按 → 开发调试）：默认关。
      * 开启后按下载任务记录事件流（主要变更节点 / 错误节点），下载页长按任务可进「调试信息」页查看并导出；
      * **关闭会清空全部日志**（见 `DownloadDebugLog`），所以设置页关开关前有二次确认弹窗。
      */

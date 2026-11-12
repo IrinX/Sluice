@@ -1,5 +1,5 @@
 <!--
-    Sluice (开闸) - A network drive share-link parser and high-speed downloader for Android.
+    Sluice - A network drive share-link parser and high-speed downloader for Android.
     Copyright (C) 2026 CYQawa
 
     This program is free software: you can redistribute it and/or modify
@@ -24,10 +24,10 @@
       其余页面的硬编码中文仍待后续批次迁移。
 -->
 <resources>
-    <string name="app_name">开闸</string>
+    <string name="app_name">Sluice</string>
     <!-- 系统「选中文本 → 更多」菜单里显示的条目名（见 AndroidManifest 的 ProcessTextLink）：
-         比光秃秃一个「开闸」更清楚要干什么 -->
-    <string name="process_text_action">用开闸解析</string>
+         比光秃秃一个「Sluice」更清楚要干什么 -->
+    <string name="process_text_action">用 Sluice 解析</string>
 
     <!-- ================= 语言 ================= -->
     <string name="language_follow_system">跟随系统</string>
@@ -115,7 +115,7 @@
     <string name="section_link_open">链接唤起</string>
     <string name="settings_link_open">网盘链接一键唤起</string>
     <string name="section_about">关于</string>
-    <string name="settings_about_app">关于开闸</string>
+    <string name="settings_about_app">关于 Sluice</string>
     <string name="settings_github_repo">GitHub 仓库</string>
 
     <!-- ================= 二级设置页入口 ================= -->
@@ -155,7 +155,7 @@
     <string name="settings_export_log_desc">导出崩溃日志与应用信息，便于排查问题</string>
     <string name="settings_export_auth_desc">使用至少 8 位口令加密网盘与视频平台的 Cookie/JWT 后导出</string>
     <string name="settings_import_auth_desc">选择加密或明文的认证备份文件，恢复网盘与视频平台登录</string>
-    <string name="settings_link_open_desc">点分享链接（或分享到开闸）直接进来解析；可按平台逐个开关</string>
+    <string name="settings_link_open_desc">点分享链接（或分享到 Sluice）直接进来解析；可按平台逐个开关</string>
     <string name="settings_about_app_desc">版本信息、支持平台与技术说明</string>
     <string name="settings_github_repo_desc">%1$s · 查看源码与反馈问题</string>
 
@@ -191,7 +191,7 @@
     <string name="option_retry_never">不自动重试</string>
     <string name="option_retry_times">失败后自动重试 %1$d 次</string>
     <string name="dialog_battery_title">保持后台下载</string>
-    <string name="dialog_battery_message">为确保障屏后下载不中断，建议将开闸加入「忽略电池优化」白名单。是否前往系统设置？</string>
+    <string name="dialog_battery_message">为确保障屏后下载不中断，建议将 Sluice 加入「忽略电池优化」白名单。是否前往系统设置？</string>
     <string name="action_go_settings">前往设置</string>
     <string name="action_not_now">暂不</string>
     <string name="dialog_mirror_title">GitHub 下载镜像</string>

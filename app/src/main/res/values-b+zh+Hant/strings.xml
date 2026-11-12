@@ -1,5 +1,5 @@
 <!--
-    Sluice (開閘) - 繁體中文（zh-Hant）
+    Sluice - 繁體中文（zh-Hant）
     ★ 僅供資源覆蓋，無需重複授權頭。
 -->
 <resources>
@@ -267,7 +267,7 @@
     <string name="snack_proxy_port_invalid">代理連接埠需為 1-65535 之間的數字</string>
     <string name="snack_proxy_enabled">代理已啟用：%1$s</string>
     <string name="snack_proxy_disabled">已關閉代理，恢復直連</string>
-    <string name="app_name">開閘</string>
+    <string name="app_name">Sluice</string>
     <string name="settings_announcement_server">公告服務位址</string>
     <string name="settings_announcement_server_desc_set">已接入：%1$s</string>
     <string name="settings_announcement_server_desc_unset">未設定，頂欄公告入口隱藏</string>

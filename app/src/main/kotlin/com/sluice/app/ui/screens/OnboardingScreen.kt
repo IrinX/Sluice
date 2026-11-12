@@ -172,7 +172,7 @@ fun OnboardingScreen(
 
     // ★ 整页铺一层 Surface：引导页是 MainScreen 里提前 return 的全屏覆盖页，**不在 Scaffold 里**，
     //   没有 Surface/Scaffold 就没人提供 LocalContentColor（其默认值是黑色）——
-    //   于是没写 color 的文本（第 1 页「开闸」、第 2 页「使用前请阅读」）在深色模式下会变成黑字。
+    //   于是没写 color 的文本（第 1 页「Sluice」、第 2 页「使用前请阅读」）在深色模式下会变成黑字。
     //   底色用 scheme.surface，与 BlobBackground 自己铺的 base 完全一致，观感不变。
     Surface(
         modifier = modifier.fillMaxSize(),

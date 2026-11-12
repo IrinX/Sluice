@@ -98,7 +98,7 @@ class DownloadViewModel(private val manager: DownloadManager) : ViewModel() {
         tasks.value.toList().forEach { manager.remove(it.id, deleteLocal) }
     }
 
-    // ---------- 下载调试（设置 → 关于开闸 → 长按 → 开发调试 → 下载调试）----------
+    // ---------- 下载调试（设置 → 关于 Sluice → 长按 → 开发调试 → 下载调试）----------
 
     /** 调试：某任务当前每个在飞线程（分片）在干什么（拉取式快照，无在飞分片时为空表） */
     fun chunkDebugSnapshot(taskId: Long): List<ChunkDebug> = manager.chunkDebugSnapshot(taskId)
