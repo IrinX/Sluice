@@ -31,10 +31,10 @@ import android.net.Uri
  */
 object AppLinks {
     /** GitHub 仓库完整地址（点击用系统浏览器打开） */
-    const val GITHUB_REPO = "https://github.com/IrinX/YunX"
+    const val GITHUB_REPO = "https://github.com/IrinX/Sluice"
 
     /** GitHub 仓库展示用短地址（去掉协议头，界面文字用；与 [GITHUB_REPO] 必须指向同一仓库） */
-    const val GITHUB_REPO_DISPLAY = "github.com/IrinX/YunX"
+    const val GITHUB_REPO_DISPLAY = "github.com/IrinX/Sluice"
 
     /**
      * GitHub 个人访问令牌（classic）创建页，带 `scopes` 与 `description` 预填。

@@ -65,7 +65,7 @@ import com.sluice.app.R
 import com.sluice.app.data.update.UpdateChecker
 
 /** Release 说明里没给 html_url 时的兜底跳转地址 */
-private const val RELEASES_PAGE_FALLBACK = "https://github.com/IrinX/YunX/releases/latest"
+private const val RELEASES_PAGE_FALLBACK = "https://github.com/IrinX/Sluice/releases/latest"
 
 /**
  * 发现新版本的**底部弹窗**。

@@ -62,7 +62,7 @@ class UpdateCheckerNotesTest {
 * @tidain made their first contribution in #115 #128
 
 
-**Full Changelog**: https://github.com/IrinX/YunX/compare/v1.2.7...v1.2.8
+**Full Changelog**: https://github.com/IrinX/Sluice/compare/v1.2.7...v1.2.8
 
 [网盘下载](https://pan.quark.cn/s/ab15b5f0a155)
 """.trimIndent()
@@ -99,7 +99,7 @@ class UpdateCheckerNotesTest {
         assertTrue(cleaned.contains("- 新增 115 网盘支持：登录 / 云盘管理 / 分享 / 转存 / 下载"))
         assertTrue(cleaned.contains("## 通知"))
         assertTrue(cleaned.contains("* @tidain made their first contribution in #115 #128"))
-        assertTrue(cleaned.contains("**Full Changelog**: https://github.com/IrinX/YunX/compare/v1.2.7...v1.2.8"))
+        assertTrue(cleaned.contains("**Full Changelog**: https://github.com/IrinX/Sluice/compare/v1.2.7...v1.2.8"))
         assertTrue(cleaned.contains("[网盘下载](https://pan.quark.cn/s/ab15b5f0a155)"))
     }
 

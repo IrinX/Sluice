@@ -31,8 +31,8 @@ import org.json.JSONObject
 
 /**
  * GitHub Release 更新检测。
- * 正式版通道（默认）：GET https://api.github.com/repos/IrinX/YunX/releases/latest
- * 预发布通道（设置页开启「接受预发布版更新」后）：GET https://api.github.com/repos/IrinX/YunX/releases
+ * 正式版通道（默认）：GET https://api.github.com/repos/IrinX/Sluice/releases/latest
+ * 预发布通道（设置页开启「接受预发布版更新」后）：GET https://api.github.com/repos/IrinX/Sluice/releases
  *
  * ★ 仓库路径参数化了（[repo]）：内核包下载走的是另一个仓库（`CYQawa/yunx_gopeed_build`，
  *   见 `KernelProvisioner.KERNEL_REPO`）。Release 的抓取/解析**只此一份实现**，
@@ -41,7 +41,7 @@ import org.json.JSONObject
 object UpdateChecker {
 
     /** 本应用自己的仓库（更新检测默认走它） */
-    const val APP_REPO = "IrinX/YunX"
+    const val APP_REPO = "IrinX/Sluice"
 
     private fun latestUrl(repo: String) = "https://api.github.com/repos/$repo/releases/latest"
 

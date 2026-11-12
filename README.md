@@ -8,14 +8,14 @@
 
 识别夸克 / UC / 迅雷 / 百度 / 139 / 123 / 115 / 光鸭 / 蓝奏云 / 蓝奏云优享版 的分享链接并自动匹配提取码；也能解析抖音 / 小红书 / 快手 / 微博 / AcFun / 哔哩哔哩 / Pixiv 的视频与图集。Range 分片并发 + 断点续传，图片 / 视频 / 音频可在线预览。
 
-[![Release](https://img.shields.io/github/v/release/IrinX/YunX?style=flat-square\&label=release\&color=4C8BF5)](https://github.com/IrinX/YunX/releases/latest)
-[![Stars](https://img.shields.io/github/stars/IrinX/YunX?style=flat-square\&logo=github\&color=4C8BF5)](https://github.com/IrinX/YunX/stargazers)
+[![Release](https://img.shields.io/github/v/release/IrinX/Sluice?style=flat-square\&label=release\&color=4C8BF5)](https://github.com/IrinX/Sluice/releases/latest)
+[![Stars](https://img.shields.io/github/stars/IrinX/Sluice?style=flat-square\&logo=github\&color=4C8BF5)](https://github.com/IrinX/Sluice/stargazers)
 [![License](https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square)](./LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Android-3DDC84?style=flat-square\&logo=android\&logoColor=white)](#构建)
 [![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square\&logo=kotlin\&logoColor=white)](https://kotlinlang.org/)
 [![Compose](https://img.shields.io/badge/Jetpack%20Compose-MD3Expressive-4285F4?style=flat-square\&logo=jetpackcompose\&logoColor=white)](https://developer.android.com/jetpack/compose)
 
-[下载最新版](https://github.com/IrinX/YunX/releases/latest) · [功能](#功能) · [使用](#使用) · [构建](#构建) · [常见问题](#常见问题)
+[下载最新版](https://github.com/IrinX/Sluice/releases/latest) · [功能](#功能) · [使用](#使用) · [构建](#构建) · [常见问题](#常见问题)
 
 [![QQ交流群](https://img.shields.io/badge/QQ%E7%BE%A4-635207650-12B7F5?style=flat-square\&logo=qq\&logoColor=white)](http://qm.qq.com/cgi-bin/qm/qr?...\&group_code=635207650)
 
@@ -105,7 +105,7 @@
 > **不建议使用百度网盘，可能导致账号被风控！**
 
 > \[!NOTE]
-> 其他网盘与视频平台暂未支持，如有需要请开一个 [issue](https://github.com/IrinX/YunX/issues)。
+> 其他网盘与视频平台暂未支持，如有需要请开一个 [issue](https://github.com/IrinX/Sluice/issues)。
 
 ## 使用
 
@@ -131,7 +131,7 @@
 要求：minSdk 24，targetSdk 34。
 
 ```bash
-git clone https://github.com/IrinX/YunX.git
+git clone https://github.com/IrinX/Sluice.git
 ```
 
 用 Android Studio 打开项目直接构建即可。项目在 AndroidIDE 上开发调试，理论上也兼容其它 Android 构建环境。
@@ -145,7 +145,7 @@ git clone https://github.com/IrinX/YunX.git
 <details>
 <summary><b>百度网盘下载/转存不了？</b></summary>
 
-你的账号被风控了，见[issue #9](https://github.com/IrinX/YunX/issues/9)
+你的账号被风控了，见[issue #9](https://github.com/IrinX/Sluice/issues/9)
 
 </details>
 
@@ -176,10 +176,10 @@ git clone https://github.com/IrinX/YunX.git
 
 <sub><sup>Contributors</sup></sub>
 
-<a href="https://github.com/IrinX/YunX/graphs/contributors">
-  <img alt="contributors" src="https://contrib.rocks/image?repo=IrinX/YunX" />
+<a href="https://github.com/IrinX/Sluice/graphs/contributors">
+  <img alt="contributors" src="https://contrib.rocks/image?repo=IrinX/Sluice" />
 </a>
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/chart?repos=IrinX/YunX\&type=date\&legend=top-left\&sealed_token=hccCg_4ek01_Sz38X79eMbjM11mNpOZti6_hLoztWW4Zdtx-8FScydd7YTdiCBUWvgpsuGDO70RrUKP-bOfbI3Gw8BnME1zIl5EHA9JWsv--_DDwWPjvKbZiAGNDslG3ZTDZ-Ssiapu7j08W4fPT6emGWaIIuawHoIw3Nic_xQu7hUSVO6_YeJRGRoEy)](https://www.star-history.com/?repos=Sluice%2FYunX%2CCYQawa%2FYunX\&type=date\&legend=top-left)
+[![Star History Chart](https://api.star-history.com/chart?repos=IrinX/Sluice\&type=date\&legend=top-left\&sealed_token=hccCg_4ek01_Sz38X79eMbjM11mNpOZti6_hLoztWW4Zdtx-8FScydd7YTdiCBUWvgpsuGDO70RrUKP-bOfbI3Gw8BnME1zIl5EHA9JWsv--_DDwWPjvKbZiAGNDslG3ZTDZ-Ssiapu7j08W4fPT6emGWaIIuawHoIw3Nic_xQu7hUSVO6_YeJRGRoEy)](https://www.star-history.com/?repos=Sluice%2FYunX%2CCYQawa%2FYunX\&type=date\&legend=top-left)
