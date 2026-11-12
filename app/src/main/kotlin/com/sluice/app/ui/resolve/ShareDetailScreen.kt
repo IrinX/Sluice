@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.resolve
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -726,7 +727,7 @@ private fun GuestBrowseNotice(platform: SharePlatform) {
 
 @Composable
 internal fun BackToParentItem(onClick: () -> Unit) {
-    Card(
+    CouiCardCompat(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
 import android.Manifest
 import android.content.ClipData
@@ -582,7 +583,7 @@ private fun FolderDownloadGroup(
     } else 0f
     val done = completed == tasks.size
 
-    Card(
+    CouiCardCompat(
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(
@@ -938,7 +939,7 @@ private fun DownloadTaskCard(
     // 长按任务卡弹出操作菜单（复制直链 / 重新下载 / 删除）
     var showMenu by remember { mutableStateOf(false) }
 
-    Card(
+    CouiCardCompat(
         modifier = Modifier
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.large)

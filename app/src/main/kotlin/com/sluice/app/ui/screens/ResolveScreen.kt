@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Build
@@ -617,7 +618,7 @@ private fun ResolveInputContent(
         }
 
         if (state is ResolveUiState.Error) {
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.errorContainer
@@ -694,7 +695,7 @@ private fun HomeShortcutsSection(
 
         if (bookmarks.isEmpty()) {
             // 空态：引导到收藏页添加，避免这里只剩一片空白
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainerLow
@@ -906,7 +907,7 @@ private fun ClipboardSuggestCard(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    CouiCardCompat(
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(

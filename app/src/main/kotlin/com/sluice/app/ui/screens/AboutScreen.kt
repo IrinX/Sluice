@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -448,7 +449,7 @@ private fun DisclaimerCard() {
 /** 重新预览欢迎界面入口 */
 @Composable
 private fun PreviewOnboardingCard(onClick: () -> Unit) {
-    Card(
+    CouiCardCompat(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
@@ -501,7 +502,7 @@ private fun PreviewOnboardingCard(onClick: () -> Unit) {
 /** 卡片容器统一风格 */
 @Composable
 private fun SectionCard(content: @Composable () -> Unit) {
-    Card(
+    CouiCardCompat(
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(
@@ -534,7 +535,7 @@ private fun CardIcon(icon: ImageVector) {
 /** 开源仓库入口卡片 */
 @Composable
 private fun GitHubCard(context: android.content.Context) {
-    Card(
+    CouiCardCompat(
         onClick = {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(AppLinks.GITHUB_REPO))
             context.startActivity(intent)

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
@@ -388,7 +389,7 @@ private fun FactChip(text: String) {
 /** 开源仓库入口卡片 */
 @Composable
 private fun GitHubCard(context: Context) {
-    Card(
+    CouiCardCompat(
         onClick = {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(AppLinks.GITHUB_REPO))
             context.startActivity(intent)
@@ -513,7 +514,7 @@ private fun TermsCard(
     title: String,
     paragraphs: List<String>
 ) {
-    Card(
+    CouiCardCompat(
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(

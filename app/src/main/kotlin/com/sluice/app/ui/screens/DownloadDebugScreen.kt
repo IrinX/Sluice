@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -279,7 +280,7 @@ private fun DebugTaskCard(
         task.totalSize > 0 -> (task.downloadedSize.toFloat() / task.totalSize).coerceIn(0f, 1f)
         else -> 0f
     }
-    Card(
+    CouiCardCompat(
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow)
@@ -375,7 +376,7 @@ private fun ResourcePanel(resources: DownloadResourceDebug?) {
         HintText(stringResource(R.string.dl_loading))
         return
     }
-    Card(
+    CouiCardCompat(
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow)
@@ -423,7 +424,7 @@ private fun ChunkRow(chunk: ChunkDebug, onForceReconnect: () -> Unit) {
     val stuck = chunk.elapsedMs >= STUCK_MIN_AGE_MS &&
         chunk.bps <= 0L &&
         chunk.received < chunk.size
-    Card(
+    CouiCardCompat(
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow)

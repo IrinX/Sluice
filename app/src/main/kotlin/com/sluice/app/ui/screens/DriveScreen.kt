@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -956,14 +957,14 @@ private fun DriveAccountCard(
     }
 
     if (onClick != null) {
-        Card(
+        CouiCardCompat(
             onClick = onClick,
             modifier = Modifier.fillMaxWidth(),
             shape = cardShape,
             colors = cardColors
         ) { content() }
     } else {
-        Card(
+        CouiCardCompat(
             modifier = Modifier.fillMaxWidth(),
             shape = cardShape,
             colors = cardColors

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -117,7 +118,7 @@ fun MultiAccountDownloadScreen(onBack: () -> Unit, modifier: Modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 16.dp)
         ) {
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -275,7 +276,7 @@ private fun MultiAccountSwitchRow(
     //   尾部 Switch 自己不处理点击 —— 这样 TalkBack 读出来的是「多账号下载，已开启」，
     //   而不是一个没有名字、也不知道开的是什么的开关。
     val interactionSource = remember { MutableInteractionSource() }
-    Card(
+    CouiCardCompat(
         modifier = Modifier
             .fillMaxWidth()
             .clip(shape)

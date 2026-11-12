@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
 import com.sluice.app.util.AppStrings
@@ -122,7 +123,7 @@ fun UCAccountSheet(
             Spacer(modifier = Modifier.height(24.dp))
             Text(stringResource(R.string.sh_login_info), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(modifier = Modifier.height(8.dp))
-            Card(modifier = Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large,
+            CouiCardCompat(modifier = Modifier.fillMaxWidth(), shape = MaterialTheme.shapes.large,
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow)) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     InfoRow(label = stringResource(R.string.sh_login_time), value = loginTime)

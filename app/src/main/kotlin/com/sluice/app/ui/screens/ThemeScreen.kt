@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSliderCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import android.content.ComponentName
@@ -231,7 +232,7 @@ fun ThemeScreen(
         ) {
             // ---------- 外观模式 ----------
             ThemeSectionLabel(stringResource(R.string.section_appearance_mode))
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -269,7 +270,7 @@ fun ThemeScreen(
 
             // ---------- 文件名显示 ----------
             ThemeSectionLabel(stringResource(R.string.section_file_name))
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -306,7 +307,7 @@ fun ThemeScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             // ---------- 主题色（可折叠卡片） ----------
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -456,7 +457,7 @@ fun ThemeScreen(
 
             // ---------- 桌面图标（可折叠卡片） ----------
             ThemeSectionLabel(stringResource(R.string.section_desktop_icon))
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -698,7 +699,7 @@ internal fun ColorPickerDialog(
     val valueLabel = stringResource(R.string.color_value)
 
     Dialog(onDismissRequest = onDismiss) {
-        Card(
+        CouiCardCompat(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),

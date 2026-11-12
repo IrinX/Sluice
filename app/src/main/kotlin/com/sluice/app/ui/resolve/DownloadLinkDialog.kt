@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.resolve
 
+import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
 import com.sluice.app.util.AppStrings
@@ -99,7 +100,7 @@ fun DownloadLinkDialog(
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
-                Card(
+                CouiCardCompat(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.surfaceContainerLow

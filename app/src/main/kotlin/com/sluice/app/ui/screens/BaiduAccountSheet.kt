@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
 import com.sluice.app.util.AppStrings
@@ -193,7 +194,7 @@ fun BaiduAccountSheet(
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.large,
                 colors = CardDefaults.cardColors(

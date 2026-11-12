@@ -18,6 +18,7 @@
 
 package com.sluice.app.crash
 
+import com.sluice.app.ui.components.CouiCardCompat
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -159,7 +160,7 @@ private fun CrashScreen(crashLog: String) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             // 崩溃报告（可滚动）
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainerLow

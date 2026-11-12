@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiRadioButtonCompat
 import android.app.Activity
 import androidx.activity.compose.BackHandler
@@ -103,7 +104,7 @@ fun LanguageScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 16.dp)
         ) {
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -152,7 +153,7 @@ private fun LanguageRow(
     onSelect: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
-    Card(
+    CouiCardCompat(
         modifier = Modifier
             .fillMaxWidth()
             .clip(shape)

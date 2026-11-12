@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
 import androidx.compose.ui.res.stringResource
 import com.sluice.app.R
@@ -676,7 +677,7 @@ private fun VideoMediaRow(
         if (media.size > 0) add(formatSize(media.size))
     }.joinToString("  ·  ")
 
-    Card(
+    CouiCardCompat(
         modifier = Modifier.fillMaxWidth(),
         shape = listGroupShape(index, count),
         colors = CardDefaults.cardColors(

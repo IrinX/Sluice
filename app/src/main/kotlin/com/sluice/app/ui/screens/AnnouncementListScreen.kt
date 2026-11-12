@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
@@ -210,7 +211,7 @@ private fun AnnouncementRow(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(
+    CouiCardCompat(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)

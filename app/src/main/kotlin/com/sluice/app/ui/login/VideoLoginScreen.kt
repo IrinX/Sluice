@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiCardCompat
 import android.graphics.Bitmap
 import android.webkit.CookieManager
 import android.webkit.WebResourceError
@@ -585,7 +586,7 @@ private fun ManualCookieLoginScreen(
                 .padding(20.dp)
         ) {
             // 先把「为什么没有网页登录」讲清楚，否则用户会以为功能坏了
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.large,
                 colors = CardDefaults.cardColors(

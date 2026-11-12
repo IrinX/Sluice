@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import android.content.Intent
 import android.net.Uri
@@ -121,7 +122,7 @@ fun LinkOpenScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 16.dp)
         ) {
-            Card(
+            CouiCardCompat(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -158,7 +159,7 @@ fun LinkOpenScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
 
             // 一键跳到系统的关联页：免选择器的唯一落地方式（域名验证做不到，只能手动关联）
             val rowInteraction = remember { MutableInteractionSource() }
-            Card(
+            CouiCardCompat(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(MaterialTheme.shapes.large)
@@ -256,7 +257,7 @@ private fun LinkOpenRow(
     //   尾部 Switch 自己不处理点击 —— 这样 TalkBack 读出来的是「夸克网盘，已开启」，
     //   而不是一个没有名字、也不知道开的是什么的开关。
     val interactionSource = remember { MutableInteractionSource() }
-    Card(
+    CouiCardCompat(
         modifier = Modifier
             .fillMaxWidth()
             .clip(shape)

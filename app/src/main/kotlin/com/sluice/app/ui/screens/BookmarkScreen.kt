@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCardCompat
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -320,7 +321,7 @@ private fun BookmarkRow(
     onClick: () -> Unit,
     onLongClick: () -> Unit
 ) {
-    Card(
+    CouiCardCompat(
         modifier = Modifier
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.large)
