@@ -29,8 +29,6 @@ import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Surface
-import androidx.compose.material3.TextButtonColors
-import androidx.compose.material3.TextButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -108,7 +106,7 @@ fun CouiTextButtonCompat(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     shape: Shape = CouiCapsuleShape,
-    colors: TextButtonColors = TextButtonDefaults.textButtonColors(),
+    colors: ButtonColors = ButtonDefaults.textButtonColors(),
     contentPadding: androidx.compose.foundation.layout.PaddingValues =
         androidx.compose.foundation.layout.PaddingValues(horizontal = 16.dp, vertical = 8.dp),
     border: BorderStroke? = null,
@@ -117,7 +115,7 @@ fun CouiTextButtonCompat(
 ) {
     val source = interactionSource ?: remember { MutableInteractionSource() }
     val scale = pressScale(source)
-    val tint = if (colors.contentColor == TextButtonDefaults.textButtonColors().contentColor) {
+    val tint = if (colors.contentColor == ButtonDefaults.textButtonColors().contentColor) {
         CouiTheme.colorScheme.accent
     } else {
         colors.contentColor

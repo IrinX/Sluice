@@ -657,7 +657,7 @@ fun SettingsScreen(
                     val dir = runCatching { GopeedEngine.prepareDownloadDir(engineDirInput) }
                         .getOrElse { e ->
                             SnackbarController.show(e.message ?: AppStrings.get(R.string.snack_dir_not_writable))
-                            return@TextButton
+                            return@CouiTextButtonCompat
                         }
                     settingsRepo.engineDownloadDir = dir.absolutePath
                     engineDirPath = dir.absolutePath
