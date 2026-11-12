@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.resolve
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import com.sluice.app.ui.components.couiSpringPress
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -255,7 +257,6 @@ fun ShareDetailScreen(
             state = listState,
             modifier = Modifier
                 .fillMaxSize()
-                .nestedScroll(scrollBehavior.nestedScrollConnection),
             contentPadding = PaddingValues(
                         start = 16.dp, end = 16.dp, top = 16.dp,
                         bottom = if (viewModel.multiSelectMode) 96.dp else 16.dp
@@ -851,6 +852,7 @@ internal fun ShareFileRow(
 ) {
     // COUI 行：卡片底色、行高、图标槽、按下反馈由 CouiItem 提供；
     // 点击/长按仍由本组件安装（COUI Item 不带长按），选中底色用 background 表达。
+    val pressSource = remember { MutableInteractionSource() }
     CouiItem(
         modifier = modifier
             .fillMaxWidth()
@@ -862,7 +864,10 @@ internal fun ShareFileRow(
                 if (selected) MaterialTheme.colorScheme.primaryContainer
                 else CouiTheme.colorScheme.card
             )
+            .couiSpringPress(pressSource)
             .combinedClickable(
+                interactionSource = pressSource,
+                indication = null,
                 onClick = onClick,
                 onLongClick = onLongClick
             ),

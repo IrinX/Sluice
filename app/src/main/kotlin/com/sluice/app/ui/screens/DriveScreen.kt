@@ -653,7 +653,6 @@ fun DriveScreen(
                 state = accountListState,
                 modifier = modifier
                     .fillMaxSize()
-                    .nestedScroll(scrollBehavior.nestedScrollConnection),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {

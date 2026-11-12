@@ -101,11 +101,13 @@ fun CouiFilterChipCompat(
     trailingIcon: @Composable (() -> Unit)? = null,
     colors: androidx.compose.material3.SelectableChipColors = FilterChipDefaults.filterChipColors(),
 ) {
+    val pressSource = androidx.compose.runtime.remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
     Surface(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.couiSpringPress(pressSource),
         enabled = enabled,
         shape = CouiCapsuleShape,
+        interactionSource = pressSource,
         color = if (selected) CouiTheme.colorScheme.accent else CouiTheme.colorScheme.container,
         contentColor = if (selected) CouiTheme.colorScheme.onAccent else CouiTheme.colorScheme.onSurface,
     ) {

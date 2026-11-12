@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.couiSpringPress
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiRadioButtonCompat
@@ -375,7 +376,6 @@ fun SettingsScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection)
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
@@ -1297,7 +1297,7 @@ internal fun SettingsItem(
     // 点击/长按仍由本组件安装，因为 COUI Item 不提供长按（设置页长按进隐藏开发菜单要用）。
     val interactionSource = remember { MutableInteractionSource() }
     CouiItem(
-        modifier = modifier.then(
+        modifier = modifier.couiSpringPress(interactionSource).then(
             if (checked != null) {
                 Modifier.toggleable(
                     value = checked,

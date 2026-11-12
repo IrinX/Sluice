@@ -42,9 +42,11 @@ fun CouiCardCompat(
         container
     }
     if (onClick != null) {
+        val pressSource = androidx.compose.runtime.remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
         Surface(
             onClick = onClick,
-            modifier = modifier,
+            modifier = modifier.couiSpringPress(pressSource),
+            interactionSource = pressSource,
             shape = shape,
             color = resolved,
             border = border,
