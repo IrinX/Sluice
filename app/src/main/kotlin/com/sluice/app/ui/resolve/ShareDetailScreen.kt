@@ -102,6 +102,8 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import com.itos.coui.layout.Item as CouiItem
+import com.itos.coui.theme.CouiTheme
 import com.sluice.app.R
 import com.sluice.app.data.db.BookmarkEntity
 import com.sluice.app.data.network.SharePlatform
@@ -842,99 +844,86 @@ internal fun ShareFileRow(
     /** 列表项动画等（调用方传入 Modifier.animateItem()） */
     modifier: Modifier = Modifier
 ) {
-    Card(
+    // COUI 行：卡片底色、行高、图标槽、按下反馈由 CouiItem 提供；
+    // 点击/长按仍由本组件安装（COUI Item 不带长按），选中底色用 background 表达。
+    CouiItem(
         modifier = modifier
             .fillMaxWidth()
-            // ★ 必须先裁到卡片圆角再挂点击/长按：combinedClickable 位于 Card 的 Surface 之外，
-            //   不裁剪的话点击与长按涟漪会画到圆角之外（四角溢出）。
-            .clip(shape)
+            .background(
+                if (selected) MaterialTheme.colorScheme.primaryContainer else Color.Transparent
+            )
             .combinedClickable(
                 onClick = onClick,
                 onLongClick = onLongClick
             ),
-        shape = shape,
-        colors = CardDefaults.cardColors(
-            containerColor = if (selected) {
-                MaterialTheme.colorScheme.primaryContainer
-            } else {
-                MaterialTheme.colorScheme.surfaceContainerLow
+        icon = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                // 多选模式：行首复选框（仅多选列表显示）
+                if (showCheckbox) {
+                    Checkbox(
+                        checked = selected,
+                        onCheckedChange = { onClick() },
+                        modifier = Modifier.size(36.dp)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                }
+                // 行首图标 / 缩略图（见 FileLeadingIcon）
+                FileLeadingIcon(file = file)
             }
-        )
-    ) {
-        // ★ 行内容交给 Material 3 的 ListItem（不再手写 Row + Column）：
-        //   行高、内边距、标题/副标题字号层级由组件按 M3 规范给出，七个网盘页与本页共用同一形态。
-        //   外层保留 Card 负责圆角、选中底色与涟漪裁剪，故 ListItem 容器设为透明。
-        ListItem(
-            headlineContent = {
-                // 文件名 + 徽章（同一行；展示方式由「主题与外观 → 文件名显示」决定：跑马灯 / 多行折行）
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    FileNameText(
-                        text = file.fname,
-                        // weight(fill = false)：先给徽章留出位置，文件名再占满剩余宽度（短名不拉伸）
-                        modifier = Modifier.weight(1f, fill = false)
-                    )
-                    if (badge != null) {
-                        Spacer(modifier = Modifier.width(6.dp))
-                        badge()
-                    }
-                }
-            },
-            supportingContent = {
-                // 副标题行：文件夹/大小 + 修改时间（同一行展示）
-                Text(
-                    text = buildString {
-                        append(
-                            if (file.isdir) stringResource(R.string.rs_folder)
-                            else formatSize(file.fsize)
-                        )
-                        val time = formatModifyTime(file.modifyTime)
-                        if (time.isNotBlank()) {
-                            append("  ·  ")
-                            append(time)
-                        }
-                    },
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+        },
+        title = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                FileNameText(
+                    text = file.fname,
+                    // weight(fill = false)：先给徽章留出位置，文件名再占满剩余宽度（短名不拉伸）
+                    modifier = Modifier.weight(1f, fill = false)
                 )
-            },
-            leadingContent = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    // 多选模式：行首复选框（仅多选列表显示）
-                    if (showCheckbox) {
-                        Checkbox(
-                            checked = selected,
-                            onCheckedChange = { onClick() },
-                            modifier = Modifier.size(36.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                    }
-                    // 行首图标 / 缩略图（见 FileLeadingIcon）
-                    FileLeadingIcon(file = file)
+                if (badge != null) {
+                    Spacer(modifier = Modifier.width(6.dp))
+                    badge()
                 }
-            },
-            trailingContent = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    if (onMore != null) {
-                        IconButton(onClick = onMore, modifier = Modifier.size(36.dp)) {
-                            Icon(
-                                imageVector = Icons.Outlined.MoreVert,
-                                contentDescription = stringResource(R.string.rs_more),
-                                modifier = Modifier.size(18.dp),
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    }
-                    Icon(
-                        imageVector = Icons.Outlined.ChevronRight,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.outline
+            }
+        },
+        summary = {
+            Text(
+                text = buildString {
+                    append(
+                        if (file.isdir) stringResource(R.string.rs_folder)
+                        else formatSize(file.fsize)
                     )
+                    val time = formatModifyTime(file.modifyTime)
+                    if (time.isNotBlank()) {
+                        append("  ·  ")
+                        append(time)
+                    }
+                },
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                color = CouiTheme.colorScheme.onSurfaceVariant
+            )
+        },
+        trailing = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (onMore != null) {
+                    IconButton(onClick = onMore, modifier = Modifier.size(36.dp)) {
+                        Icon(
+                            imageVector = Icons.Outlined.MoreVert,
+                            contentDescription = stringResource(R.string.rs_more),
+                            modifier = Modifier.size(18.dp),
+                            tint = CouiTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
-            },
-            // 底色/选中底色由外层 Card 决定，这里必须透明，否则会盖住卡片颜色
-            colors = ListItemDefaults.colors(containerColor = Color.Transparent)
-        )
-    }
+                Icon(
+                    imageVector = Icons.Outlined.ChevronRight,
+                    contentDescription = null,
+                    tint = CouiTheme.colorScheme.outlineVariant
+                )
+            }
+        },
+        // 点击由外层 combinedClickable 接管
+        onClick = null
+    )
 }
 
 /**
