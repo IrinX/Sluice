@@ -1540,7 +1540,7 @@ fun MainScreen(
                                     .align(Alignment.BottomCenter)
                                     .fillMaxWidth()
                                     .height(140.dp)
-                                    .com.itos.coui.backdrop.drawCouiBackdrop(
+                                    .drawCouiBackdrop(
                                         backdrop = fadeBackdrop,
                                         shape = { androidx.compose.ui.graphics.RectangleShape },
                                     ) { blur(26.dp.toPx()) }
