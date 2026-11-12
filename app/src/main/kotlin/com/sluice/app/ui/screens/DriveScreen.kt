@@ -655,10 +655,13 @@ fun DriveScreen(
                     .fillMaxSize(),
                 // 底部不留白：内容滑到悬浮底栏下方，由 MainScreen 的渐变蒙层做淡出（ColorOS 17 观感）
                 contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                // 平台卡片首尾相接：一组共用一张圆角卡（COUI Group 形态），组内不再留缝
+                verticalArrangement = Arrangement.spacedBy(0.dp)
             ) {
                 item {
-                    AccountSectionLabel(stringResource(R.string.csb_drive_section_accounts))
+                    androidx.compose.foundation.layout.Box(Modifier.padding(bottom = 6.dp)) {
+                        AccountSectionLabel(stringResource(R.string.csb_drive_section_accounts))
+                    }
                 }
                 item {
                     Text(
@@ -670,12 +673,13 @@ fun DriveScreen(
                 }
                 // 顺序 / 隐藏未登录由顶栏「排序」弹窗控制：这里只按设置渲染，
                 // 数据与点击行为在 driveItems 里一一绑定（改顺序不会改语义）。
-                items(visibleDriveItems, key = { it.account.id }) { item ->
+                itemsIndexed(visibleDriveItems, key = { _, it -> it.account.id }) { index, item ->
                     DriveAccountCard(
                         account = item.account,
                         quota = item.quota,
                         onClick = item.onClick,
-                        onMoreClick = item.onMoreClick
+                        onMoreClick = item.onMoreClick,
+                        shape = listGroupShape(index, visibleDriveItems.size)
                     )
                 }
                 if (hiddenHint.isNotEmpty()) {
@@ -944,9 +948,11 @@ private fun DriveAccountCard(
     quota: QuotaInfo? = null,
     onClick: (() -> Unit)? = null,
     /** 已登录时右侧「三个点」更多按钮（打开账号弹窗）；null 则不显示 */
-    onMoreClick: (() -> Unit)? = null
+    onMoreClick: (() -> Unit)? = null,
+    /** 组内位置对应的圆角（首项大圆角、中间方形、末项大圆角） */
+    shape: androidx.compose.ui.graphics.Shape = MaterialTheme.shapes.large
 ) {
-    val cardShape = MaterialTheme.shapes.large
+    val cardShape = shape
     val cardColors = CardDefaults.cardColors(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLow
     )

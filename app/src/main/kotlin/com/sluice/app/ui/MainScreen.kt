@@ -1100,6 +1100,8 @@ fun MainScreen(
     // 折叠标题状态提升到本层：跨页面共享，页面切换时折叠/展开状态保持不变
     // 用 exitUntilCollapsed（默认实现，含松手吸附）：滚动时标题先收起再滚内容；
     // 向上滚动回顶部过程中标题保持收起，只有列表到达最顶部后继续下拉（overscroll）才重新展开
+    // 底部模糊带的采样源（COUI 要求：消费者必须放在源子树之外，这里两者是兄弟节点）
+    val bottomBackdrop = com.itos.coui.backdrop.rememberCouiBackdrop()
     // COUI 折叠顶栏：滚动折叠/到顶展开由它自己的 state 驱动（M3 的 TopAppBarScrollBehavior 接不过来）
     val couiBarState = com.itos.coui.topappbar.rememberCouiCollapsingAppBarState()
     val couiBarScroll = com.itos.coui.topappbar.rememberCouiTopAppBarScrollBehavior()
@@ -1529,11 +1531,34 @@ fun MainScreen(
                                 .padding(padded)
                                 .nestedScroll(couiBarScroll.nestedScrollConnection)
                         ) {
-                            tabContent()
-                            // 底栏下方渐变收口（真实模糊的采样装配待验证后再开，见提交说明）
-                            com.sluice.app.ui.components.CouiBottomFadeScrim(
-                                modifier = Modifier.align(Alignment.BottomCenter)
-                            )
+                            // ★ 源子树里只放正文；模糊带是它的兄弟节点（COUI 明确要求消费者在源之外）
+                            Box(Modifier.fillMaxSize().couiBackdrop(bottomBackdrop)) {
+                                tabContent()
+                            }
+                            // 底栏下方真实模糊带：采样正文 → 模糊 → 叠一层透明到页面底色的渐变收口
+                            Box(
+                                modifier = Modifier
+                                    .align(Alignment.BottomCenter)
+                                    .fillMaxWidth()
+                                    .height(150.dp)
+                                    .drawCouiBackdrop(
+                                        backdrop = bottomBackdrop,
+                                        shape = { androidx.compose.ui.graphics.RectangleShape },
+                                        effects = { blur(24.dp.toPx()) },
+                                    )
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(
+                                            androidx.compose.ui.graphics.Brush.verticalGradient(
+                                                0f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0f),
+                                                0.45f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0.5f),
+                                                1f to com.itos.coui.theme.CouiTheme.colorScheme.background,
+                                            )
+                                        )
+                                )
+                            }
                             SnackbarHost(
                                 hostState = snackbarHostState,
                                 modifier = Modifier
