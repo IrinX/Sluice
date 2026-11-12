@@ -43,6 +43,9 @@ fun CouiModalBottomSheetCompat(
     tonalElevation: Dp = 0.dp,
     scrimColor: Color = Color.Black.copy(alpha = 0.32f),
     dragHandle: @Composable (() -> Unit)? = null,
+    sheetGesturesEnabled: Boolean = true,
+    properties: androidx.compose.material3.ModalBottomSheetProperties =
+        androidx.compose.material3.ModalBottomSheetProperties(),
     content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit,
 ) {
     ModalBottomSheet(
@@ -55,6 +58,8 @@ fun CouiModalBottomSheetCompat(
         tonalElevation = tonalElevation,
         scrimColor = scrimColor,
         dragHandle = dragHandle,
+        sheetGesturesEnabled = sheetGesturesEnabled,
+        properties = properties,
         content = content,
     )
 }
@@ -89,15 +94,20 @@ fun CouiFabCompat(
 fun CouiSmallFabCompat(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    shape: Shape = CouiCapsuleShape,
     containerColor: Color = CouiTheme.colorScheme.accent,
     contentColor: Color = CouiTheme.colorScheme.onAccent,
+    elevation: androidx.compose.material3.FloatingActionButtonElevation =
+        FloatingActionButtonDefaults.elevation(defaultElevation = 2.dp, pressedElevation = 4.dp),
     content: @Composable () -> Unit,
 ) {
     SmallFloatingActionButton(
         onClick = onClick,
         modifier = modifier,
+        shape = shape,
         containerColor = containerColor,
         contentColor = contentColor,
+        elevation = elevation,
         content = content,
     )
 }
