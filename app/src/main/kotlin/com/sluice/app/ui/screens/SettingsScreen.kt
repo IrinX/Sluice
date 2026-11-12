@@ -129,6 +129,7 @@ import com.sluice.app.data.network.HttpClients
 import com.sluice.app.data.prefs.SettingsRepository
 import com.sluice.app.data.update.UpdateChecker
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
+import com.itos.coui.layout.Group as CouiGroup
 import com.itos.coui.layout.Item as CouiItem
 import com.itos.coui.theme.CouiTheme
 import com.sluice.app.ui.SnackbarController
@@ -374,7 +375,8 @@ fun SettingsScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
-        SectionLabel(stringResource(R.string.section_download))
+        CouiGroup(title = stringResource(R.string.section_download)) {
+
         // 引擎切换在独立页面里做（那里上下两段各一个按钮），这里只显示当前用的是哪个
         SettingsItem(
             icon = Icons.Outlined.SwapHoriz,
@@ -388,7 +390,6 @@ fun SettingsScreen(
             onClick = onGopeedClick
         )
 
-        Spacer(modifier = Modifier.height(ListGroupGap))
         SettingsItem(
             icon = Icons.Outlined.Layers,
             shape = listGroupShape(ListGroupPos.MIDDLE),
@@ -396,8 +397,6 @@ fun SettingsScreen(
             description = stringResource(R.string.settings_download_threads_desc),
             onClick = { showThreadsDialog = true }
         )
-
-        Spacer(modifier = Modifier.height(ListGroupGap))
 
         // 下载保存目录（两种下载器共用这一行，但存的东西不一样）：
         // - 内置分片下载器：SAF tree Uri（写 content://，走 MediaStore/SAF，Android 10+ 免存储权限）；
@@ -466,8 +465,6 @@ fun SettingsScreen(
             }
         )
 
-        Spacer(modifier = Modifier.height(ListGroupGap))
-
         // 并发 / 限速 / 失败重试 / 免转存取链 / 锁屏保持 / 通知进度 / 多账号下载等重项
         // 都收进了「下载设置」二级页，本页「下载」组只保留最常用的三行 + 这一个入口。
         SettingsItem(
@@ -479,9 +476,9 @@ fun SettingsScreen(
             onClick = onDownloadSettingsClick
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        }
+        CouiGroup(title = stringResource(R.string.section_appearance)) {
 
-        SectionLabel(stringResource(R.string.section_appearance))
         SettingsItem(
             icon = Icons.Outlined.Palette,
             shape = listGroupShape(ListGroupPos.FIRST),
@@ -491,8 +488,6 @@ fun SettingsScreen(
             modifier = themeRowModifier,
             onClick = onThemeClick
         )
-
-        Spacer(modifier = Modifier.height(ListGroupGap))
 
         // 语言：进入二级页选择界面语言（下拉框难以做到完美，改用二级页）
         SettingsItem(
@@ -507,9 +502,9 @@ fun SettingsScreen(
             onClick = onLanguageClick
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        }
+        CouiGroup(title = stringResource(R.string.section_general)) {
 
-        SectionLabel(stringResource(R.string.section_general))
         SettingsItem(
             icon = Icons.Outlined.Image,
             shape = listGroupShape(ListGroupPos.FIRST),
@@ -526,8 +521,6 @@ fun SettingsScreen(
                 Switch(checked = ThemeController.cloudThumbnails, onCheckedChange = null)
             }
         )
-
-        Spacer(modifier = Modifier.height(ListGroupGap))
 
         SettingsItem(
             icon = Icons.Outlined.ContentPaste,
@@ -549,8 +542,6 @@ fun SettingsScreen(
             }
         )
 
-        Spacer(modifier = Modifier.height(ListGroupGap))
-
         SettingsItem(
             icon = Icons.Outlined.SystemUpdate,
             shape = listGroupShape(ListGroupPos.MIDDLE),
@@ -558,8 +549,6 @@ fun SettingsScreen(
             description = stringResource(R.string.settings_check_update_desc),
             onClick = onCheckUpdate
         )
-
-        Spacer(modifier = Modifier.height(ListGroupGap))
 
         // 网络与更新：预发布版、GitHub 镜像、网络代理都收进这个二级页
         SettingsItem(
@@ -571,7 +560,6 @@ fun SettingsScreen(
             onClick = onNetworkUpdateClick
         )
 
-        Spacer(modifier = Modifier.height(ListGroupGap))
         SettingsItem(
             icon = Icons.Outlined.Article,
             shape = listGroupShape(ListGroupPos.LAST),
@@ -580,9 +568,9 @@ fun SettingsScreen(
             onClick = { showLogDialog = true }
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        }
+        CouiGroup(title = stringResource(R.string.section_auth_backup)) {
 
-        SectionLabel(stringResource(R.string.section_auth_backup))
         SettingsItem(
             icon = Icons.Outlined.Backup,
             shape = listGroupShape(ListGroupPos.FIRST),
@@ -591,7 +579,6 @@ fun SettingsScreen(
             onClick = { showExportAuthDialog = true }
         )
 
-        Spacer(modifier = Modifier.height(ListGroupGap))
         SettingsItem(
             icon = Icons.Outlined.Restore,
             shape = listGroupShape(ListGroupPos.LAST),
@@ -600,9 +587,9 @@ fun SettingsScreen(
             onClick = { importLauncher.launch(arrayOf("application/json", "application/octet-stream", "*/*")) }
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        }
+        CouiGroup(title = stringResource(R.string.section_link_open)) {
 
-        SectionLabel(stringResource(R.string.section_link_open))
         SettingsItem(
             icon = Icons.Outlined.Link,
             shape = listGroupShape(ListGroupPos.SINGLE),
@@ -612,9 +599,9 @@ fun SettingsScreen(
             onClick = onLinkOpenClick
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        }
+        CouiGroup(title = stringResource(R.string.section_about)) {
 
-        SectionLabel(stringResource(R.string.section_about))
         SettingsItem(
             icon = Icons.Outlined.Info,
             shape = listGroupShape(ListGroupPos.FIRST),
@@ -625,7 +612,6 @@ fun SettingsScreen(
             onLongClick = { showDevMenu = true } // 长按打开隐藏开发调试菜单
         )
 
-        Spacer(modifier = Modifier.height(ListGroupGap))
         SettingsItem(
             icon = Icons.Outlined.Code,
             shape = listGroupShape(ListGroupPos.LAST),
@@ -633,6 +619,7 @@ fun SettingsScreen(
             description = stringResource(R.string.settings_github_repo_desc, AppLinks.GITHUB_REPO_DISPLAY),
             onClick = { openUrl(context, AppLinks.GITHUB_REPO) }
         )
+        }
     }
 
     // Gopeed 下载目录手输弹窗：SAF 反解不到真实路径（第三方 provider / 选择器不可用）时的兜底。
