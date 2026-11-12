@@ -40,7 +40,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Download
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -75,7 +75,7 @@ fun DownloadLinkDialog(
     // Dialog 内提示宿主（AlertDialog 为独立窗口）
     val snackbarHostState = rememberGlobalSnackbarHostState()
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(

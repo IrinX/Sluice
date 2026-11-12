@@ -62,7 +62,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -495,7 +495,7 @@ fun ResolveScreen(
 
     // 获取下载直链加载弹窗（转存/取链需要时间，避免无反馈）
     if (viewModel.isFetchingDownloadLink) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { },
             confirmButton = { },
             title = { Text(stringResource(R.string.rs_fetch_link_title)) },
@@ -748,7 +748,7 @@ private fun HomeShortcutsSection(
     }
 
     removing?.let { bookmark ->
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { removing = null },
             title = { Text(stringResource(R.string.rs_remove_from_home)) },
             text = {

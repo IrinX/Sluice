@@ -39,7 +39,7 @@ import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.SystemUpdate
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -283,7 +283,7 @@ fun UpdateSheet(
 
     // GitHub 下载方式（只有命中网盘链接时才用得到）：直连 / 镜像站 / 打开页面
     if (showGithubOptions) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showGithubOptions = false },
             title = { Text(stringResource(R.string.vm_update_github_download)) },
             text = {

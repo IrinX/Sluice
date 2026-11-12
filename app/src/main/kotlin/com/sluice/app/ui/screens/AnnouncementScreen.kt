@@ -42,7 +42,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -472,7 +472,7 @@ fun AnnouncementPopupDialog(
         relativeTime(announcement.effectiveMillis).takeIf { it.isNotBlank() }
     ).joinToString(" · ")
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         icon = {
             AnnouncementChip(

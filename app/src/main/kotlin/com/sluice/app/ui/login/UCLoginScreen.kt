@@ -41,7 +41,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -200,7 +200,7 @@ fun UCLoginScreen(
     }
 
     if (showTutorial) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showTutorial = false },
             icon = { Icon(Icons.Outlined.Info, contentDescription = null) },
             title = { Text(stringResource(R.string.lg_login_tutorial)) },
@@ -218,7 +218,7 @@ fun UCLoginScreen(
     }
 
     if (showCookieDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { if (!isSavingManual) showCookieDialog = false },
             title = { Text(stringResource(R.string.lg_manual_cookie)) },
             text = {

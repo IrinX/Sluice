@@ -54,7 +54,7 @@ import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.DriveFileMove
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -565,7 +565,7 @@ fun CloudDriveScreen(
 
     // 操作执行中：加载弹窗（下载取链/分享/移动/删除；下载文件夹显示进度）
     if (viewModel.isOperating) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {

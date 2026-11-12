@@ -58,7 +58,7 @@ import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumFlexibleTopAppBar
 import androidx.compose.material3.NavigationRail
@@ -1695,7 +1695,7 @@ fun MainScreen(
         var passwordVisible by remember { mutableStateOf(false) }
         // 校验失败提示（显示在输入框下方），修改输入即清除
         var tokenError by remember { mutableStateOf<String?>(null) }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showGitHubTokenDialog = false },
             title = { Text("GitHub Token") },
             text = {
@@ -1810,7 +1810,7 @@ fun MainScreen(
 
     // 清除 GitHub Token 二次确认（网盘页更多菜单）
     if (showGitHubClearConfirm) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showGitHubClearConfirm = false },
             title = { Text(stringResource(R.string.vm_github_clear_token_title)) },
             text = { Text(stringResource(R.string.vm_github_clear_token_message)) },

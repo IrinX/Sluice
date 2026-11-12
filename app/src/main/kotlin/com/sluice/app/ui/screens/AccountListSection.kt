@@ -35,7 +35,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.MoreVert
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
@@ -216,7 +216,7 @@ private fun AccountRow(
 
     if (showRename) {
         var input by remember(account.id) { mutableStateOf(account.remark) }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showRename = false },
             title = { Text(stringResource(R.string.sh_rename_remark)) },
             text = {
@@ -250,7 +250,7 @@ private fun AccountRow(
     }
 
     if (showRemove) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showRemove = false },
             title = { Text(stringResource(R.string.sh_logout_account)) },
             text = {

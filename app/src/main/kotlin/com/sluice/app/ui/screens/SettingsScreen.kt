@@ -77,7 +77,7 @@ import androidx.compose.material.icons.outlined.SwapHoriz
 import androidx.compose.material.icons.outlined.SwitchAccount
 import androidx.compose.material.icons.outlined.SystemUpdate
 import androidx.compose.material.icons.outlined.Tune
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -625,7 +625,7 @@ fun SettingsScreen(
     // Gopeed 下载目录手输弹窗：SAF 反解不到真实路径（第三方 provider / 选择器不可用）时的兜底。
     // 校验（建目录 + 试写探针）统一交给 GopeedEngine.prepareDownloadDir，失败原文直接提示、不关弹窗。
     if (showEngineDirDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showEngineDirDialog = false },
             title = { Text(stringResource(R.string.dialog_engine_dir_title)) },
             text = {
@@ -673,7 +673,7 @@ fun SettingsScreen(
 
     // 导出日志方式选择弹窗
     if (showLogDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showLogDialog = false },
             title = { Text(stringResource(R.string.dialog_log_title)) },
             text = {
@@ -765,7 +765,7 @@ fun SettingsScreen(
 
     // 隐藏开发调试菜单（长按「关于 Sluice」打开）
     if (showDevMenu) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showDevMenu = false },
             title = { Text(stringResource(R.string.dialog_dev_title)) },
             text = {
@@ -925,7 +925,7 @@ fun SettingsScreen(
 
     // 关闭「下载调试」的二次确认：关闭会清空已记录的全部调试日志，且不可恢复
     if (showDisableDownloadDebugConfirm) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showDisableDownloadDebugConfirm = false },
             title = { Text(stringResource(R.string.dialog_disable_debug_title)) },
             text = { Text(stringResource(R.string.dialog_disable_debug_message)) },
@@ -953,7 +953,7 @@ fun SettingsScreen(
 
     // 线程数选择弹窗（按平台）
     if (showThreadsDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showThreadsDialog = false },
             title = { Text(stringResource(R.string.dialog_threads_title)) },
             text = {
@@ -1021,7 +1021,7 @@ fun SettingsScreen(
     // 单个平台线程数选择（二级弹窗）
     if (showPlatformThreadDialog) {
         val current = settingsRepo.downloadThreadsFor(selectedThreadPlatform.platform)
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showPlatformThreadDialog = false },
             title = { Text(stringResource(R.string.dialog_platform_threads_title, stringResource(selectedThreadPlatform.label))) },
             text = {
@@ -1143,7 +1143,7 @@ private fun ExportAuthDialog(
 ) {
     var password by remember { mutableStateOf("") }
     var onlyLoggedIn by remember { mutableStateOf(true) }
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.dialog_export_auth_title)) },
         text = {
@@ -1210,7 +1210,7 @@ private fun ImportAuthDialog(
     onConfirm: (password: String) -> Unit
 ) {
     var password by remember { mutableStateOf("") }
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.dialog_import_auth_title)) },
         text = {
@@ -1246,7 +1246,7 @@ private fun ImportAuthDialog(
 /** 操作处理中弹窗：转圈加载 + 提示文案，禁止关闭（防止中途取消导致导入/导出状态不一致） */
 @Composable
 private fun OperationLoadingDialog(message: String) {
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = {},
         title = { Text(message) },
         text = {

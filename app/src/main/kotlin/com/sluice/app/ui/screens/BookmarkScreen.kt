@@ -60,7 +60,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.RemoveCircleOutline
 import androidx.compose.material.icons.outlined.TextFields
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -467,7 +467,7 @@ private fun AddBookmarkDialog(
         }
     }
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.rs_add_bookmark)) },
         text = {
@@ -579,7 +579,7 @@ internal fun AddToBookmarkDialog(
     var customCategory by remember { mutableStateOf("") }
     val isCustom = selectedCategory == CUSTOM_CATEGORY
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.rs_add_to_bookmark)) },
         text = {
@@ -675,7 +675,7 @@ private fun EditCategoryDialog(
         }
     }
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.rs_edit_category)) },
         text = {
@@ -748,7 +748,7 @@ private fun BookmarkMenuDialog(
     onDelete: () -> Unit,
     onDismiss: () -> Unit
 ) {
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
@@ -826,7 +826,7 @@ private fun HomeLabelDialog(
     onDismiss: () -> Unit
 ) {
     var text by remember(bookmark.id) { mutableStateOf(bookmark.homeLabel) }
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.rs_custom_icon_text)) },
         text = {

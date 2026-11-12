@@ -55,7 +55,7 @@ import androidx.compose.material.icons.outlined.DriveFileMove
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -579,7 +579,7 @@ fun BaiduCloudScreen(
 
     // 操作执行中加载弹窗（下载文件夹/批量下载显示进度）
     if (viewModel.isOperating) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {
@@ -604,7 +604,7 @@ fun BaiduCloudScreen(
     // 百度非会员 >300MB 限速提示弹窗（可勾选不再显示）
     if (showBaiduLimitDialog) {
         var neverShow by remember { mutableStateOf(limitHintDismissed) }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showBaiduLimitDialog = false },
             title = { Text(stringResource(R.string.csa_baidu_limit_title)) },
             text = {

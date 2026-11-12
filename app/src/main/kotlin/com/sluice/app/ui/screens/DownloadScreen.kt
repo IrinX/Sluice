@@ -72,7 +72,7 @@ import androidx.compose.material.icons.outlined.Pause
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.SystemUpdate
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -312,7 +312,7 @@ fun DownloadScreen(
         val hasCompletedFile = tasks.any {
             it.status == DownloadTaskEntity.STATUS_COMPLETED && it.savePath.isNotBlank()
         }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showDeleteAllConfirm = false },
             title = { Text(stringResource(R.string.dl_delete_all_title)) },
             text = {
@@ -441,7 +441,7 @@ private fun DeleteConfirmDialog(
     var deleteLocal by remember { mutableStateOf(false) }
     val hasLocalFile = task.status == DownloadTaskEntity.STATUS_COMPLETED && task.savePath.isNotBlank()
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.dl_delete_task_title)) },
         text = {
@@ -854,7 +854,7 @@ private fun DownloadSubTaskRow(
 
         // 长按任务行弹出操作菜单（复制直链 / 重新下载 / 删除）
         if (showMenu) {
-            AlertDialog(
+            CouiAlertDialog(
                 onDismissRequest = { showMenu = false },
                 title = {
                     Text(
@@ -1113,7 +1113,7 @@ private fun DownloadTaskCard(
 
         // 长按任务卡弹出操作菜单（复制直链 / 重新下载 / 删除）
         if (showMenu) {
-            AlertDialog(
+            CouiAlertDialog(
                 onDismissRequest = { showMenu = false },
                 title = {
                     Text(
@@ -1317,7 +1317,7 @@ private fun AddDownloadDialog(
     }
     val isMagnet = MagnetLink.isMagnet(url)
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.dl_add_task)) },
         text = {

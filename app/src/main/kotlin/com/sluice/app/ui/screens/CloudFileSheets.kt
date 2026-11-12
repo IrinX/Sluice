@@ -63,7 +63,7 @@ import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.UploadFile
 import androidx.compose.material.icons.outlined.Visibility
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonGroup
@@ -349,7 +349,7 @@ internal fun CreateFolderDialog(
     var touched by remember { mutableStateOf(false) }
     val error = cloudNameError(name)
     val showError = touched && error != null
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.csa_create_folder)) },
         text = {
@@ -981,7 +981,7 @@ internal fun ShareResultDialog(
         }
     }
     val shareTextCopiedMessage = stringResource(R.string.csa_share_text_copied)
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.csa_share_success)) },
         text = {
@@ -1282,7 +1282,7 @@ internal fun rememberUploadPicker(onPicked: (List<Uri>) -> Unit): () -> Unit {
  */
 @Composable
 internal fun UploadProgressDialog(progress: UploadProgress, onCancel: () -> Unit) {
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = { },
         title = {
             Text(

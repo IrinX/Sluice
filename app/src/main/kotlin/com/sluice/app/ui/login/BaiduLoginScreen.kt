@@ -44,7 +44,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
@@ -237,7 +237,7 @@ fun BaiduLoginScreen(
 
     // 风控温馨提示弹窗（进入登录页优先展示）：勾选「已阅读」后才能继续
     if (showRiskDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             // 不允许点外部/返回键关掉：这是使用前必须确认的前置提示
             onDismissRequest = {},
             icon = { Icon(Icons.Outlined.Info, contentDescription = null) },
@@ -285,7 +285,7 @@ fun BaiduLoginScreen(
 
     // 登录教程弹窗
     if (showTutorial) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showTutorial = false },
             icon = { Icon(Icons.Outlined.Info, contentDescription = null) },
             title = { Text(stringResource(R.string.lg_login_tutorial)) },
@@ -318,7 +318,7 @@ fun BaiduLoginScreen(
 
     // 手动输入 Cookie 弹窗
     if (showCookieDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { if (!isSavingManual) showCookieDialog = false },
             title = { Text(stringResource(R.string.lg_manual_cookie)) },
             text = {

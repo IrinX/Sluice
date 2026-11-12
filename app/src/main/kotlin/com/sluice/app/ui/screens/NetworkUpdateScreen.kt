@@ -37,7 +37,7 @@ import androidx.compose.material.icons.outlined.Cloud
 import androidx.compose.material.icons.outlined.Campaign
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.SystemUpdate
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -215,7 +215,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     // GitHub 下载镜像前缀设置弹窗（留空 = 使用内置默认镜像）
     if (showMirrorDialog) {
         var mirrorInput by remember { mutableStateOf(githubMirror ?: "") }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showMirrorDialog = false },
             title = { Text(stringResource(R.string.dialog_mirror_title)) },
             text = {
@@ -270,7 +270,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     // 公告服务地址弹窗（留空 = 关闭公告，顶栏入口隐藏）
     if (showAnnouncementDialog) {
         var urlInput by remember { mutableStateOf(announcementUrl) }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showAnnouncementDialog = false },
             title = { Text(stringResource(R.string.dialog_announcement_title)) },
             text = {
@@ -332,7 +332,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         var tempEnabled by remember { mutableStateOf(proxyEnabled) }
         var tempHost by remember { mutableStateOf(proxyHost) }
         var tempPort by remember { mutableStateOf(proxyPort) }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showProxyDialog = false },
             title = { Text(stringResource(R.string.dialog_proxy_title)) },
             text = {

@@ -56,7 +56,7 @@ import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.DriveFileMove
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -502,7 +502,7 @@ fun LanzouCloudScreen(
     }
 
     if (viewModel.isOperating) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {

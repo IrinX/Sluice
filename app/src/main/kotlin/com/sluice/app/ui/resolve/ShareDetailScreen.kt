@@ -56,7 +56,7 @@ import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.SaveAlt
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -547,7 +547,7 @@ fun ShareDetailScreen(
     // 百度 >300MB 限速提示弹窗（解析页百度分享下载，可勾选不再显示）
     if (showBaiduLimitDialog) {
         var neverShow by remember { mutableStateOf(baiduLimitDismissed) }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showBaiduLimitDialog = false },
             title = { Text(stringResource(R.string.rs_large_file_title)) },
             text = {
@@ -587,7 +587,7 @@ fun ShareDetailScreen(
 
     // 批量处理中：加载弹窗（批量下载显示获取进度，如 "正在获取下载链接 2/5"；可中断）
     if (viewModel.isBatchWorking) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { },
             confirmButton = { },
             dismissButton = {

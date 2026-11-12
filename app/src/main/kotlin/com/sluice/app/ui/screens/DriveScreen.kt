@@ -55,7 +55,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -1159,7 +1159,7 @@ private fun DriveSortDialog(
     // 列表高度跟着屏幕走：竖屏能多显示几行，横屏/小屏自动缩到约 42% 屏高，
     // 否则 11 行顶出去会把「完成」按钮挤出可视区。
     val maxListHeight = (LocalConfiguration.current.screenHeightDp * 0.42f).dp
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.csb_drive_sort_title)) },
         text = {

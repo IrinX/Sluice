@@ -30,7 +30,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Security
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -69,7 +69,7 @@ fun SafetyNoticeDialog() {
 
     if (!visible) return
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = {
             if (seconds <= 0) {
                 visible = false

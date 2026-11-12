@@ -54,7 +54,7 @@ import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Speed
 import androidx.compose.material.icons.outlined.SwapHoriz
 import androidx.compose.material.icons.outlined.SwitchAccount
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -336,7 +336,7 @@ fun DownloadSettingsScreen(
     // 最大同时下载任务数
     if (showConcurrencyDialog) {
         val options = listOf(1, 2, 3, 5, 8)
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showConcurrencyDialog = false },
             title = { Text(stringResource(R.string.dialog_max_tasks_title)) },
             text = {
@@ -402,7 +402,7 @@ fun DownloadSettingsScreen(
             tempSelected == null -> speedLimitBps > 0 && speedLimitBps !in presets
             else -> false
         }
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showSpeedDialog = false },
             title = { Text(stringResource(R.string.dialog_speed_limit_title)) },
             text = {
@@ -487,7 +487,7 @@ fun DownloadSettingsScreen(
     // 失败自动重试次数
     if (showRetryDialog) {
         val options = listOf(0, 1, 2, 3, 5, 8, 10)
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showRetryDialog = false },
             title = { Text(stringResource(R.string.dialog_auto_retry_title)) },
             text = {
@@ -530,7 +530,7 @@ fun DownloadSettingsScreen(
 
     // 锁屏保持下载：引导加入「忽略电池优化」白名单
     if (showBatteryDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showBatteryDialog = false },
             title = { Text(stringResource(R.string.dialog_battery_title)) },
             text = {

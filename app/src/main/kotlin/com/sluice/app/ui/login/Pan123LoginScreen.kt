@@ -45,7 +45,7 @@ import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -298,7 +298,7 @@ fun Pan123LoginScreen(
 
     // 登录教程弹窗（网页登录的说明；账号密码模式用不到）
     if (showTutorial && mode == MODE_WEB) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { showTutorial = false },
             icon = { Icon(Icons.Outlined.Info, contentDescription = null) },
             title = { Text(stringResource(R.string.lg_login_tutorial)) },
@@ -335,7 +335,7 @@ fun Pan123LoginScreen(
 
     // 手动输入 Token 弹窗
     if (showTokenDialog) {
-        AlertDialog(
+        CouiAlertDialog(
             onDismissRequest = { if (!isSavingManual) showTokenDialog = false },
             title = { Text(stringResource(R.string.lg_manual_token)) },
             text = {

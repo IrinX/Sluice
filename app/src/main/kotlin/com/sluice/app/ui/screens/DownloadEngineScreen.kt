@@ -56,7 +56,7 @@ import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.SwapHoriz
-import androidx.compose.material3.AlertDialog
+import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -878,7 +878,7 @@ private fun KernelGithubDialog(
     onMirror: () -> Unit,
     onDismiss: () -> Unit
 ) {
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.dl_kernel_github_download)) },
         text = {
@@ -931,7 +931,7 @@ private fun KernelProgressDialog(
     val merging = phase as? KernelProvisioner.Phase.Merging
     val finished = done != null || failed != null
 
-    AlertDialog(
+    CouiAlertDialog(
         onDismissRequest = { /* 故意空着：点空白/返回键都不关，见上面的说明 */ },
         properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false),
         title = {
