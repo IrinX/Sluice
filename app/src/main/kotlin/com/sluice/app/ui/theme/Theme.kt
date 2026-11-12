@@ -28,6 +28,7 @@ import androidx.compose.material3.Shapes
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
+import com.itos.coui.theme.CouiTheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
@@ -373,8 +374,21 @@ fun ComposeEmptyActivityTheme(
         motionScheme = AppMotionScheme,
         shapes = ExpressiveShapes,
         typography = Typography,
-        content = content
-    )
+    ) {
+        // COUI 主题层：配色与字体不另立一套，直接取 coui-material3 适配结果
+        // （它在启动时由 Coui.initialize(CouiMaterial3Style()) 装配，从上面的 MaterialTheme 推导）；
+        // materialTint 传 surface，让 COUI 的材质混色与页面底色一致。
+        // LocalCouiDarkTheme 由 CouiTheme 一并提供，嵌套主题切换深浅时 COUI 组件不会读错模式。
+        val couiColors = CouiTheme.colorSchemeFor(isDark)
+        val couiTypography = CouiTheme.typography
+        CouiTheme(
+            darkTheme = isDark,
+            colorScheme = couiColors,
+            typography = couiTypography,
+            materialTint = colorScheme.surface,
+            content = content,
+        )
+    }
 }
 
 /**
