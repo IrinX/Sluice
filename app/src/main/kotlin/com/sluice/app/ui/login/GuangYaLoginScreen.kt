@@ -47,7 +47,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
@@ -187,7 +187,7 @@ fun GuangYaLoginScreen(
             )
 
             if (!smsMode) {
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = account,
                     onValueChange = {
                         account = it
@@ -201,7 +201,7 @@ fun GuangYaLoginScreen(
                     shape = MaterialTheme.shapes.large
                 )
 
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = password,
                     onValueChange = {
                         password = it
@@ -273,7 +273,7 @@ fun GuangYaLoginScreen(
                     Text(stringResource(R.string.lg_sms_login_entry), style = MaterialTheme.typography.bodyMedium)
                 }
             } else {
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = phone,
                     onValueChange = {
                         phone = it
@@ -299,7 +299,7 @@ fun GuangYaLoginScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = smsCode,
                         onValueChange = {
                             smsCode = it

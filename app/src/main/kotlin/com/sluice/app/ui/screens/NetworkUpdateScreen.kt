@@ -44,7 +44,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -220,7 +220,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             title = { Text(stringResource(R.string.dialog_mirror_title)) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = mirrorInput,
                         onValueChange = { mirrorInput = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -275,7 +275,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             title = { Text(stringResource(R.string.dialog_announcement_title)) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = urlInput,
                         onValueChange = { urlInput = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -348,7 +348,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                         )
                         Switch(checked = tempEnabled, onCheckedChange = { tempEnabled = it })
                     }
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = tempHost,
                         onValueChange = { tempHost = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -356,7 +356,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                         singleLine = true,
                         enabled = tempEnabled
                     )
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = tempPort,
                         onValueChange = { tempPort = it.filter(Char::isDigit).take(5) },
                         modifier = Modifier.fillMaxWidth(),

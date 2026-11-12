@@ -67,7 +67,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -559,7 +559,7 @@ private fun ResolveInputContent(
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
-        OutlinedTextField(
+        CouiOutlinedTextField(
             value = link,
             onValueChange = onLinkChange,
             modifier = Modifier.fillMaxWidth(),
@@ -577,7 +577,7 @@ private fun ResolveInputContent(
             shape = MaterialTheme.shapes.large
         )
 
-        OutlinedTextField(
+        CouiOutlinedTextField(
             value = pwd,
             onValueChange = onPwdChange,
             modifier = Modifier.fillMaxWidth(),

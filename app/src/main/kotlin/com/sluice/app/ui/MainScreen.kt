@@ -57,7 +57,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import com.sluice.app.ui.components.CouiAlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumFlexibleTopAppBar
@@ -1739,7 +1739,7 @@ fun MainScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(Modifier.height(12.dp))
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = tokenInput,
                         onValueChange = {
                             tokenInput = it

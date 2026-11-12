@@ -60,7 +60,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.OutlinedButton
@@ -306,7 +306,7 @@ fun ILanzouCloudScreen(
                                     ) {
                                         Column {
                                             Spacer(modifier = Modifier.height(10.dp))
-                                            OutlinedTextField(
+                                            CouiOutlinedTextField(
                                                 value = searchQuery,
                                                 onValueChange = { searchQuery = it },
                                                 modifier = Modifier.fillMaxWidth(),

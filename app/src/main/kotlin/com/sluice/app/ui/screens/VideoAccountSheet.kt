@@ -48,7 +48,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -331,7 +331,7 @@ private fun VideoAccountRow(
             title = { Text(stringResource(R.string.sh_rename_remark)) },
             text = {
                 Column {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = input,
                         onValueChange = { input = it },
                         singleLine = true,

@@ -203,7 +203,7 @@ fun XunleiLoginScreen(
             when {
                 // ---------- 账号密码：安全验证步骤（密码登录被风控拦下后） ----------
                 mode == MODE_PASSWORD && smsStep != null -> {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = smsCode,
                         onValueChange = { smsCode = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -258,7 +258,7 @@ fun XunleiLoginScreen(
 
                 // ---------- 短信登录 ----------
                 mode == MODE_SMS -> {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = smsMobile,
                         onValueChange = { smsMobile = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -270,7 +270,7 @@ fun XunleiLoginScreen(
                     )
                     // 验证码输入框在发送成功后出现：没发短信就填不了，少一个「点了没反应」的困惑
                     if (smsSent) {
-                        OutlinedTextField(
+                        CouiOutlinedTextField(
                             value = smsCode,
                             onValueChange = { smsCode = it },
                             modifier = Modifier.fillMaxWidth(),
@@ -308,7 +308,7 @@ fun XunleiLoginScreen(
 
                 // ---------- 账号密码：输入步骤 ----------
                 else -> {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = username,
                         onValueChange = { username = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -317,7 +317,7 @@ fun XunleiLoginScreen(
                         singleLine = true,
                         shape = MaterialTheme.shapes.large
                     )
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
                         modifier = Modifier.fillMaxWidth(),

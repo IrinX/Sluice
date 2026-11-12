@@ -69,7 +69,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Surface
@@ -478,7 +478,7 @@ private fun AddBookmarkDialog(
                     .verticalScroll(scrollState),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = link,
                     onValueChange = { link = it },
                     modifier = Modifier.fillMaxWidth(),
@@ -489,7 +489,7 @@ private fun AddBookmarkDialog(
                     maxLines = 4,
                     shape = MaterialTheme.shapes.large
                 )
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = title,
                     onValueChange = { title = it },
                     modifier = Modifier.fillMaxWidth(),
@@ -497,7 +497,7 @@ private fun AddBookmarkDialog(
                     singleLine = true,
                     shape = MaterialTheme.shapes.large
                 )
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = pwd,
                     onValueChange = { pwd = it },
                     modifier = Modifier.fillMaxWidth(),
@@ -534,7 +534,7 @@ private fun AddBookmarkDialog(
                     enter = expandVertically(spatialDefault()) + fadeIn(effectsDefault()),
                     exit = shrinkVertically(spatialFast()) + fadeOut(effectsFast())
                 ) {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = customCategory,
                         onValueChange = { customCategory = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -590,7 +590,7 @@ internal fun AddToBookmarkDialog(
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = titleInput,
                     onValueChange = { titleInput = it },
                     modifier = Modifier.fillMaxWidth(),
@@ -626,7 +626,7 @@ internal fun AddToBookmarkDialog(
                     enter = expandVertically(spatialDefault()) + fadeIn(effectsDefault()),
                     exit = shrinkVertically(spatialFast()) + fadeOut(effectsFast())
                 ) {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = customCategory,
                         onValueChange = { customCategory = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -711,7 +711,7 @@ private fun EditCategoryDialog(
                     enter = expandVertically(spatialDefault()) + fadeIn(effectsDefault()),
                     exit = shrinkVertically(spatialFast()) + fadeOut(effectsFast())
                 ) {
-                    OutlinedTextField(
+                    CouiOutlinedTextField(
                         value = customCategory,
                         onValueChange = { customCategory = it },
                         modifier = Modifier.fillMaxWidth(),
@@ -837,7 +837,7 @@ private fun HomeLabelDialog(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = text,
                     // 直接截断而不是报错：粘贴长文本时给出最短路径
                     onValueChange = { if (it.length <= HOME_LABEL_MAX_LENGTH) text = it },

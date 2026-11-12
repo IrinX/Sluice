@@ -80,7 +80,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import com.sluice.app.ui.components.CouiOutlinedTextField
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -354,7 +354,7 @@ internal fun CreateFolderDialog(
         title = { Text(stringResource(R.string.csa_create_folder)) },
         text = {
             Column {
-                OutlinedTextField(
+                CouiOutlinedTextField(
                     value = name,
                     onValueChange = {
                         name = it
@@ -813,7 +813,7 @@ private fun PasscodeField(
     onPasscodeChange: (String) -> Unit,
     label: String
 ) {
-    OutlinedTextField(
+    CouiOutlinedTextField(
         value = passcode,
         onValueChange = { onPasscodeChange(it.take(4).filter { c -> c.isLetterOrDigit() }) },
         modifier = Modifier.fillMaxWidth(),
@@ -842,7 +842,7 @@ private fun RenameStep(
     ) {
         StepHeader(title = stringResource(R.string.csa_rename), subtitle = file.fname, onBack = onBack)
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
+        CouiOutlinedTextField(
             value = name,
             onValueChange = { name = it },
             modifier = Modifier.fillMaxWidth(),
