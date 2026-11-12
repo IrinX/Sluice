@@ -369,27 +369,59 @@ fun ComposeEmptyActivityTheme(
     // 并置 LocalUsingExpressiveTheme=true —— 所有 M3 组件据此切换到 Expressive 形态
     // （尺寸、圆角、形变、弹簧动效），无需逐个组件改造。
     // 颜色部分完全沿用原有逻辑（动态取色 / 种子色 / 深浅色 / 对比度方案），Expressive 不改变颜色角色。
-    MaterialExpressiveTheme(
-        colorScheme = colorScheme,
-        motionScheme = AppMotionScheme,
-        shapes = ExpressiveShapes,
-        typography = Typography,
+    // COUI 是应用的主题来源：配色由本应用的取色逻辑（动态色 / 种子色 / 深浅）换算成
+    // CouiColorScheme，字体取 Typography 的对应档位，页面染色取 surface。
+    val couiColorScheme = remember(colorScheme) { colorScheme.toCouiColorScheme() }
+    val couiTypography = remember(Typography) { Typography.toCouiTypography() }
+
+    CouiTheme(
+        darkTheme = isDark,
+        colorScheme = couiColorScheme,
+        typography = couiTypography,
+        materialTint = colorScheme.surface,
     ) {
-        // COUI 主题层：配色与字体不另立一套，直接取 coui-material3 适配结果
-        // （它在启动时由 Coui.initialize(CouiMaterial3Style()) 装配，从上面的 MaterialTheme 推导）；
-        // materialTint 传 surface，让 COUI 的材质混色与页面底色一致。
-        // LocalCouiDarkTheme 由 CouiTheme 一并提供，嵌套主题切换深浅时 COUI 组件不会读错模式。
-        val couiColors = CouiTheme.colorSchemeFor(isDark)
-        val couiTypography = CouiTheme.typography
-        CouiTheme(
-            darkTheme = isDark,
-            colorScheme = couiColors,
-            typography = couiTypography,
-            materialTint = colorScheme.surface,
+        // ★ 迁移期桥接：尚未迁移到 COUI 的页面仍在使用 Material3 组件，
+        //   它们需要 MaterialTheme 提供颜色角色、形状与 Expressive 动效。
+        //   P4 把这些组件全部换成 COUI 之后，这一层整体删除，届时应用只依赖 CouiTheme。
+        MaterialExpressiveTheme(
+            colorScheme = colorScheme,
+            motionScheme = AppMotionScheme,
+            shapes = ExpressiveShapes,
+            typography = Typography,
             content = content,
         )
     }
 }
+
+/** 把本应用的 Material3 配色换算成 COUI 的色彩角色（一一对应的语义映射，不另造色值）。 */
+private fun androidx.compose.material3.ColorScheme.toCouiColorScheme() = com.itos.coui.theme.CouiColorScheme(
+    accent = primary,
+    onAccent = onPrimary,
+    surface = surface,
+    container = surfaceContainer,
+    onSurface = onSurface,
+    onSurfaceVariant = onSurfaceVariant,
+    outlineVariant = outlineVariant,
+    accentOnSurface = primary,
+    menuSurface = surfaceContainerHigh,
+    checkboxAccent = primary,
+    menuCheckboxAccent = primary,
+    background = background,
+    card = surfaceContainer,
+)
+
+/** 把本应用的 Material3 字体换算成 COUI 的三档排版（正文 / 标签 / 菜单项）。 */
+private fun androidx.compose.material3.Typography.toCouiTypography() = com.itos.coui.theme.CouiTypography(
+    body = bodyLarge,
+    label = labelMedium,
+    menuItem = labelLarge,
+    chipLabelFontFamily = labelLarge.fontFamily,
+    dialogTitleFontFamily = titleLarge.fontFamily,
+    dialogMessageFontFamily = bodyMedium.fontFamily,
+    dialogButtonFontFamily = labelLarge.fontFamily,
+    dialogInputFontFamily = bodyLarge.fontFamily,
+    dialogCounterFontFamily = labelSmall.fontFamily,
+)
 
 /**
  * 基于种子色生成完整 Material3 颜色方案（浅色/深色），
