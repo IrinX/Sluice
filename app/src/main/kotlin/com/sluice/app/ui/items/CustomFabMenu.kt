@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.items
 
+import com.sluice.app.ui.components.CouiExtendedFabCompat
 import com.sluice.app.ui.components.CouiFabCompat
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -126,7 +127,7 @@ fun BoxScope.CustomFabMenu(
                 modifier = Modifier.padding(bottom = 10.dp)
             ) {
                 items.forEach { item ->
-                    ExtendedFloatingActionButton(
+                    CouiExtendedFabCompat(
                         onClick = {
                             item.onClick()
                             onCheckedChange(false)

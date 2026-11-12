@@ -1184,6 +1184,10 @@ fun MainScreen(
                         title = {
                             Text(text = stringResource(currentTab.titleRes))
                         },
+                        // 顶栏透明：露出下方的模糊带，形成磨砂玻璃（ColorOS 17）
+                        colors = com.itos.coui.topappbar.CouiTopAppBarDefaults.colors(
+                            backgroundColor = androidx.compose.ui.graphics.Color.Transparent
+                        ),
                         scrollBehavior = couiBarScroll,
                         actions = {
                             // 公告入口：已接入公告服务时才显示（地址为空 = 未配置，见 AnnouncementApi.baseUrl）；
@@ -1531,20 +1535,20 @@ fun MainScreen(
                                 .padding(padded)
                                 .nestedScroll(couiBarScroll.nestedScrollConnection)
                         ) {
-                            // ★ 源子树里只放正文；模糊带是它的兄弟节点（COUI 明确要求消费者在源之外）
+                            // ★ 源子树里只放正文；模糊带是兄弟节点（COUI 明确要求消费者在源之外）
                             Box(Modifier.fillMaxSize().couiBackdrop(bottomBackdrop)) {
                                 tabContent()
                             }
-                            // 底栏下方真实模糊带：采样正文 → 模糊 → 叠一层透明到页面底色的渐变收口
+                            // 顶栏磨砂：采样正文 → 模糊 → 自下而上淡出，配合透明顶栏
                             Box(
                                 modifier = Modifier
-                                    .align(Alignment.BottomCenter)
+                                    .align(Alignment.TopCenter)
                                     .fillMaxWidth()
-                                    .height(150.dp)
+                                    .height(120.dp)
                                     .drawCouiBackdrop(
                                         backdrop = bottomBackdrop,
                                         shape = { androidx.compose.ui.graphics.RectangleShape },
-                                        effects = { blur(24.dp.toPx()) },
+                                        effects = { blur(18.dp.toPx()) },
                                     )
                             ) {
                                 Box(
@@ -1552,9 +1556,9 @@ fun MainScreen(
                                         .fillMaxSize()
                                         .background(
                                             androidx.compose.ui.graphics.Brush.verticalGradient(
-                                                0f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0f),
-                                                0.45f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0.5f),
-                                                1f to com.itos.coui.theme.CouiTheme.colorScheme.background,
+                                                0f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0.9f),
+                                                0.6f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0.6f),
+                                                1f to androidx.compose.ui.graphics.Color.Transparent,
                                             )
                                         )
                                 )
@@ -1962,6 +1966,8 @@ private fun CouiMainTabBar(
         )
     }
     CouiNavigationBar(
+        // 底栏透明悬浮、不做模糊（ColorOS 17：内容从下面穿过去，只留淡淡一层白）
+        lightColor = com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0.72f),
         items = items,
         selectedIndex = currentTab.ordinal,
         onSelection = { index -> onTabSelected(MainTab.values()[index]) }

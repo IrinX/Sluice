@@ -118,3 +118,29 @@ fun CouiSmallFabCompat(
 
 /** 供需要自定义宽度的页面复用：COUI 弹层形状。 */
 val CouiSheetShape: Shape get() = CouiDialogDefaults.shape
+/** 与 Material3 `ExtendedFloatingActionButton` 参数兼容的 COUI 展开式 FAB（带按压回弹）。 */
+@Composable
+fun CouiExtendedFabCompat(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    shape: Shape = CouiCapsuleShape,
+    containerColor: Color = CouiTheme.colorScheme.accent,
+    contentColor: Color = CouiTheme.colorScheme.onAccent,
+    elevation: androidx.compose.material3.FloatingActionButtonElevation =
+        FloatingActionButtonDefaults.elevation(defaultElevation = 2.dp, pressedElevation = 4.dp),
+    icon: @Composable () -> Unit,
+    text: @Composable () -> Unit,
+) {
+    val pressSource = androidx.compose.runtime.remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
+    androidx.compose.material3.ExtendedFloatingActionButton(
+        onClick = onClick,
+        modifier = modifier.couiSpringPress(pressSource),
+        shape = shape,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        elevation = elevation,
+        interactionSource = pressSource,
+        icon = icon,
+        text = text,
+    )
+}
