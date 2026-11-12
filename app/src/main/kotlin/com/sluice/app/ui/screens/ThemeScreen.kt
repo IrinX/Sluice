@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiFilterChipCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -582,7 +583,7 @@ private fun SmoothFilterChip(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    FilterChip(
+    CouiFilterChipCompat(
         selected = selected,
         onClick = onClick,
         modifier = modifier.heightIn(min = 48.dp),

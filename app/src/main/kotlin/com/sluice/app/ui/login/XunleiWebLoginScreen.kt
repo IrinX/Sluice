@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -213,7 +214,7 @@ fun XunleiWebLoginScreen(
                         enabled = !isSaving && !isSavingManual
                     ) {
                         if (isSaving) {
-                            CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                            CouiCircularProgressCompat(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
                         } else {
                             Text(stringResource(R.string.lg_save))
                         }
@@ -311,7 +312,7 @@ fun XunleiWebLoginScreen(
                     enabled = pasteInput.isNotBlank() && !isSavingManual
                 ) {
                     if (isSavingManual) {
-                        CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                        CouiCircularProgressCompat(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
                     } else {
                         Text(stringResource(R.string.lg_save))
                     }

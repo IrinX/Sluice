@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.itos.coui.theme.CouiTheme
+import com.itos.coui.layout.Item as CouiItem
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -687,8 +689,8 @@ private fun VideoMediaRow(
             containerColor = MaterialTheme.colorScheme.surfaceContainerLow
         )
     ) {
-        ListItem(
-            headlineContent = {
+        CouiItem(
+            title = {
                 Text(
                     text = "${index + 1}. ${videoMediaKindLabel(media.kind)}",
                     style = MaterialTheme.typography.bodyLarge,
@@ -696,18 +698,18 @@ private fun VideoMediaRow(
                     overflow = TextOverflow.Ellipsis
                 )
             },
-            supportingContent = {
+            summary = {
                 if (subtitle.isNotBlank()) {
                     Text(
                         text = subtitle,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = CouiTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
             },
-            trailingContent = {
+            trailing = {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     // 预览：图片/视频/音频都能直接在线看，不必先下载
                     CouiIconButtonCompat(onClick = onPreview, modifier = Modifier.size(36.dp)) {
@@ -715,7 +717,7 @@ private fun VideoMediaRow(
                             imageVector = Icons.Outlined.Visibility,
                             contentDescription = stringResource(R.string.sh_preview),
                             modifier = Modifier.size(20.dp),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = CouiTheme.colorScheme.accent
                         )
                     }
                     // 仅下载音频：只有视频才有音轨（图片没有，音频本身就是音频）
@@ -725,7 +727,7 @@ private fun VideoMediaRow(
                                 imageVector = Icons.Outlined.MusicNote,
                                 contentDescription = stringResource(R.string.sh_download_audio_only),
                                 modifier = Modifier.size(20.dp),
-                                tint = MaterialTheme.colorScheme.primary
+                                tint = CouiTheme.colorScheme.accent
                             )
                         }
                     }
@@ -733,9 +735,7 @@ private fun VideoMediaRow(
                         Text(stringResource(R.string.sh_download))
                     }
                 }
-            },
-            // 底色由外层 Card 决定，这里必须透明
-            colors = ListItemDefaults.colors(containerColor = Color.Transparent)
+            }
         )
     }
 }

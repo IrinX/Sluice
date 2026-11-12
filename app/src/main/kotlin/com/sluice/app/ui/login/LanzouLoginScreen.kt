@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -204,7 +205,7 @@ fun LanzouLoginScreen(
                 enabled = account.isNotBlank() && password.isNotBlank() && !isSaving
             ) {
                 if (isSaving) {
-                    CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                    CouiCircularProgressCompat(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(stringResource(R.string.lg_logging_in))
                 } else {

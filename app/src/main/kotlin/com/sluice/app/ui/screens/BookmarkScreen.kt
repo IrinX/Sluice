@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiFilterChipCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -303,13 +304,13 @@ private fun CategoryFilterBar(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        FilterChip(
+        CouiFilterChipCompat(
             selected = selected == null,
             onClick = { onSelect(null) },
             label = { Text(stringResource(R.string.rs_all)) }
         )
         categories.forEach { cat ->
-            FilterChip(
+            CouiFilterChipCompat(
                 selected = selected == cat,
                 onClick = { onSelect(cat) },
                 label = { Text(categoryLabel(cat)) }
@@ -521,13 +522,13 @@ private fun AddBookmarkDialog(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     // 「自定义」置顶显示，方便直接新建分类（过滤分类里同名字项，避免出现两个"自定义"chip）
-                    FilterChip(
+                    CouiFilterChipCompat(
                         selected = isCustom,
                         onClick = { selectedCategory = CUSTOM_CATEGORY },
                         label = { Text(stringResource(R.string.rs_custom)) }
                     )
                     categories.filter { it != CUSTOM_CATEGORY }.forEach { cat ->
-                        FilterChip(
+                        CouiFilterChipCompat(
                             selected = selectedCategory == cat,
                             onClick = { selectedCategory = cat },
                             label = { Text(categoryLabel(cat)) }
@@ -614,13 +615,13 @@ internal fun AddToBookmarkDialog(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     // 「自定义」置顶显示，方便直接新建分类（过滤分类里同名字项，避免出现两个"自定义"chip）
-                    FilterChip(
+                    CouiFilterChipCompat(
                         selected = isCustom,
                         onClick = { selectedCategory = CUSTOM_CATEGORY },
                         label = { Text(stringResource(R.string.rs_custom)) }
                     )
                     categories.filter { it != CUSTOM_CATEGORY }.forEach { cat ->
-                        FilterChip(
+                        CouiFilterChipCompat(
                             selected = selectedCategory == cat,
                             onClick = { selectedCategory = cat },
                             label = { Text(categoryLabel(cat)) }
@@ -698,13 +699,13 @@ private fun EditCategoryDialog(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     // 「自定义」置顶显示，方便直接新建分类
-                    FilterChip(
+                    CouiFilterChipCompat(
                         selected = isCustom,
                         onClick = { selectedCategory = CUSTOM_CATEGORY },
                         label = { Text(stringResource(R.string.rs_custom)) }
                     )
                     categories.forEach { cat ->
-                        FilterChip(
+                        CouiFilterChipCompat(
                             selected = selectedCategory == cat,
                             onClick = { selectedCategory = cat },
                             label = { Text(categoryLabel(cat)) }

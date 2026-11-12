@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -258,7 +259,7 @@ fun GuangYaLoginScreen(
                     enabled = account.isNotBlank() && password.isNotBlank() && !isSaving
                 ) {
                     if (isSaving) {
-                        CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                        CouiCircularProgressCompat(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(stringResource(R.string.lg_logging_in))
                     } else {
@@ -324,7 +325,7 @@ fun GuangYaLoginScreen(
                         modifier = Modifier.height(56.dp)
                     ) {
                         if (isSendingSms) {
-                            CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
+                            CouiCircularProgressCompat(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
                         } else {
                             Text(
                                 text = if (countdown > 0) stringResource(R.string.lg_resend_after_seconds, countdown) else stringResource(R.string.lg_get_sms_code),
@@ -364,7 +365,7 @@ fun GuangYaLoginScreen(
                     enabled = phone.isNotBlank() && smsCode.isNotBlank() && verificationId.isNotBlank() && !isSaving
                 ) {
                     if (isSaving) {
-                        CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                        CouiCircularProgressCompat(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(stringResource(R.string.lg_logging_in))
                     } else {

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -223,7 +224,7 @@ fun Pan123LoginScreen(
                             enabled = !isSaving && !isSavingManual
                         ) {
                             if (isSaving) {
-                                CircularProgressIndicator(
+                                CouiCircularProgressCompat(
                                     modifier = Modifier.size(18.dp),
                                     strokeWidth = 2.dp
                                 )
@@ -383,7 +384,7 @@ fun Pan123LoginScreen(
                     enabled = tokenInput.isNotBlank() && !isSavingManual
                 ) {
                     if (isSavingManual) {
-                        CircularProgressIndicator(
+                        CouiCircularProgressCompat(
                             modifier = Modifier.size(18.dp),
                             strokeWidth = 2.dp
                         )
@@ -479,7 +480,7 @@ private fun AccountPasswordForm(
             enabled = account.isNotBlank() && password.isNotEmpty() && !busy
         ) {
             if (busy) {
-                CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                CouiCircularProgressCompat(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
             } else {
                 Text(stringResource(R.string.lg_login))
             }

@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import androidx.compose.ui.res.stringResource
@@ -221,7 +222,7 @@ internal fun SaveToCloudContent(
                     .height(50.dp)
             ) {
                 if (saving) {
-                    CircularProgressIndicator(
+                    CouiCircularProgressCompat(
                         modifier = Modifier.size(20.dp),
                         strokeWidth = 2.dp,
                         color = MaterialTheme.colorScheme.onPrimary

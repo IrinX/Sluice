@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -422,7 +423,7 @@ fun DownloadEngineScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                                 horizontalArrangement = Arrangement.spacedBy(6.dp)
                             ) {
                                 if (busy) {
-                                    CircularProgressIndicator(
+                                    CouiCircularProgressCompat(
                                         modifier = Modifier.size(14.dp),
                                         strokeWidth = 2.dp
                                     )

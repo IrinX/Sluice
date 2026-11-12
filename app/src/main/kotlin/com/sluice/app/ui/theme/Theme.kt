@@ -22,7 +22,6 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.MotionScheme
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.lightColorScheme
@@ -383,9 +382,10 @@ fun ComposeEmptyActivityTheme(
         // ★ 迁移期桥接：尚未迁移到 COUI 的页面仍在使用 Material3 组件，
         //   它们需要 MaterialTheme 提供颜色角色、形状与 Expressive 动效。
         //   P4 把这些组件全部换成 COUI 之后，这一层整体删除，届时应用只依赖 CouiTheme。
-        MaterialExpressiveTheme(
+        // 仅剩的基础图元（Text/Icon/Surface）仍从这里取颜色角色与排版；
+        // Expressive 变体已不再需要 —— 组件的形态与动效全部由 COUI 提供。
+        androidx.compose.material3.MaterialTheme(
             colorScheme = colorScheme,
-            motionScheme = AppMotionScheme,
             shapes = ExpressiveShapes,
             typography = Typography,
             content = content,

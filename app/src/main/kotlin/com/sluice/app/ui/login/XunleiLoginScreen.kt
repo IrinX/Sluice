@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -425,7 +426,7 @@ private fun ColumnScope.SmsSendButton(
             enabled = canClick
         ) {
             if (sending) {
-                CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                CouiCircularProgressCompat(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
             } else {
                 Text(label)
             }

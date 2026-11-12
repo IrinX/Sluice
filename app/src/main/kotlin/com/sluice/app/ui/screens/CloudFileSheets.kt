@@ -18,6 +18,9 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiFilterChipCompat
+import com.sluice.app.ui.components.CouiLinearProgressCompat
+import com.sluice.app.ui.components.CouiCircularProgressCompat
 import com.sluice.app.ui.components.CouiButtonCompat
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
@@ -622,7 +625,7 @@ internal fun QuarkMoveStep(
                 .heightIn(min = 50.dp)
         ) {
             if (operating) {
-                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                CouiCircularProgressCompat(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
             } else {
                 Icon(Icons.Outlined.DriveFileMove, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(8.dp))
@@ -762,7 +765,7 @@ private fun ShareStep(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             expireOptions.forEach { (name, value) ->
-                FilterChip(
+                CouiFilterChipCompat(
                     enabled = !operating,
                     selected = expiredType == value,
                     onClick = { expiredType = value },
@@ -799,7 +802,7 @@ private fun ShareStep(
                 .heightIn(min = 50.dp)
         ) {
             if (operating) {
-                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                CouiCircularProgressCompat(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
             } else {
                 Icon(Icons.Outlined.Share, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(8.dp))
@@ -1303,7 +1306,7 @@ internal fun UploadProgressDialog(progress: UploadProgress, onCancel: () -> Unit
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Medium
                 )
-                LinearProgressIndicator(
+                CouiLinearProgressCompat(
                     progress = { progress.fraction },
                     modifier = Modifier.fillMaxWidth()
                 )
