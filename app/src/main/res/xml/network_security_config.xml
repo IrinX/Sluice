@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    YunX (云析) - A network drive share-link parser and high-speed downloader for Android.
+    Copyright (C) 2026 CYQawa
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Android only applies this block when android:debuggable="true". -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="user" />
+        </trust-anchors>
+    </debug-overrides>
+
+    <!--
+        应用内公告服务（data/announcement/AnnouncementApi.kt）的地址是可配置的，不在代码里写死；
+        这里也不预置任何例外，默认只允许 HTTPS。
+
+        ★ 自建公告服务若只能走 **HTTP 明文**，把它的域名加进下面的 domain-config（现在被注释掉了），
+          否则 OkHttp 会直接报
+          "CLEARTEXT communication to <你的域名> not permitted by network security policy"，
+          表现为公告永远加载失败（启动弹窗与未读角标都不出现）。
+        ★ 不要图省事把 base-config 改成 cleartextTrafficPermitted="true"：
+          那等于给**全应用**放开明文（网盘 CDN、更新下载、图床都可能被降级到 http），
+          只放行确有必要的那几个域。
+        ★ 公告图床（封面 / 头像 / 正文配图）通常是**另一个域名**：如果是 http 图床，
+          同样要在下面加一行，例如
+              <domain includeSubdomains="true">img.example.com</domain>
+          https 图床不受影响（走系统信任链，无需放行）。
+    -->
+    <!--
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">ann.example.com</domain>
+    </domain-config>
+    -->
+</network-security-config>
