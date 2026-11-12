@@ -30,6 +30,8 @@ fun CouiCardCompat(
     colors: CardColors = CardDefaults.cardColors(),
     elevation: CardElevation = CardDefaults.cardElevation(),
     border: BorderStroke? = null,
+    /** 可点击卡片：调用点传了 onClick 时整卡可点（与 Material3 的可点击 Card 重载一致） */
+    onClick: (() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     // 调用方显式给了容器色就用它（选中/错误等语义色不能被主题覆盖），否则走 COUI 的 card 角色
@@ -39,11 +41,24 @@ fun CouiCardCompat(
     } else {
         container
     }
-    Surface(
-        modifier = modifier,
-        shape = shape,
-        color = resolved,
-        border = border,
-        content = content,
-    )
+    if (onClick != null) {
+        Surface(
+            onClick = onClick,
+            modifier = modifier,
+            shape = shape,
+            color = resolved,
+            border = border,
+        ) {
+            Column { content() }
+        }
+    } else {
+        Surface(
+            modifier = modifier,
+            shape = shape,
+            color = resolved,
+            border = border,
+        ) {
+            Column { content() }
+        }
+    }
 }
