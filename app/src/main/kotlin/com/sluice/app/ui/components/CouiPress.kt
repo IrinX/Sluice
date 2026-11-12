@@ -1,47 +1,45 @@
 /*
  * Sluice - 网盘 / 视频分享链接解析与高速下载
  *
- * ColorOS 17 的「q 弹」按压形变。
+ * ColorOS 17 的按压形变 —— 直接复用 COUI 自己的 CouiPressMotion。
  *
- * COUI 的底座控件（导航栏、顶栏按钮）按下时会有轻微回弹的缩放；这里把同一套手感
- * 抽成 Modifier，供列表行、卡片、标签等自定义可点击区域复用：
- * 按下缩到 0.96，松手用低阻尼弹簧回弹（dampingRatio 0.55 / stiffness 800），
- * 观感与底栏一致。
+ * 之前这里是手写的 animateFloatAsState(0.96)，观感与底栏差很远：
+ * COUI 的 CouiPressMotion 会按节点面积与宽高比算目标缩放（0.85~0.97），
+ * 并用它自己的 CouiSpring 释放，才有那种「按下去陷一点点、松手弹回来」的手感。
+ * 现在统一走 library：rememberCouiPressMotion() + Modifier.couiPressMotion()。
  */
 
 package com.sluice.app.ui.components
 
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.graphicsLayer
+import com.itos.coui.motion.couiPressMotion
+import com.itos.coui.motion.rememberCouiPressMotion
 
-/** ColorOS 17 风格按压形变：按下 0.96、松手弹簧回弹。 */
+/**
+ * ColorOS 17 按压形变。
+ *
+ * [interactionSource] 只为兼容既有调用点保留：COUI 的按压由它自己的 pointerInput 观察，
+ * 不依赖 Material 的 InteractionSource。
+ */
 fun Modifier.couiSpringPress(
-    interactionSource: MutableInteractionSource,
+    interactionSource: MutableInteractionSource? = null,
     enabled: Boolean = true,
-    pressedScale: Float = 0.96f,
+    pressedScale: Float = 0.96f, // 兼容旧签名，实际缩放由 CouiPressMotion 按尺寸决定
 ): Modifier = composed {
-    val pressed by interactionSource.collectIsPressedAsState()
-    val scale by animateFloatAsState(
-        targetValue = if (pressed && enabled) pressedScale else 1f,
-        animationSpec = spring(
-            dampingRatio = 0.55f,
-            stiffness = Spring.StiffnessMediumLow * 3.2f,
-        ),
-        label = "coui-spring-press",
-    )
-    graphicsLayer {
-        scaleX = scale
-        scaleY = scale
-    }
+    val press = rememberCouiPressMotion()
+    val scale by press.scale
+    this
+        .couiPressMotion(press = press, enabled = enabled, cancelOnConsumedMove = true)
+        .graphicsLayer {
+            scaleX = scale
+            scaleY = scale
+        }
 }
 
 /** 供不带自定义 interactionSource 的调用点使用：内部自建一份。 */

@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui
 
+import com.itos.coui.backdrop.drawCouiBackdrop
+import com.itos.coui.backdrop.couiBackdrop
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import com.itos.coui.topappbar.LargeTopAppBar as CouiLargeTopAppBar
 import com.sluice.app.ui.components.CouiTextButtonCompat
@@ -1098,6 +1100,8 @@ fun MainScreen(
     // 折叠标题状态提升到本层：跨页面共享，页面切换时折叠/展开状态保持不变
     // 用 exitUntilCollapsed（默认实现，含松手吸附）：滚动时标题先收起再滚内容；
     // 向上滚动回顶部过程中标题保持收起，只有列表到达最顶部后继续下拉（overscroll）才重新展开
+    // 底部模糊带用的背景源：录下正文真实内容，供栏位下方那块做真实模糊（drawCouiBackdrop）
+    val fadeBackdrop = com.itos.coui.backdrop.rememberCouiBackdrop()
     // COUI 折叠顶栏：滚动折叠/到顶展开由它自己的 state 驱动（M3 的 TopAppBarScrollBehavior 接不过来）
     val couiBarState = com.itos.coui.topappbar.rememberCouiCollapsingAppBarState()
     val couiBarScroll = com.itos.coui.topappbar.rememberCouiTopAppBarScrollBehavior()
@@ -1525,13 +1529,34 @@ fun MainScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .padding(padded)
+                                .couiBackdrop(fadeBackdrop)
                                 .nestedScroll(couiBarScroll.nestedScrollConnection)
                         ) {
                             tabContent()
-                            // ColorOS 17：内容滑到悬浮底栏下方，用渐变蒙层淡出（不留死白）
-                            com.sluice.app.ui.components.CouiBottomFadeScrim(
-                                modifier = Modifier.align(Alignment.BottomCenter)
-                            )
+                            // ColorOS 17：底栏下方做真实模糊带 —— 采样正文内容后模糊，再叠一层
+                            // 透明到页面底色的渐变，内容滑过去时像被磨砂栏位吃掉
+                            Box(
+                                modifier = Modifier
+                                    .align(Alignment.BottomCenter)
+                                    .fillMaxWidth()
+                                    .height(140.dp)
+                                    .com.itos.coui.backdrop.drawCouiBackdrop(
+                                        backdrop = fadeBackdrop,
+                                        shape = { androidx.compose.ui.graphics.RectangleShape },
+                                    ) { blur(26.dp.toPx()) }
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(
+                                            androidx.compose.ui.graphics.Brush.verticalGradient(
+                                                0f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0f),
+                                                0.5f to com.itos.coui.theme.CouiTheme.colorScheme.background.copy(alpha = 0.55f),
+                                                1f to com.itos.coui.theme.CouiTheme.colorScheme.background,
+                                            )
+                                        )
+                                )
+                            }
                             SnackbarHost(
                                 hostState = snackbarHostState,
                                 modifier = Modifier
