@@ -1253,13 +1253,8 @@ fun MainScreen(
                                     )
                                 }
                             }
-                        },
-                        scrollBehavior = scrollBehavior,
-                        // 柔性顶栏没有专用的 largeTopAppBarColors，用通用 topAppBarColors（同为 TopAppBarColors 类型）
-                        colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = MaterialTheme.colorScheme.surface,
-                            scrolledContainerColor = MaterialTheme.colorScheme.surface
-                        )
+                        }
+                        // 颜色/高度走 COUI 顶栏默认值（CouiTopAppBarDefaults），不再传 M3 的 TopAppBarColors
                     )
                 }
                 // ★ Material 3 Expressive 动效规格：MaterialTheme.motionScheme 是 @Composable 属性，只能在 composable 作用域读取；
