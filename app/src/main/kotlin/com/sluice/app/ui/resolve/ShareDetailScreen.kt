@@ -849,8 +849,13 @@ internal fun ShareFileRow(
     CouiItem(
         modifier = modifier
             .fillMaxWidth()
+            // 惰性列表不能塞进 COUI Group（Group 是 ColumnScope，会失去回收），
+            // 所以卡片感逐行绘制：首/末行由调用方传大圆角 shape，中间行小圆角，
+            // 底色取 COUI 的 card 角色，与设置页的 Group 卡片同一色。
+            .clip(shape)
             .background(
-                if (selected) MaterialTheme.colorScheme.primaryContainer else Color.Transparent
+                if (selected) MaterialTheme.colorScheme.primaryContainer
+                else CouiTheme.colorScheme.card
             )
             .combinedClickable(
                 onClick = onClick,
