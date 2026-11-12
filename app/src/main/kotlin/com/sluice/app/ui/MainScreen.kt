@@ -18,6 +18,11 @@
 
 package com.sluice.app.ui
 
+import com.itos.coui.layout.Scaffold as CouiScaffold
+import com.itos.coui.navigation.CouiNavigationItem
+import com.itos.coui.navigation.NavigationBar as CouiNavigationBar
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.imePadding
 import com.sluice.app.ui.theme.useNavigationRail
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -1498,9 +1503,10 @@ fun MainScreen(
                     }
                 } else {
                     // 竖屏：Scaffold + 底部导航栏
-                    Scaffold(
+                    // COUI 骨架：顶栏/底栏由 COUI 在采样层外绘制并各带独立 backdrop；
+                    // COUI Scaffold 没有 snackbarHost 槽（它只管栏位与安全区），Snackbar 放进正文底部。
+                    CouiScaffold(
                         modifier = Modifier.fillMaxSize(),
-                        snackbarHost = { SnackbarHost(snackbarHostState) },
                         topBar = { topBarContent() },
                         bottomBar = {
                             MainBottomBar(
@@ -1515,6 +1521,12 @@ fun MainScreen(
                                 .padding(innerPadding)
                         ) {
                             tabContent()
+                            SnackbarHost(
+                                hostState = snackbarHostState,
+                                modifier = Modifier
+                                    .align(Alignment.BottomCenter)
+                                    .imePadding()
+                            )
                         }
                     }
                 }
@@ -1865,6 +1877,11 @@ private fun MainBottomBar(
     currentTab: MainTab,
     onTabSelected: (MainTab) -> Unit
 ) {
+    // COUI 浮动底栏依赖 API 34 的材质融合与浮动渲染，31–33 回退到 M3 胶囊底栏
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+        CouiMainTabBar(currentTab = currentTab, onTabSelected = onTabSelected)
+        return
+    }
     val barColor = ShortNavigationBarDefaults.containerColor
     Box(
         modifier = Modifier
@@ -1891,6 +1908,27 @@ private fun MainBottomBar(
     }
 }
 
+
+/** COUI 浮动底栏（API 34+）：四个主 Tab，图标 + 标题，选中态由组件自己表达。 */
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+@Composable
+private fun CouiMainTabBar(
+    currentTab: MainTab,
+    onTabSelected: (MainTab) -> Unit
+) {
+    val items = MainTab.values().map { tab ->
+        CouiNavigationItem(
+            title = stringResource(tab.titleRes),
+            icon = tab.unselectedIcon,
+            selectedIcon = tab.selectedIcon
+        )
+    }
+    CouiNavigationBar(
+        items = items,
+        selectedIndex = currentTab.ordinal,
+        onSelection = { index -> onTabSelected(MainTab.values()[index]) }
+    )
+}
 
 /**
  * 侧边导航栏（横屏）：同 4 个主 Tab，未选中项只显示图标，节省横向空间。
