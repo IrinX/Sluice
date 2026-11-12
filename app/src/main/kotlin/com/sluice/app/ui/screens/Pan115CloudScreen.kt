@@ -257,7 +257,7 @@ fun Pan115CloudScreen(
                         LazyColumn(
                             state = listState,
                             modifier = Modifier
-                                .fillMaxSize()
+                                .fillMaxSize(),
                             contentPadding = PaddingValues(
                                 start = 16.dp, end = 16.dp, top = 16.dp,
                                 bottom = if (viewModel.multiSelectMode) 96.dp else 16.dp
