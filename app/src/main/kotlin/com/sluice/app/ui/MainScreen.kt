@@ -1543,7 +1543,8 @@ fun MainScreen(
                                     .drawCouiBackdrop(
                                         backdrop = fadeBackdrop,
                                         shape = { androidx.compose.ui.graphics.RectangleShape },
-                                    ) { blur(26.dp.toPx()) }
+                                        effects = { blur(26.dp.toPx()) },
+                                    )
                             ) {
                                 Box(
                                     modifier = Modifier
