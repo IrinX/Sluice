@@ -1528,6 +1528,10 @@ fun MainScreen(
                                 .nestedScroll(couiBarScroll.nestedScrollConnection)
                         ) {
                             tabContent()
+                            // ColorOS 17：内容滑到悬浮底栏下方，用渐变蒙层淡出（不留死白）
+                            com.sluice.app.ui.components.CouiBottomFadeScrim(
+                                modifier = Modifier.align(Alignment.BottomCenter)
+                            )
                             SnackbarHost(
                                 hostState = snackbarHostState,
                                 modifier = Modifier

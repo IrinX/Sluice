@@ -74,10 +74,12 @@ fun CouiFabCompat(
     contentColor: Color = CouiTheme.colorScheme.onAccent,
     content: @Composable () -> Unit,
 ) {
+    val pressSource = androidx.compose.runtime.remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
     FloatingActionButton(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.couiSpringPress(pressSource),
         shape = shape,
+        interactionSource = pressSource,
         containerColor = containerColor,
         contentColor = contentColor,
         elevation = FloatingActionButtonDefaults.elevation(
@@ -101,10 +103,12 @@ fun CouiSmallFabCompat(
         FloatingActionButtonDefaults.elevation(defaultElevation = 2.dp, pressedElevation = 4.dp),
     content: @Composable () -> Unit,
 ) {
+    val pressSource = androidx.compose.runtime.remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
     SmallFloatingActionButton(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier.couiSpringPress(pressSource),
         shape = shape,
+        interactionSource = pressSource,
         containerColor = containerColor,
         contentColor = contentColor,
         elevation = elevation,

@@ -653,7 +653,8 @@ fun DriveScreen(
                 state = accountListState,
                 modifier = modifier
                     .fillMaxSize(),
-                contentPadding = PaddingValues(16.dp),
+                // 底部不留白：内容滑到悬浮底栏下方，由 MainScreen 的渐变蒙层做淡出（ColorOS 17 观感）
+                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 item {
