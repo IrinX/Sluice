@@ -86,7 +86,7 @@ class SluiceApp : Application() {
         com.sluice.app.util.AppStrings.install(this)
         // 应用内公告的服务地址：读用户配置（空 = 未接入，顶栏公告入口不显示）
         runCatching {
-            com.sluice.app.data.announcement.AnnouncementApi.setBaseUrl(
+            com.sluice.app.data.announcement.AnnouncementApi.configure(
                 com.sluice.app.data.prefs.SettingsRepository(this).announcementBaseUrl
             )
         }

@@ -92,6 +92,7 @@ object AnnouncementApi {
      */
     @Volatile
     var baseUrl: String = ""
+        private set
 
     private val _configured = MutableStateFlow(false)
 
@@ -109,7 +110,7 @@ object AnnouncementApi {
      * 设置服务地址（启动时从偏好读取、设置页保存后各调一次）。
      * 传空串 = 关闭公告：请求直接返回失败，顶栏入口隐藏。
      */
-    fun setBaseUrl(value: String) {
+    fun configure(value: String) {
         baseUrl = value.trim().trimEnd('/')
         _configured.value = baseUrl.isNotBlank()
     }

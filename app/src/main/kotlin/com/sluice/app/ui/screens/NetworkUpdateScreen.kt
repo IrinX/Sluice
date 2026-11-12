@@ -298,7 +298,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                             raw.isBlank() -> {
                                 settingsRepo.announcementBaseUrl = ""
                                 announcementUrl = ""
-                                AnnouncementApi.setBaseUrl("")
+                                AnnouncementApi.configure("")
                                 showAnnouncementDialog = false
                                 SnackbarController.show(AppStrings.get(R.string.snack_announcement_cleared))
                             }
@@ -310,7 +310,7 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                                 val normalized = raw.trimEnd('/')
                                 settingsRepo.announcementBaseUrl = normalized
                                 announcementUrl = normalized
-                                AnnouncementApi.setBaseUrl(normalized)
+                                AnnouncementApi.configure(normalized)
                                 showAnnouncementDialog = false
                                 SnackbarController.show(AppStrings.get(R.string.snack_announcement_saved))
                             }
