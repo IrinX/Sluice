@@ -673,7 +673,10 @@ private fun ShareStep(
                 Text(stringResource(R.string.csa_passcode), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Spacer(modifier = Modifier.height(6.dp))
                 // 间距置 0 + checkedShape 指回未选中形状：避免两段之间出现缝/豁口（选中态由填充色表达）
-                ButtonGroup(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
+                ButtonGroup(
+                    overflowIndicator = {},
+                    horizontalArrangement = Arrangement.spacedBy(0.dp)
+                ) {
                     ToggleButton(
                         enabled = !operating,
                         checked = !withPassword,
