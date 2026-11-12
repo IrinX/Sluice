@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.theme.listGroupShape
 import com.sluice.app.ui.components.CouiTextButtonCompat
 import com.sluice.app.ui.components.CouiIconButtonCompat
 import com.sluice.app.ui.components.CouiModalBottomSheetCompat
