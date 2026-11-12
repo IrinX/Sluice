@@ -1,15 +1,14 @@
 [versions]
-agp = "8.13.0"
-kotlin = "2.1.0"
-coreKtx = "1.17.0"
+agp = "9.4.1"
+kotlin = "2.4.20"
+coreKtx = "1.19.1"
 webkit = "1.17.1"   # 登录 WebView：关闭 X-Requested-With + 同步桌面 client hints（UserAgentMetadata）
 lifecycleRuntimeKtx = "2.9.2"
-activityCompose = "1.11.0"
-composeBom = "2026.06.01"  
-material3Expressive = "1.5.0-alpha18"
-
-room = "2.6.1"
-ksp = "2.1.0-1.0.29"
+activityCompose = "1.13.0"
+composeBom = "2026.08.01"  
+room = "2.8.0"
+ksp = "2.3.12"
+coui = "0.0.1-alpha11"
 material = "1.14.0"   # 官方 Material 主库，自带 com.google.android.material.color.utilities 包
 markdownRenderer = "0.35.0"   # mikepenz/multiplatform-markdown-renderer（GFM 渲染；0.35.0 用 Kotlin 2.1.x 编译，与项目 Kotlin 2.1.0 兼容；0.39+ 需 Kotlin 2.3）
 
@@ -18,11 +17,14 @@ coil = "3.0.4"        # 图片加载（含网络模块，见 androidx-coil-netwo
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [libraries]
+# COUI：ColorOS 17 风格组件与视效库（minSdk 31 / compileSdk 37）
+coui = { group = "io.github.itoseo", name = "coui", version.ref = "coui" }
+coui-icons = { group = "io.github.itoseo", name = "coui-icons", version.ref = "coui" }
+coui-material3 = { group = "io.github.itoseo", name = "coui-material3", version.ref = "coui" }
 # 原 material-color-utilities 坐标 (com.google.android.material:material-color-utilities:1.0.0) 在 Maven 上不存在。
 # 官方 color.utilities 包就打包在下面这个主库里，import 无需改动。
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -31,11 +33,11 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "webkit" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom-alpha", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3Expressive" }   # 版本说明见上方 material3Expressive
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }   # 版本由 compose-bom-alpha 决定
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }

@@ -73,6 +73,9 @@ class SluiceApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // COUI 全局初始化：必须在任何 Compose UI 创建之前。接入 Material3 适配样式后，
+        // COUI 组件的配色、字体与最小交互尺寸都会跟随本项目的 MaterialTheme。
+        com.itos.coui.theme.Coui.initialize(com.itos.coui.material3.CouiMaterial3Style())
         Thread.setDefaultUncaughtExceptionHandler(CrashHandler(this))
         runCatching {
             val hits = ArchiveProbe.fast(this).toMutableList()
