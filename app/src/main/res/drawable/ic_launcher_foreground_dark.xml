@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    开闸 (Sluice) - 网盘 / 视频分享链接解析与高速下载
+    图标图形：抬起的闸梁 + 向下取流的箭头（开闸放行、从云端取到本地）
+    图形按 Material 自适应图标规范绘制：108×108 viewport，内容收在中央 72 安全区内。
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- 深色闸梁 + 中蓝箭头（叠在浅色底上） -->
+    <path android:fillColor="#FF12293B" android:pathData="M33,26 H75 A5,5 0 0 1 80,31 V31 A5,5 0 0 1 75,36 H33 A5,5 0 0 1 28,31 V31 A5,5 0 0 1 33,26 Z" />
+    <path android:fillColor="#FF2985B8" android:pathData="M49.5,42 H58.5 A4,4 0 0 1 62.5,46 V59 A4,4 0 0 1 58.5,63 H49.5 A4,4 0 0 1 45.5,59 V46 A4,4 0 0 1 49.5,42 Z" />
+    <path android:fillColor="#FF2985B8" android:pathData="M37,62 H71 L54,90 Z" />
+</vector>

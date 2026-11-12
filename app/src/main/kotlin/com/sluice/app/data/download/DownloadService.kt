@@ -106,7 +106,7 @@ class DownloadService : Service() {
         }
         val hasSpeed = showSpeed && speed.isNotBlank()
         builder
-            .setSmallIcon(R.drawable.icon)
+            .setSmallIcon(R.drawable.ic_stat_sluice)
             .setContentTitle(title)
             // 完整通知显示下载速度；合并/抽音轨阶段单独提示（都要跑几秒到几十秒）；简化模式仅提示下载中
             .setContentText(
@@ -238,8 +238,8 @@ class DownloadService : Service() {
         /**
          * 圆形应用图标，用作通知大图标。
          *
-         * [R.drawable.icon] 是 748×748 的整块方形位图（四角不透明、没有圆角），直接当大图标用会被渲染成方块；
-         * 这里「居中裁成正方形 → 套圆形蒙版」得到圆形图标。Android 16 流体云（实时更新）的
+         * [R.drawable.icon] 是 748×748 的圆角方形位图（四角透明），直接当大图标用会被渲染成圆角方块；
+         * 这里「居中裁成正方形 → 套圆形蒙版」得到正圆图标，与系统状态栏/流体云的圆形口径一致。Android 16 流体云（实时更新）的
          * 胶囊图标与展开态左侧大图标取的是同一张图（ProgressStyle 的「追踪图标」= setLargeIcon），
          * 所以一处设置同时解决「胶囊是方的」与「展开后左侧没有大图标」两个问题。
          *
@@ -325,7 +325,7 @@ class DownloadService : Service() {
                 Notification.Builder(context)
             }
             builder
-                .setSmallIcon(R.drawable.icon)
+                .setSmallIcon(R.drawable.ic_stat_sluice)
                 .setContentTitle(title)
                 .setContentText(text)
                 // 实时更新必须是标准样式之一：结果通知用 BigTextStyle

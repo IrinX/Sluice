@@ -28,6 +28,6 @@
     走 painterResource(R.drawable.icon2)——它只支持矢量/位图，遇到 <adaptive-icon> 会抛异常。
 -->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@android:color/white" />
-    <foreground android:drawable="@drawable/ic_launcher_new_foreground" />
+    <background android:drawable="@drawable/ic_launcher_background_light" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground_dark" />
 </adaptive-icon>
