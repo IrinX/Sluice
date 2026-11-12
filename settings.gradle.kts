@@ -48,3 +48,8 @@ dependencyResolutionManagement {
 rootProject.name = "Sluice"
 
 include(":app")
+
+// COUI-Kit 源码模块（本地接入，MPL 2.0）
+include(":coui")
+include(":coui-icons")
+include(":coui-material3")

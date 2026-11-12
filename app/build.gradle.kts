@@ -126,9 +126,9 @@ dependencies {
     implementation(libs.material)   // 原 libs.material.color.utilities -> 改为官方 Material 主库（含 color.utilities 包）
 
     // COUI：ColorOS 17 风格组件与视效库；coui-material3 让 COUI 跟随本项目的 MaterialTheme
-    implementation(libs.coui)
-    implementation(libs.coui.icons)
-    implementation(libs.coui.material3)
+    implementation(project(":coui"))
+    implementation(project(":coui-icons"))
+    implementation(project(":coui-material3"))
 
     // Gopeed 内置下载引擎：gomobile 生成的 Java 桥接类（com/gopeed/libgopeed + go，合计 12 KB），
     // 只为编译期拿到 Libgopeed / InvokeResultListener 等类型定义；真正的引擎

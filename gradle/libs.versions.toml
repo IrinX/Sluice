@@ -8,7 +8,6 @@ activityCompose = "1.13.0"
 composeBom = "2026.08.01"  
 room = "2.8.0"
 ksp = "2.3.12"
-coui = "0.0.1-alpha11"
 material = "1.14.0"   # 官方 Material 主库，自带 com.google.android.material.color.utilities 包
 markdownRenderer = "0.35.0"   # mikepenz/multiplatform-markdown-renderer（GFM 渲染；0.35.0 用 Kotlin 2.1.x 编译，与项目 Kotlin 2.1.0 兼容；0.39+ 需 Kotlin 2.3）
 
@@ -17,14 +16,11 @@ coil = "3.0.4"        # 图片加载（含网络模块，见 androidx-coil-netwo
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [libraries]
-# COUI：ColorOS 17 风格组件与视效库（minSdk 31 / compileSdk 37）
-coui = { group = "io.github.itoseo", name = "coui", version.ref = "coui" }
-coui-icons = { group = "io.github.itoseo", name = "coui-icons", version.ref = "coui" }
-coui-material3 = { group = "io.github.itoseo", name = "coui-material3", version.ref = "coui" }
 # 原 material-color-utilities 坐标 (com.google.android.material:material-color-utilities:1.0.0) 在 Maven 上不存在。
 # 官方 color.utilities 包就打包在下面这个主库里，import 无需改动。
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
