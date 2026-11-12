@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    YunX (云析) - A network drive share-link parser and high-speed downloader for Android.
+    Sluice (Sluice) - A network drive share-link parser and high-speed downloader for Android.
     Copyright (C) 2026 CYQawa
 
     This program is free software: you can redistribute it and/or modify
@@ -205,11 +205,11 @@
     <string name="em_backup_password_too_short">Backup passphrase must be at least 8 characters</string>
     <string name="em_backup_not_encrypted">Not a valid encrypted backup file</string>
     <string name="em_backup_corrupted">The encrypted backup file is corrupted</string>
-    <string name="em_backup_not_valid">Not a valid YunX auth backup file</string>
+    <string name="em_backup_not_valid">Not a valid Sluice auth backup file</string>
     <string name="em_credential_legacy_key_missing">The legacy encryption key no longer exists; historical credentials cannot be decrypted</string>
 
     <!-- Log export -->
-    <string name="em_log_export_title">YunX log export\n</string>
+    <string name="em_log_export_title">Sluice log export\n</string>
     <string name="em_log_export_time">Exported at: %1$s\n</string>
     <string name="em_log_app_version">App version: %1$s (%2$d)\n</string>
     <string name="em_log_device">Device: %1$s %2$s\n</string>

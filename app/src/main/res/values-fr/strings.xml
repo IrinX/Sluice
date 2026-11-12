@@ -1,9 +1,9 @@
 <!--
-    YunX - Français (fr)
+    Sluice - Français (fr)
     ★ Android 字符串资源里撇号必须转义为 \'，否则 aapt2 会报错。
 -->
 <resources>
-    <string name="process_text_action">Analyser avec YunX</string>
+    <string name="process_text_action">Analyser avec Sluice</string>
 
     <string name="language_follow_system">Suivre le système</string>
     <string name="language_zh_hans">简体中文</string>
@@ -86,7 +86,7 @@
     <string name="section_link_open">Ouverture de liens</string>
     <string name="settings_link_open">Ouvrir les liens de stockage en un geste</string>
     <string name="section_about">À propos</string>
-    <string name="settings_about_app">À propos de YunX</string>
+    <string name="settings_about_app">À propos de Sluice</string>
     <string name="settings_github_repo">Dépôt GitHub</string>
 
     <!-- ================= Pages de paramètres secondaires ================= -->
@@ -123,7 +123,7 @@
     <string name="settings_export_log_desc">Exporter les journaux de plantage et les infos de l\'application pour faciliter le diagnostic</string>
     <string name="settings_export_auth_desc">Chiffrer les cookies/JWT des stockages et plateformes vidéo avec un mot de passe d\'au moins 8 caractères, puis exporter</string>
     <string name="settings_import_auth_desc">Choisir une sauvegarde d\'identifiants chiffrée ou en clair pour restaurer les connexions aux stockages et plateformes vidéo</string>
-    <string name="settings_link_open_desc">Ouvrir directement les liens de partage pour analyse (ou partager vers YunX) ; activable par plateforme</string>
+    <string name="settings_link_open_desc">Ouvrir directement les liens de partage pour analyse (ou partager vers Sluice) ; activable par plateforme</string>
     <string name="settings_about_app_desc">Version, plateformes prises en charge et notes techniques</string>
     <string name="settings_github_repo_desc">%1$s · Code source et suivi des problèmes</string>
 
@@ -156,7 +156,7 @@
     <string name="option_retry_never">Ne jamais réessayer</string>
     <string name="option_retry_times">Réessayer jusqu\'à %1$d fois après un échec</string>
     <string name="dialog_battery_title">Continuer le téléchargement en arrière-plan</string>
-    <string name="dialog_battery_message">Pour que les téléchargements continuent écran éteint, ajoutez YunX à la liste blanche d\'optimisation de la batterie. Ouvrir les paramètres système ?</string>
+    <string name="dialog_battery_message">Pour que les téléchargements continuent écran éteint, ajoutez Sluice à la liste blanche d\'optimisation de la batterie. Ouvrir les paramètres système ?</string>
     <string name="action_go_settings">Ouvrir les paramètres</string>
     <string name="action_not_now">Plus tard</string>
     <string name="dialog_mirror_title">Miroir de téléchargement GitHub</string>
@@ -171,7 +171,7 @@
     <string name="dialog_proxy_port">Port du proxy (ex. 7890)</string>
     <string name="dialog_proxy_hint">Le proxy accélère les ressources étrangères comme GitHub ; désactivé, toutes les requêtes sont directes.</string>
     <string name="dialog_engine_dir_title">Dossier Gopeed personnalisé</string>
-    <string name="dialog_engine_dir_message">Gopeed ne peut écrire que dans des chemins réels et n\'accepte pas les dossiers du sélecteur de fichiers système. Saisissez un chemin absolu, par ex. %1$s/YunX.</string>
+    <string name="dialog_engine_dir_message">Gopeed ne peut écrire que dans des chemins réels et n\'accepte pas les dossiers du sélecteur de fichiers système. Saisissez un chemin absolu, par ex. %1$s/Sluice.</string>
     <string name="dialog_engine_dir_label">Chemin du dossier</string>
     <string name="dialog_log_title">Exporter les journaux</string>
     <string name="dialog_log_choose">Choisissez le mode d\'export des journaux :</string>
@@ -267,4 +267,5 @@
     <string name="snack_proxy_port_invalid">Le port du proxy doit être un nombre entre 1 et 65535</string>
     <string name="snack_proxy_enabled">Proxy activé : %1$s</string>
     <string name="snack_proxy_disabled">Proxy désactivé ; connexion directe rétablie</string>
+    <string name="app_name">Sluice</string>
 </resources>

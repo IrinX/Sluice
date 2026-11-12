@@ -1,4 +1,4 @@
-# Agent.md — YunX（云析）AI 协作指南
+# Agent.md — Sluice（开闸）AI 协作指南
 
 本文件面向在本仓库工作的 AI 编码代理（Claude Code / Cursor / Copilot Agent 等）。
 目标：让代理无需反复摸索即可写出**符合本项目既有约定**的代码。
@@ -9,12 +9,12 @@
 
 ## 1. 项目速览
 
-**YunX（云析）** 是一个 Android 网盘分享链接解析与高速下载应用。用户粘贴分享链接 → 浏览分享内容 → 取直链 → 分片并发下载到本地。
+**Sluice（开闸）** 是一个 Android 网盘分享链接解析与高速下载应用。用户粘贴分享链接 → 浏览分享内容 → 取直链 → 分片并发下载到本地。
 
 | 项 | 值 |
 |---|---|
-| 包名 | `com.yunx.app` |
-| 源码根 | `app/src/main/kotlin/com/yunx/app` |
+| 包名 | `com.sluice.app` |
+| 源码根 | `app/src/main/kotlin/com/sluice/app` |
 | 语言 | Kotlin |
 | UI | Jetpack Compose + Material Design 3 |
 | 持久化 | Room（KSP 注解处理）+ SharedPreferences |
@@ -30,9 +30,9 @@
 ## 2. 目录结构与职责
 
 ```
-app/src/main/kotlin/com/yunx/app/
+app/src/main/kotlin/com/sluice/app/
 ├── MainActivity.kt              # 单 Activity 入口
-├── YunXApp.kt                   # Application，全局初始化
+├── SluiceApp.kt                   # Application，全局初始化
 ├── （另有少量分散的完整性自检代码，见 §9，勿误判为恶意代码）
 ├── crash/                       # 崩溃捕获与崩溃展示页
 │   ├── CrashHandler.kt
@@ -118,7 +118,7 @@ class BookmarkViewModel(private val dao: BookmarkDao) : ViewModel() {
 **不要**在 ViewModel 里持有 `SnackbarHostState`，也不要用 Toast。
 
 ```kotlin
-import com.yunx.app.ui.SnackbarController
+import com.sluice.app.ui.SnackbarController
 SnackbarController.show("已收藏到「$cat」")
 ```
 
@@ -144,7 +144,7 @@ AnimatedVisibility(
 
 ### 3.4 设置项：只能加在 `SettingsRepository`
 
-所有偏好读写集中在 `data/prefs/SettingsRepository.kt`（SharedPreferences 名 `yunx_settings`）。
+所有偏好读写集中在 `data/prefs/SettingsRepository.kt`（SharedPreferences 名 `sluice_settings`）。
 写法：`var` + 自定义 getter/setter，值域用 `coerceIn` 兜住，默认值放 `companion object` 常量。
 
 ```kotlin
@@ -186,7 +186,7 @@ speedLimitProvider  = { settings.downloadSpeedLimit }
 
 **已知问题（2026-10-03 线上崩溃，决定暂不修）**：在跑过库版本更高构建的设备上再装回旧 APK，磁盘里的库版本会比 APK 声明的高，
 Room 走 `onDowngrade` → 没有向下的迁移路径 → `IllegalStateException: A migration from 15 to 13 was required but not found`。
-崩溃点在 `app/src/main/kotlin/com/yunx/app/ui/MainScreen.kt:287` 的 `AppDatabase.get()` 首次查询开库处，异常无人捕获 ⇒ **之后每次启动都崩**，
+崩溃点在 `app/src/main/kotlin/com/sluice/app/ui/MainScreen.kt:287` 的 `AppDatabase.get()` 首次查询开库处，异常无人捕获 ⇒ **之后每次启动都崩**，
 用户只能清应用数据或装回更高的包。触发前提是「版本名与 versionCode 都相同、只有库版本不同」的两个包互装（那段时间库从 13 涨到 16 而 versionCode 一直是 11），
 普通用户碰不到，只有来回装包的开发/协作者会撞上。**要修的话**：builder 加 `.fallbackToDestructiveMigrationOnDowngrade()`
 （Room 2.6.1 已有该 API，降级时清库重建而非抛异常），再用 `RoomDatabase.Callback.onDestructiveMigration()` 给用户一句提示；
@@ -305,7 +305,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
   `BookmarkScreen.onResolve` 与主页快捷方式都要走 GitHub 分支，GitHub 收藏（`platform = "GITHUB"`，即 `currentPlatform.name`）不能在网盘解析里被吞掉。
 - `FileNameText` 增加了带默认值的 `maxLines` / `textAlign` 参数（既有调用不受影响）：需要多行/居中的场景传参，不要绕开组件自己写 `Text`。
 
-### 3.15 叠加页容器变换（关于云析 / 支持开发 / 主题与外观 / 收藏）：源必须真的被移出组合
+### 3.15 叠加页容器变换（关于开闸 / 支持开发 / 主题与外观 / 收藏）：源必须真的被移出组合
 
 `MainScreen.kt` 里四个叠加页共用一套「容器变换」（Container Transform），改这条链路前先读完本节：
 
@@ -325,7 +325,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 
 ### 3.16 深色模式字体发黑：全屏页必须有 `Surface`（`LocalContentColor` 默认是黑色）
 
-**症状**：深色模式下个别文字仍是黑色（历史案例：引导页第 1 页「云析」、第 2 页「使用前请阅读」）。
+**症状**：深色模式下个别文字仍是黑色（历史案例：引导页第 1 页「开闸」、第 2 页「使用前请阅读」）。
 **根因**：`LocalContentColor` 的默认值是 `Color.Black`，**只有 `Surface` / `Scaffold`（以及 Button、Card 这类自绘容器）才会把它设成
 `contentColorFor(底色)`**（如 `surface → onSurface`）。页面只要不在这些容器里，`Text` 不写 `color` 就是黑字 ——
 浅色模式看不出来，深色模式立刻暴露。
@@ -333,7 +333,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 **本项目的雷区**（都是「手动铺底色」、绕开了 Scaffold 的地方）：
 - `ui/screens/OnboardingScreen.kt`：`MainScreen.kt` 里 `if (showOnboarding) { OnboardingScreen(...); return }` 的提前返回全屏覆盖页；
   已用 `Surface(modifier = modifier.fillMaxSize(), color = colorScheme.surface)` 包住整页（底色与 `BlobBackground` 的 base 一致，观感不变），
-  第 1 页「云析」与第 2 页「使用前请阅读」另外显式写了 `color = colorScheme.onSurface`。
+  第 1 页「开闸」与第 2 页「使用前请阅读」另外显式写了 `color = colorScheme.onSurface`。
 - `ui/MainScreen.kt` 的**横屏分支**：手动 `Row(NavigationRail + 内容)`，原先只有 `Box.background(background)`；
   同样已换成 `Surface(color = colorScheme.background)` 包住内容与 Snackbar（此前横屏 + 深色模式下，列表里没写 color 的文件名会是黑字）。
 - 其它页面（登录页 / 关于 / 支持 / 主题 / 收藏 / 各 Tab 页）都有 `Scaffold`，或本身就是 `AlertDialog` / `ModalBottomSheet`（自带 Surface），不受影响。
@@ -341,7 +341,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 **约定**：
 1. 新增「全屏覆盖页 / 手动布局页」时用 `Surface` 铺底，不要用 `Modifier.background(...)`；确实只能用 `background` 时，页内每个 `Text` 都要显式给 `color`。
 2. 深色模式自查重点看**大标题**这类没写 `color` 的文本（最容易漏）。
-3. 排查手段：`grep -rn "Color(0x\|Color.White\|Color.Black" app/src/main/kotlin/com/yunx/app`（正常只应命中 `ui/theme/Color.kt` 的方案令牌）。
+3. 排查手段：`grep -rn "Color(0x\|Color.White\|Color.Black" app/src/main/kotlin/com/sluice/app`（正常只应命中 `ui/theme/Color.kt` 的方案令牌）。
 
 ---
 
@@ -365,7 +365,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 
 **卡片按钮显示规则**：`PermissionCard` 内部只要 `granted == true` 就不渲染操作按钮 ——「去设置」只在真的需要用户动手时才出现，别在调用处补 `if`。
 
-**唯一状态入口**：`app/src/main/kotlin/com/yunx/app/util/PermissionState.kt`。
+**唯一状态入口**：`app/src/main/kotlin/com/sluice/app/util/PermissionState.kt`。
 `Build.VERSION.SDK_INT` 的分支只允许写在这个文件里（13+ 的运行时通知权限、9- 的存储权限、各系统设置 Intent 的兜底跳转都在里面），调用处不要再自己判断版本。
 
 **已从业务页面移除**（历史行为，勿恢复）：
@@ -475,8 +475,8 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 ### 3.20 分享有效期：UI 中性码必须经 `ShareExpire` 转换（**别把中性码直接下发给接口**）
 
 **中性码只有一套**：`1`=永久有效、`2`=1 天、`3`=7 天、`4`=30 天，定义在
-`app/src/main/kotlin/com/yunx/app/data/network/model/ShareExpire.kt`（`FOREVER` / `ONE_DAY` / `SEVEN_DAYS` / `THIRTY_DAYS`）。
-有效期选择器与结果展示都在 `app/src/main/kotlin/com/yunx/app/ui/screens/CloudFileSheets.kt`
+`app/src/main/kotlin/com/sluice/app/data/network/model/ShareExpire.kt`（`FOREVER` / `ONE_DAY` / `SEVEN_DAYS` / `THIRTY_DAYS`）。
+有效期选择器与结果展示都在 `app/src/main/kotlin/com/sluice/app/ui/screens/CloudFileSheets.kt`
 （`expireOptions` 选项、`expireLabel()` 文案），各网盘页 `onShare = { _, passcode, expiredType -> ... }` 下发的就是这个码。
 
 **各平台 `createShare` 的有效期语义完全不同**（这就是 139/百度/123 三个平台「选永久建成 1 天、选 1/7/30 天显示永久」的原因）：
@@ -515,9 +515,9 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 
 ### 3.21 「网盘更新」按钮：能自动化就直接下载，不能才回落解析页
 
-检查更新弹窗里的「网盘更新」不再无条件跳解析页：入口是 `app/src/main/kotlin/com/yunx/app/ui/MainScreen.kt` 的
+检查更新弹窗里的「网盘更新」不再无条件跳解析页：入口是 `app/src/main/kotlin/com/sluice/app/ui/MainScreen.kt` 的
 `onNetdiskUpdate = { link -> ...; resolveViewModel.startUpdateDownload(link) }`，决策逻辑全在
-`app/src/main/kotlin/com/yunx/app/ui/viewmodel/ResolveViewModel.kt` 的 `startUpdateDownload()` 里：
+`app/src/main/kotlin/com/sluice/app/ui/viewmodel/ResolveViewModel.kt` 的 `startUpdateDownload()` 里：
 
 | 情况 | 行为 |
 |---|---|
@@ -538,11 +538,11 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 
 ### 3.22 「自动识别剪贴板」开关（关掉后应用完全不读剪贴板）
 
-设置页「通用」组第一项是该开关：持久化在 `app/src/main/kotlin/com/yunx/app/data/prefs/SettingsRepository.kt` 的
+设置页「通用」组第一项是该开关：持久化在 `app/src/main/kotlin/com/sluice/app/data/prefs/SettingsRepository.kt` 的
 `clipboardSuggestEnabled`（键 `clipboard_suggest_enabled`，默认 `true`），内存态在
-`app/src/main/kotlin/com/yunx/app/ui/theme/ThemeController.kt` 的 `clipboardSuggestEnabled`（Compose 可观察，所以关掉即时生效）。
+`app/src/main/kotlin/com/sluice/app/ui/theme/ThemeController.kt` 的 `clipboardSuggestEnabled`（Compose 可观察，所以关掉即时生效）。
 
-全应用**唯一**读取剪贴板的位置是 `app/src/main/kotlin/com/yunx/app/ui/screens/ResolveScreen.kt` 的 `readClipboardSafely()`，
+全应用**唯一**读取剪贴板的位置是 `app/src/main/kotlin/com/sluice/app/ui/screens/ResolveScreen.kt` 的 `readClipboardSafely()`，
 它只被 `maybeSuggestClipboard()` 调用，而 `maybeSuggestClipboard()` 只有两个触发点，二者在开关关闭时都不工作：
 - `DisposableEffect(lifecycleOwner, clipboard, clipboardSuggestEnabled)`：关闭时把 `clipboardSuggestion` 置空并 `onDispose {}`，
   不注册 `OnPrimaryClipChangedListener`、不注册 `ON_RESUME` observer（连冷启动那一次检测也不执行）；
@@ -556,19 +556,19 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 ### 3.23 「接受预发布版更新」开关（检查更新是否包含 GitHub Pre-release）
 
 设置页「通用」组的「检查更新」下面一项即该开关。持久化在
-`app/src/main/kotlin/com/yunx/app/data/prefs/SettingsRepository.kt` 的 `acceptPrereleaseUpdate`
+`app/src/main/kotlin/com/sluice/app/data/prefs/SettingsRepository.kt` 的 `acceptPrereleaseUpdate`
 （键 `accept_prerelease_update`，默认 `false` = 只收正式版），内存态在 `ThemeController.acceptPrereleaseUpdate`。
 
-**两条通道**都在 `app/src/main/kotlin/com/yunx/app/data/update/UpdateChecker.kt`：
+**两条通道**都在 `app/src/main/kotlin/com/sluice/app/data/update/UpdateChecker.kt`：
 
 | 通道 | 端点 | 说明 |
 | --- | --- | --- |
-| 正式版（默认） | `RELEASES_LATEST_URL` = `/repos/CYQawa/YunX/releases/latest` | GitHub 只会返回最新的**非** Pre-release、**非** Draft 版本 |
-| 预发布（开关打开） | `RELEASES_LIST_URL` = `/repos/CYQawa/YunX/releases` | 返回数组、按发布时间倒序；取第一条 `draft == false` 且 `tag_name` 非空的版本，因此**可能命中 Pre-release** |
+| 正式版（默认） | `RELEASES_LATEST_URL` = `/repos/IrinX/YunX/releases/latest` | GitHub 只会返回最新的**非** Pre-release、**非** Draft 版本 |
+| 预发布（开关打开） | `RELEASES_LIST_URL` = `/repos/IrinX/YunX/releases` | 返回数组、按发布时间倒序；取第一条 `draft == false` 且 `tag_name` 非空的版本，因此**可能命中 Pre-release** |
 
 - 统一入口 `UpdateChecker.fetchLatestRelease(includePrerelease: Boolean = false)`；`fetchBody()` 负责 HTTP 与错误文案（403/429 限流提示、404「仓库暂无 Release」），`parseRelease()` 负责解析并回填 `Release.prerelease`。
-- 两个调用点都在 `app/src/main/kotlin/com/yunx/app/ui/MainScreen.kt`（启动检查 + 手动检查），都传 `ThemeController.acceptPrereleaseUpdate`；**切换开关后不会自动重查**，下一次手动检查（或重启后的启动检查）才生效。
-- `app/src/main/kotlin/com/yunx/app/ui/screens/UpdateSheet.kt` 在版本号后面加了一枚「预发布」小标签（`release.prerelease == true` 时），避免用户不知情地装上测试包。
+- 两个调用点都在 `app/src/main/kotlin/com/sluice/app/ui/MainScreen.kt`（启动检查 + 手动检查），都传 `ThemeController.acceptPrereleaseUpdate`；**切换开关后不会自动重查**，下一次手动检查（或重启后的启动检查）才生效。
+- `app/src/main/kotlin/com/sluice/app/ui/screens/UpdateSheet.kt` 在版本号后面加了一枚「预发布」小标签（`release.prerelease == true` 时），避免用户不知情地装上测试包。
 
 **说明正文的装饰过滤（`UpdateChecker.cleanReleaseNotes`）**：`UpdateSheet` 是用**纯文本** `Text()` 显示
 `release.body` 的（没上 markdown/HTML 渲染），而 GitHub Release 正文开头那两样东西只是装饰：
@@ -579,7 +579,7 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 ★ 用户明确要求「其他不要去掉」，所以规则只认这两类：不认 shields.io 的通用徽章、不认别的图床 `<img>`；
 两条 QQ 徽章正则**顺序不能换**（带外链的那条先跑，否则裸图片规则会吃掉内层、只剩一个 `[](http://qm.qq.com/...)`）。
 整行只剩装饰时整行删掉、连续空行压成一个（markdown 本来就把多个空行当一个），这是唯一的"额外"改动。
-用例见 `app/src/test/kotlin/com/yunx/app/data/update/UpdateCheckerNotesTest.kt`
+用例见 `app/src/test/kotlin/com/sluice/app/data/update/UpdateCheckerNotesTest.kt`
 （拿 v1.2.8 的真实正文逐行断言「除那两行外一行都没少」）。
 
 **版本比较规则（`UpdateChecker.compareVersions`，改动过，注意别改回去）**：先逐段比数字前缀；数字段完全相同时，
@@ -595,18 +595,18 @@ FileNameText(text = file.fname, style = MaterialTheme.typography.bodyLarge, font
 
 ### 3.24 对外联系方式（QQ 群 / GitHub 仓库）：常量集中在 `AppLinks`
 
-QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/yunx/app/util/AppLinks.kt`，界面里引用常量：
+QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/sluice/app/util/AppLinks.kt`，界面里引用常量：
 
 | 常量 | 值 | 用在哪 |
 | --- | --- | --- |
 | `AppLinks.QQ_GROUP` | `635207650` | 引导页首页胶囊、设置页「关于」组 |
-| `AppLinks.GITHUB_REPO` | `https://github.com/CYQawa/YunX` | 引导页 / 关于页卡片跳转、设置页「关于」组 |
-| `AppLinks.GITHUB_REPO_DISPLAY` | `github.com/CYQawa/YunX` | 界面文字展示（不带协议头） |
+| `AppLinks.GITHUB_REPO` | `https://github.com/IrinX/YunX` | 引导页 / 关于页卡片跳转、设置页「关于」组 |
+| `AppLinks.GITHUB_REPO_DISPLAY` | `github.com/IrinX/YunX` | 界面文字展示（不带协议头） |
 
-- 入口清单：`app/src/main/kotlin/com/yunx/app/ui/screens/OnboardingScreen.kt` 的 `QQGroupPill`（欢迎页 GitHub 卡片下方，点击拉起 QQ 群卡片）；
-  `app/src/main/kotlin/com/yunx/app/ui/screens/SettingsScreen.kt` 的「关于」组最后两项 —— 「QQ 交流群」（点击拉起 QQ 群卡片，长按复制群号）、
+- 入口清单：`app/src/main/kotlin/com/sluice/app/ui/screens/OnboardingScreen.kt` 的 `QQGroupPill`（欢迎页 GitHub 卡片下方，点击拉起 QQ 群卡片）；
+  `app/src/main/kotlin/com/sluice/app/ui/screens/SettingsScreen.kt` 的「关于」组最后两项 —— 「QQ 交流群」（点击拉起 QQ 群卡片，长按复制群号）、
   「GitHub 仓库」（系统浏览器打开，没有可用浏览器时退化为复制链接）。同组分段圆角随之变为
-  `FIRST`（关于云析）→ `MIDDLE`（支持开发）→ `MIDDLE`（QQ 交流群）→ `LAST`（GitHub 仓库）。
+  `FIRST`（关于开闸）→ `MIDDLE`（支持开发）→ `MIDDLE`（QQ 交流群）→ `LAST`（GitHub 仓库）。
 - **QQ 入口 = 先跳 QQ、失败再复制**（需求：能直接进群就别让人手动复制）：
   `AppLinks.qqGroupScheme()` 拼 `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=<群号>&card_type=group&source=qrcode`，
   `AppLinks.openQQGroup(context)` 负责 `startActivity` 并返回是否成功；返回 false 时调用方 `copyToClipboard(群号)` + 提示「未安装 QQ，群号已复制」。
@@ -627,7 +627,7 @@ QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/yunx/app/ut
 ### 3.25 115 网盘接入（Cookie 网页登录 / 分享解析 / 转存 / 创建分享）
 
 115 是第 7 个网盘，**认证方式与夸克/UC/百度/139 同为「网页登录取 Cookie」，但请求契约与字段规则自成一派**，
-接口依据 `/storage/emulated/0/云析分析资料/网盘API文档/115/115_api.md`（个人盘）与 `115_share_api.md`（分享）。
+接口依据 `/storage/emulated/0/开闸分析资料/网盘API文档/115/115_api.md`（个人盘）与 `115_share_api.md`（分享）。
 
 **接口契约（`Pan115Api`）**
 
@@ -669,7 +669,7 @@ QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/yunx/app/ut
    分享 `/share/downurl` 报 `50029 当前版本过低，请升级到最新版本下载`；**换成客户端 UA 后 482MB 仍报 50028、分享仍报 50029 —— 改 UA 无效**。
    真正的电脑端协议是 `https://proapi.115.com/app/chrome/downurl`：POST 查询串 `?t=<unix秒>`，表单 `data=<Pan115Crypto.encode("{\"pickcode\":…}", key)>`，
    响应 `{state, data:"<base64>"}` 用**同一个 key** `Pan115Crypto.decode` 解开，取第一个带 `url` 对象的条目的 `file_name / pick_code / url.url`。
-   算法已与两份参考实现逐字节核对一致（`云析分析资料/网盘参考/115drive-webdav-main/115/crypto.go` 的 `Encode/Decode/xorDeriveKey/xorTransform/rsaEncrypt/rsaDecrypt`、
+   算法已与两份参考实现逐字节核对一致（`开闸分析资料/网盘参考/115drive-webdav-main/115/crypto.go` 的 `Encode/Decode/xorDeriveKey/xorTransform/rsaEncrypt/rsaDecrypt`、
    `115-minus-main/src/platform/115/download-codec.ts`）：16 随机字节 key（随请求加密给服务端，无需预共享）→ `key‖xor(deriveKey(key,4))‖reverse‖xor(LONG_KEY)` → base64(RSA PKCS1v15，明文分块 117)。
    代码里 `Pan115Api.getAppDownloadLink()` 优先、网页端 `/files/download` 仅作兜底。
    **已用抓包里的账号 Cookie 真机联调验证通过**（2026-10-03）：proapi 返回 `state:true` + `data` 密文，`Pan115Crypto.decode` 解出
@@ -684,7 +684,7 @@ QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/yunx/app/ut
    再确认 `appversion` 接口是否改版（`CLIENT_UA` 是否刷新成功）。
 7. **分享大文件要「先转存到自己网盘，再取电脑端直链」**：分享侧没有已验证的 proapi 等价接口，所以
    `Pan115ResolveRepository.getShareDownloadLink()` 的顺序是「先试 `share/downurl`」→ 失败且**已登录**时走 `downloadViaTempTransfer()`：
-   `ensureTempDir()` 在根目录建 `YunX临时转存/tr_<nanoTime>` → `share/receive` 转存 → 轮询列目录认领新 `fid`（同名会变 `xxx(1).后缀`）
+   `ensureTempDir()` 在根目录建 `开闸临时转存/tr_<nanoTime>` → `share/receive` 转存 → 轮询列目录认领新 `fid`（同名会变 `xxx(1).后缀`）
    → `getAppDownloadLink()` 取链，并把临时目录 cid 放进 `DownloadLink.cleanupDirFid`；下载完成、失败或弹窗关闭时由 `ResolveViewModel`
    调 `currentRepo().cleanupTempDir()` 删除。未登录时直接抛原始错误（提示先到「网盘」页登录 115）。
    **这条路径会在用户网盘里留下临时目录，改动时务必保证清理链路不被破坏。**
@@ -699,15 +699,15 @@ QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/yunx/app/ut
 
 | 新增 | 作用 |
 | --- | --- |
-| `app/src/main/kotlin/com/yunx/app/data/network/Pan115Constants.kt` | host/端点/UA/错误码/Cookie 工具（`extractCookies`/`isValidCookie`/`mergeCookies`/`encodeShareToken`） |
-| `app/src/main/kotlin/com/yunx/app/data/network/Pan115Api.kt` | 全部 115 接口（列目录/取链/增删改/分享/转存/创建分享） |
-| `app/src/main/kotlin/com/yunx/app/data/network/Pan115Crypto.kt` | 电脑端取链协议的 RSA+XOR 编解码（§3.25 规则 5，改这里前先与参考实现核对） |
-| `app/src/main/kotlin/com/yunx/app/data/repository/Pan115ResolveRepository.kt` | 分享解析：snap 列目录（分页）+ downurl 取链 + **转存后回查新 fid** |
-| `app/src/main/kotlin/com/yunx/app/data/repository/Pan115AccountRepository.kt` | Cookie 落库（`/user/info` 校验并取脱敏手机号当昵称）、退出清 CookieManager/WebStorage |
-| `app/src/main/kotlin/com/yunx/app/data/db/Pan115AccountEntity.kt` / `Pan115AccountDao.kt` | `pan115_account` 表（单行 id=`pan115`，Cookie 明文存，见 `SecureAccountDaos.pan115`） |
-| `app/src/main/kotlin/com/yunx/app/ui/viewmodel/Pan115CloudViewModel.kt` / `Pan115AccountViewModel.kt` | 个人盘浏览（分页/递归收集/下载/重命名/移动/删除/分享）与账号态 |
-| `app/src/main/kotlin/com/yunx/app/ui/login/Pan115LoginScreen.kt` | WebView 登录 `https://115.com/`，自动检测 Cookie（要求 UID + SEID）或手动粘贴 |
-| `app/src/main/kotlin/com/yunx/app/ui/screens/Pan115CloudScreen.kt` / `Pan115AccountSheet.kt` / `Pan115SaveSheet.kt` | 云盘页（`expireOptions = ShareExpire.PAN115_OPTIONS`、`PasscodeMode.SERVER_GENERATED`）、账号弹窗、转存目录选择 |
+| `app/src/main/kotlin/com/sluice/app/data/network/Pan115Constants.kt` | host/端点/UA/错误码/Cookie 工具（`extractCookies`/`isValidCookie`/`mergeCookies`/`encodeShareToken`） |
+| `app/src/main/kotlin/com/sluice/app/data/network/Pan115Api.kt` | 全部 115 接口（列目录/取链/增删改/分享/转存/创建分享） |
+| `app/src/main/kotlin/com/sluice/app/data/network/Pan115Crypto.kt` | 电脑端取链协议的 RSA+XOR 编解码（§3.25 规则 5，改这里前先与参考实现核对） |
+| `app/src/main/kotlin/com/sluice/app/data/repository/Pan115ResolveRepository.kt` | 分享解析：snap 列目录（分页）+ downurl 取链 + **转存后回查新 fid** |
+| `app/src/main/kotlin/com/sluice/app/data/repository/Pan115AccountRepository.kt` | Cookie 落库（`/user/info` 校验并取脱敏手机号当昵称）、退出清 CookieManager/WebStorage |
+| `app/src/main/kotlin/com/sluice/app/data/db/Pan115AccountEntity.kt` / `Pan115AccountDao.kt` | `pan115_account` 表（单行 id=`pan115`，Cookie 明文存，见 `SecureAccountDaos.pan115`） |
+| `app/src/main/kotlin/com/sluice/app/ui/viewmodel/Pan115CloudViewModel.kt` / `Pan115AccountViewModel.kt` | 个人盘浏览（分页/递归收集/下载/重命名/移动/删除/分享）与账号态 |
+| `app/src/main/kotlin/com/sluice/app/ui/login/Pan115LoginScreen.kt` | WebView 登录 `https://115.com/`，自动检测 Cookie（要求 UID + SEID）或手动粘贴 |
+| `app/src/main/kotlin/com/sluice/app/ui/screens/Pan115CloudScreen.kt` / `Pan115AccountSheet.kt` / `Pan115SaveSheet.kt` | 云盘页（`expireOptions = ShareExpire.PAN115_OPTIONS`、`PasscodeMode.SERVER_GENERATED`）、账号弹窗、转存目录选择 |
 
 改动：`ShareLinkParser.kt`（`SharePlatform.PAN115` + 三条 115 正则：`115cdn?/rc?.com/s/<sw…>`、口令 `<code>-<pwd>`、`?password=`）、
 `DownloadPlatform.kt`（`PAN115`，线程设置自动多一项）、`ShareExpire.kt`（115 专属码位与 `pan115Duration()`）、
@@ -726,7 +726,7 @@ QQ 群号与仓库地址**只允许**写在 `app/src/main/kotlin/com/yunx/app/ut
 位置在每页 `if (!viewModel.multiSelectMode)` 的顶栏分支里，所以**多选态自动隐藏**；
 **分享浏览页（`ShareDetailScreen`）不挂这个入口**——各家文档都写明建目录/上传只在个人盘模式可用（115/百度/夸克/UC/迅雷/123/139 一致）。
 
-**共享组件都在 `app/src/main/kotlin/com/yunx/app/ui/screens/CloudFileSheets.kt`**：
+**共享组件都在 `app/src/main/kotlin/com/sluice/app/ui/screens/CloudFileSheets.kt`**：
 `CloudAddMenu(onCreateFolder, onUploadFile)`、`CreateFolderDialog(onDismiss, onConfirm)`、`cloudNameError(name)`（名称校验，唯一实现）。
 七个云盘页（`CloudDriveScreen`/`UCCoudScreen`/`XunleiCloudScreen`/`BaiduCloudScreen`/`C139CloudScreen`/`Pan123CloudScreen`/`Pan115CloudScreen`）
 各插三处：`var showCreateFolder`、顶栏 `CloudAddMenu(...)`、末尾 `if (showCreateFolder) CreateFolderDialog(...)`。
@@ -823,18 +823,18 @@ release 混淆后名字一变就崩。
 注意 `autoStartTasks` 只管「启动时是否恢复未完成任务」，**新建任务照常立即开始**。
 
 **下载目录**：引擎只能按**真实文件系统路径**写（写不了 SAF 的 `content://` 目录），现在优先用公共的
-`Download/YunX`，权限不到位时自动退回应用外部私有目录 —— 完整规则、权限矩阵与 B 路线决策见 §3.29。
+`Download/Sluice`，权限不到位时自动退回应用外部私有目录 —— 完整规则、权限矩阵与 B 路线决策见 §3.29。
 
-**文件与接线**：`app/src/main/kotlin/com/yunx/app/data/gopeed/GopeedEngine.kt`（`object`，`State{NOT_INSTALLED,
+**文件与接线**：`app/src/main/kotlin/com/sluice/app/data/gopeed/GopeedEngine.kt`（`object`，`State{NOT_INSTALLED,
 INSTALLED,RUNNING}`、`installFromAar`/`uninstall`/`start`/`stop`/`invoke`/`taskStatus`/`createTask`/`pauseTask`/
-`continueTask`/`deleteTask`/`engineVersion`）、`app/src/main/kotlin/com/yunx/app/ui/screens/GopeedScreen.kt`（验证页：
+`continueTask`/`deleteTask`/`engineVersion`）、`app/src/main/kotlin/com/sluice/app/ui/screens/GopeedScreen.kt`（验证页：
 状态卡 / 测试下载卡 / 当前任务卡 / **下载目录真实文件列表**——最后一卡是用文件系统交叉验证"确实落盘了"）；
 入口 = `SettingsScreen` 新增参数 `onGopeedClick` + 「下载引擎」分组一行，`MainScreen` 新增
 `OVERLAY_KEY_GOPEED` / `showGopeed` / 路由（普通淡入，不做共享元素形变）。
 页面里所有引擎调用都在 `Dispatchers.IO`（引擎方法会阻塞），UI 侧统一走 `action{}` 抢 `busy` 并把异常原文显示出来。
 
 **验证期已知边界**（都不是 bug）：引擎不随退后台保活（没做前台服务）；引擎任务**只在这个页面**可见，
-不会进 YunX 下载页（两套任务库不互通）；`System.load` 解出的 .so 占 56 MB 内部存储；重复导入同一个 .so
+不会进 Sluice 下载页（两套任务库不互通）；`System.load` 解出的 .so 占 56 MB 内部存储；重复导入同一个 .so
 在本进程内不会重新加载（提示需重启应用）。
 
 **回退**：删 `data/gopeed/GopeedEngine.kt` 与 `ui/screens/GopeedScreen.kt`、`app/libs/gopeed-classes.jar`
@@ -848,7 +848,7 @@ INSTALLED,RUNNING}`、`installFromAar`/`uninstall`/`start`/`stop`/`invoke`/`task
 **真机现象**（用户第一次点「启动引擎」，Android 10 / arm64-v8a）：
 
 ```
-第 1 次：dalvik.system.PathClassLoader[DexPathList[[zip file "/data/app/com.yunx.app-…/base.apk"],
+第 1 次：dalvik.system.PathClassLoader[DexPathList[[zip file "/data/app/com.sluice.app-…/base.apk"],
         nativeLibraryDirectories=[…/lib/arm64, …/base.apk!/lib/arm64-v8a, /system/lib64, /system/product/lib64]]]
         couldn't find "libgojni.so"
 第 2 次：com.gopeed.libgopeed.Libgopeed        （即 NoClassDefFoundError 的 message）
@@ -925,7 +925,7 @@ Android 10+ 原本那套「保存到公共目录」走 MediaStore/SAF，**不需
 见 §3.33）→ `StorageDirs.defaultDownloadDir()`（公共 `Download` 根目录，与内置下载器同一默认口径）→
 `Android/data/<包名>/files/gopeed`；**可写性用「试写探针」判断**——建目录 + 写一个 `.yunx_write_probe` 再删掉，
 成功才用该目录，否则 `Log.e` 后退回下一档。不按系统版本推断权限是因为各 ROM 对 legacy / 分区存储的处理并不一致。
-（**§3.33 起默认目录不再是 `Download/YunX`**：`PUBLIC_DIR_NAME` 已删除，默认就是 `Download` 根目录。）
+（**§3.33 起默认目录不再是 `Download/Sluice`**：`PUBLIC_DIR_NAME` 已删除，默认就是 `Download` 根目录。）
 
 **UI**（`GopeedScreen`）：状态卡显示当前生效的下载目录 + 存储权限三态提示（未授权/已就绪）+ 一个按钮
 （Android 11+ 跳「所有文件访问」页；10- 弹运行时授权框）；`LocalLifecycleOwner` + ON_RESUME 刷新，
@@ -939,7 +939,7 @@ Android 10+ 原本那套「保存到公共目录」走 MediaStore/SAF，**不需
 **已核实、接管时可以直接用的引擎能力**（读的是 Gopeed 源码 `pkg/protocol/http/model.go`）：
 `req.extra.header`（`map[string]string`，网盘直链要的 UA/Referer/Cookie 都能带）、
 `opts.extra.connections`（分片并发，正好映射现有「按网盘分别设置分片并发数」）、
-`Request.Labels`（可塞 YunX 侧任务 id 做映射）。
+`Request.Labels`（可塞 Sluice 侧任务 id 做映射）。
 **缺口**：`DownloaderStoreConfig` 里没有限速字段，现有「速度限制」设置项无法平移；重试由引擎自己管。
 
 **风险提示**：`MANAGE_EXTERNAL_STORAGE` 属于特殊权限，Google Play 需要申报用途、
@@ -996,7 +996,7 @@ if (shouldUseEngine(platform)) startViaEngine(...) else start(id, headers)
 
 **设置页 UI**：下载引擎两项（`下载引擎选择` + `Gopeed 下载引擎` 入口）已挪到**「下载」分组最前**，
 原来的「下载引擎」分组已删除。选 Gopeed 时用一段 `AnimatedVisibility(expandVertically/shrinkVertically)`
-隐藏**确实只对内置分片下载器有意义**的 4 项：下载保存目录（引擎固定写 `Download/YunX`）、
+隐藏**确实只对内置分片下载器有意义**的 4 项：下载保存目录（引擎固定写 `Download/Sluice`）、
 最大同时下载任务数（引擎侧 `maxRunning` 写死 1）、下载速度限制（引擎不支持）、失败自动重试（引擎自己管）。
 **保留**「下载线程数」（映射到 `opts.extra.connections`，真生效）、「免转存下载」（夸克取链方式，与下载器无关），
 以及「锁屏后保持下载」「通知栏下载进度」——后两项对引擎任务**同样生效**（引擎任务走同一套前台服务、
@@ -1042,7 +1042,7 @@ WakeLock 与通知通道，见 §3.31），一开始误判成"只作用于内置
 
 ### 3.32 下载引擎页（替换掉验证期的 Gopeed 测试页）+ 启动自动加载
 
-**页面形态**：设置 → 「下载引擎」→ `app/src/main/kotlin/com/yunx/app/ui/screens/DownloadEngineScreen.kt`
+**页面形态**：设置 → 「下载引擎」→ `app/src/main/kotlin/com/sluice/app/ui/screens/DownloadEngineScreen.kt`
 （验证期的 `GopeedScreen.kt` **已删除**）。**一张卡片（圆角 20dp / 段内边距 16dp）里上下两段，
 中间一条 `outlineVariant` 细线**：每段 = 圆角图标块（40dp / 12dp 圆角，选中段用 `primaryContainer` 高亮）
 + 标题（`titleMedium` + Medium）+ 可选小标签（「实验性」用 `Surface(primaryContainer)` 小圆角块，`labelSmall`）
@@ -1083,9 +1083,9 @@ Gopeed 段里还带着：**引擎状态**（未导入内核 / 已导入，未启
      「请先停止引擎」，旧 UI 有停止按钮时尚可自救，现在没按钮了就必须自己停）。
 3. **内核状态要进页面先与真实文件对齐**（用户："选择内置下载器时（有导入内核），重启应用后引擎状态却显示未导入内核"）。
    根因：`GopeedEngine._state` 是进程内单例、初值 `NOT_INSTALLED`，只在导入/启动/停止/卸载时被写过；
-   选内置下载器时 `YunXApp` 的启动流程**根本不会碰引擎**，于是状态永远停在"未导入"。
+   选内置下载器时 `SluiceApp` 的启动流程**根本不会碰引擎**，于是状态永远停在"未导入"。
    修法：新增 `GopeedEngine.syncInstalledState(context)`（`RUNNING` 不动，其余按 `soFile().isFile` 写回
-   `INSTALLED`/`NOT_INSTALLED`，只做一次 stat），在 `YunXApp.autoStartGopeedIfSelected` 开头
+   `INSTALLED`/`NOT_INSTALLED`，只做一次 stat），在 `SluiceApp.autoStartGopeedIfSelected` 开头
    （**在"选没选 Gopeed"的 return 之前**）和引擎页 `LaunchedEffect(Unit)` 里各调一次。
    `DownloadManager` 那两处 `state.value != RUNNING` 的判断只看"在不在跑"，不受这个同步影响。
 
@@ -1096,7 +1096,7 @@ Gopeed 段里还带着：**引擎状态**（未导入内核 / 已导入，未启
 （`effectsDefault`，与 `OnboardingScreen.kt` 里指示点颜色同一口径），切换引擎时「选中态」是渐变过去的而不是硬切；
 内核就绪后才出现的下载目录/权限那一段用 `AnimatedVisibility` 淡入淡出。
 
-**容器变换（Container Transform）接线**（和「主题与外观 / 关于云析 / 支持开发」三行完全同款，用户点名要这效果）：
+**容器变换（Container Transform）接线**（和「主题与外观 / 关于开闸 / 支持开发」三行完全同款，用户点名要这效果）：
 源侧 = `MainScreen.kt` 在 `SharedTransitionLayout` 作用域里构造
 `Modifier.sharedBounds(rememberSharedContentState(OVERLAY_KEY_GOPEED), animatedVisibilityScope = sourceScope)`，
 作为 `engineRowModifier` 传给 `SettingsScreen`，再挂到那一行的 `SettingsItem(modifier = engineRowModifier)`；
@@ -1106,7 +1106,7 @@ Gopeed 段里还带着：**引擎状态**（未导入内核 / 已导入，未启
 
 **删内核必须顺手切回内置**（用户报的 bug：选了 Gopeed 再删内核，设置项还停在 Gopeed）：
 页面里删完内核后若当前引擎是 Gopeed 就写回 `ENGINE_BUILTIN` 并提示「内核已删除，已自动切回内置分片下载器」；
-`YunXApp.autoStartGopeedIfSelected` 里也做了同样的**自愈**（启动时若设置是 Gopeed 但内核不存在 → 写回内置）。
+`SluiceApp.autoStartGopeedIfSelected` 里也做了同样的**自愈**（启动时若设置是 Gopeed 但内核不存在 → 写回内置）。
 两道一起做的原因：`DownloadManager.shouldUseEngine()` 本来就会因内核缺失回退到内置下载器，
 不修的话会出现「设置界面说在用引擎、实际跑的是内置下载器」的错位。
 **删之前自己先 `stop()`**：`GopeedEngine.uninstall` 在 RUNNING 时抛「请先停止引擎」，旧 UI 有停止按钮时
@@ -1120,7 +1120,7 @@ Gopeed 段里还带着：**引擎状态**（未导入内核 / 已导入，未启
 （引擎在独立页面里改，返回设置页必须刷新）。`MainScreen` 那边沿用 `OVERLAY_KEY_GOPEED` / `showGopeed` 两个名字
 （只是内部标识，指向的已经是新页面）。
 
-**启动自动加载**：`YunXApp.autoStartGopeedIfSelected(ctx)`（在 `onCreate` 末尾调用）——
+**启动自动加载**：`SluiceApp.autoStartGopeedIfSelected(ctx)`（在 `onCreate` 末尾调用）——
 **第一件事是 `engine.syncInstalledState(ctx)`**（必须放在"设置里选的是不是 Gopeed"那个 `return` 之前，
 否则选内置下载器时根本走不到，见口径 3）；然后设置选了 Gopeed **且**已导入内核时，起一个后台 `Thread`
 把引擎加载起来（首次要 `System.load` 56 MB 的 .so 并初始化 Go runtime，提前加载能让第一个任务不必等）。
@@ -1132,11 +1132,11 @@ Gopeed 段里还带着：**引擎状态**（未导入内核 / 已导入，未启
 ### 3.33 下载目录统一口径 + Gopeed 自定义下载目录（SAF 反解 / 手输兜底）
 
 **默认目录统一**（用户要求「默认的下载目录统一为 `/storage/emulated/0/Download/`」）：
-新增 `app/src/main/kotlin/com/yunx/app/util/StorageDirs.kt` —— 两套下载器的**默认目录唯一来源**，
+新增 `app/src/main/kotlin/com/sluice/app/util/StorageDirs.kt` —— 两套下载器的**默认目录唯一来源**，
 `defaultDownloadDir(): File` = `Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS)`，
 `defaultDownloadPath(): String` 给 UI 展示。内置分片下载器本来就走 MediaStore 的 `RELATIVE_PATH = Download`
-（`DownloadSaver.mediaStoreDestination`，无子目录时就是它），所以这里只是**把引擎的默认从 `Download/YunX`
-改成 `Download` 根目录**：`GopeedEngine.PUBLIC_DIR_NAME` **已删除**，UI 里两处引用一并改掉（别再写死 "YunX"）。
+（`DownloadSaver.mediaStoreDestination`，无子目录时就是它），所以这里只是**把引擎的默认从 `Download/Sluice`
+改成 `Download` 根目录**：`GopeedEngine.PUBLIC_DIR_NAME` **已删除**，UI 里两处引用一并改掉（别再写死 "Sluice"）。
 
 **自定义目录为什么不能直接复用内置那套**：内置下载器存的是 `SettingsRepository.downloadDirUri`
 （SAF `content://` tree Uri），而 Gopeed 是原生 Go 核心，`opts.path` **只认真实文件系统路径**，
@@ -1146,7 +1146,7 @@ Gopeed 段里还带着：**引擎状态**（未导入内核 / 已导入，未启
 **SAF → 真实路径（可行性结论：主存储可以，第三方 provider 不行）**：
 `GopeedEngine.realPathFromTreeUri(uri: Uri): File?` —— 只认 authority `com.android.externalstorage.documents`
 （系统「文件」应用里代表本机存储的那些位置），取 `DocumentsContract.getTreeDocumentId()` 得到
-`primary:Download/YunX` 或 `1A2B-3C4D:xxx`，按 `:` 切开：`primary` → `Environment.getExternalStorageDirectory()`
+`primary:Download/Sluice` 或 `1A2B-3C4D:xxx`，按 `:` 切开：`primary` → `Environment.getExternalStorageDirectory()`
 （即 `/storage/emulated/0`），其余当卷名 → `/storage/<卷名>`，再拼上相对路径。
 **第三方 provider（网盘 / Google Drive 之类）的 documentId 不对应任何真实路径，一律返回 null** ——
 那里的调用方必须退到手输，**绝不能把 content:// 或它的 docId 当路径交给引擎**。
@@ -1305,7 +1305,7 @@ security policy`，表现是公告**永远加载失败**（启动弹窗与未读
 2. 否则弹**最新的一条未读** —— ★ 不能直接拿列表首条：首条可能是「已读的置顶公告」，
    这时要按生效时间（`publishAt`，为 null 表示立即发布 ⇒ 退回 `createdAt`）取未读里的最大值；
 3. 全部已读 → 不弹。
-启动检查失败**静默**（与更新检查同一口径，只打 `YunX-Announce` 的 E 级日志），
+启动检查失败**静默**（与更新检查同一口径，只打 `Sluice-Announce` 的 E 级日志），
 用户点进公告页时会再拉一次，那时才把错误页显示出来。
 
 **入口与共享元素**：顶栏右上角、收藏图标**左侧**（收藏只在解析页出现，公告是全局入口）。
@@ -1454,11 +1454,11 @@ android.security.keystore.KeyPermanentlyInvalidatedException: Key permanently in
 
 **已删除的东西（别再找）**：`CredentialStore`、`CredentialKeyException`、`AndroidKeystoreCredentialCipher`、
 `installRecovery` / `onKeyProvisioned` / `isKeyLost` / `markKeyLost` 等自愈与提示机制，
-以及 `MainScreen` 的「本机密钥失效」`AlertDialog` 全部移除（此前 `YunXApp.onCreate` 装配的恢复钩子也一并删掉）。
+以及 `MainScreen` 的「本机密钥失效」`AlertDialog` 全部移除（此前 `SluiceApp.onCreate` 装配的恢复钩子也一并删掉）。
 
 **落点**：`data/security/CredentialCipher.kt`、`data/db/SecureAccountDaos.kt`、`data/db/AppDatabase.kt`、
-`data/network/GitHubTokenStore.kt`、`data/download/DownloadManager.kt`、`ui/MainScreen.kt`、`YunXApp.kt`；
-回归测试 `app/src/test/kotlin/com/yunx/app/data/db/SecureAccountDaosTest.kt`
+`data/network/GitHubTokenStore.kt`、`data/download/DownloadManager.kt`、`ui/MainScreen.kt`、`SluiceApp.kt`；
+回归测试 `app/src/test/kotlin/com/sluice/app/data/db/SecureAccountDaosTest.kt`
 （CI 跑 `./gradlew testDebugUnitTest`，六个用例钉住「明文读写直通 / 明文读取不回写 / 旧密文解密并明文回写 /
 密文损坏保数据 / 观测流吞掉解密失败 / 密钥不可用时保数据」）。
 
@@ -1537,8 +1537,8 @@ JSON 那一层只负责把文本拍平成 `Map`。照抄别人的「直接测 JS
 `Pan123Constants.kt`、`Pan123DeviceId.kt`、`data/db/XunleiAccountEntity.kt` + `AppDatabase.kt`（v19 迁移）、
 `data/repository/{Xunlei,Pan123}AccountRepository.kt`、`ui/viewmodel/{Xunlei,Pan123}AccountViewModel.kt`、
 `ui/login/{XunleiLoginScreen,XunleiWebLoginScreen,Pan123LoginScreen,WebViewJs}.kt`、`ui/MainScreen.kt`、
-`YunXApp.kt`、`data/backup/AuthBackupManager.kt`；回归测试
-`app/src/test/kotlin/com/yunx/app/data/network/{XunleiWebCredentialTest,Pan123LoginSupportTest}.kt`。
+`SluiceApp.kt`、`data/backup/AuthBackupManager.kt`；回归测试
+`app/src/test/kotlin/com/sluice/app/data/network/{XunleiWebCredentialTest,Pan123LoginSupportTest}.kt`。
 
 ---
 
@@ -1582,7 +1582,7 @@ org.json/Uri 空壳条目）、`DownloadPlatform.MAGNET`、`DownloadManager`（`
 连接数/名字、`completeEngineTask` 用 `taskDetail` 修路径并回写种子名）、`GopeedEngine.taskDetail()`、
 `DownloadTaskDao.updateFileName`、`DownloadSaver.delete` 支持目录（多文件种子是**目录**，
 `File.delete()` 对非空目录必然失败）、`DownloadScreen`（对话框提示 + 「正在解析磁力」状态文案）；
-回归测试 `app/src/test/kotlin/com/yunx/app/data/download/MagnetLinkTest.kt`。
+回归测试 `app/src/test/kotlin/com/sluice/app/data/download/MagnetLinkTest.kt`。
 
 
 ---
@@ -1658,11 +1658,11 @@ org.json/Uri 空壳条目）、`DownloadPlatform.MAGNET`、`DownloadManager`（`
 另外 `writeLogLines()` 会丢掉混进来的 NUL（`\u0000`）：上一版导出文件里就带着它，
 整个 txt 被当成二进制，文本工具打不开、看着像乱码。
 
-**② 诊断模式开关**：设置 → 「关于云析」长按 → 开发调试 → **诊断模式**（`SettingsRepository.diagnosticMode`，
+**② 诊断模式开关**：设置 → 「关于开闸」长按 → 开发调试 → **诊断模式**（`SettingsRepository.diagnosticMode`，
 键 `diagnostic_mode`，默认关）。`DiagnosticLog.setEnabled` 立刻起/停写线程（关闭前先 flush），
-`YunXApp.onCreate` 里 `DiagnosticLog.install(this)` 读开关并定目录。
+`SluiceApp.onCreate` 里 `DiagnosticLog.install(this)` 读开关并定目录。
 
-**③ 落盘**：`app/src/main/kotlin/com/yunx/app/util/DiagnosticLog.kt`，目录
+**③ 落盘**：`app/src/main/kotlin/com/sluice/app/util/DiagnosticLog.kt`，目录
 `getExternalFilesDir("diagnostic_logs")`（= `Android/data/<包名>/files/diagnostic_logs`），
 返回 null / 建不出来就回退 `filesDir/diagnostic_logs`。按模块分文件：
 `db.log / crypto.log / download.log / webview.log / network.log / operation.log`。
@@ -2047,7 +2047,7 @@ Kotlin 2.1.0 兼容；别随手升到需要更高 Kotlin 的版本）、`coil 3.
 **② `X-Requested-With: <包名>` 去不掉，别指望 `suppressRequestedWithHeader()`。** Google 原计划把该头从
 WebView 移除、改成按 allow list 发送，**该计划已取消**（androidx.webkit 1.14.0 起 allowlist API 已废弃），
 该头现在**默认发给所有请求**且无公开 API 可关。实测：设成空 allow list 后，登录页 XHR 仍带着
-`x-requested-with: com.yunx.app`。`DiagnosticWebViewClient.suppressRequestedWithHeader` 的 KDoc 已写明这一点，
+`x-requested-with: com.sluice.app`。`DiagnosticWebViewClient.suppressRequestedWithHeader` 的 KDoc 已写明这一点，
 不要再按老注释去"修"它。
 
 **③ Pixiv 不给网页登录，只支持手动填 Cookie（`VideoPlatform.manualCookieOnly`）。** 它的登录页背后是
@@ -2080,13 +2080,13 @@ reCAPTCHA 的 `_GRECAPTCHA` Cookie 也在、**没有任何 Cookie 被拦** —�
 
 **分三层，别写乱**：
 
-1. **通用引擎** `app/src/main/kotlin/com/yunx/app/data/upload/`
+1. **通用引擎** `app/src/main/kotlin/com/sluice/app/data/upload/`
    - `UploadSource.kt`：SAF uri → 文件名/大小/MIME + `open(start, end)` 区间流
      （优先 `openFileDescriptor` + `FileChannel.position`，不能 seek 的 Provider 退回「重开流 + skip」）；
    - `UploadIo.kt`：定长请求体（裸分片 / multipart）、流式哈希、进度、取消、
      **OSS V1 分片**（`ossMultipart`）与 **S3 V4 分片**（`s3Multipart`）；
    - `UploadSigning.kt`：纯函数（hex / Base64 / HMAC / OSS V1 签名 / 迅雷 gcid / XML 合并报文），
-     单测在 `app/src/test/kotlin/com/yunx/app/data/upload/UploadSigningTest.kt`；
+     单测在 `app/src/test/kotlin/com/sluice/app/data/upload/UploadSigningTest.kt`；
    - `UploadRunner.kt`：一批文件串行上传的状态机（节流 120ms 上报进度、取消、收尾回调）。
 2. **每家协议**：`XxxApi.upload(io, file, 目录标识, 凭据…)`
    （夸克/UC 共用 `data/network/QuarkUpload.kt`，两家只有域名与 `pr` 不同）。
@@ -2341,7 +2341,7 @@ private const val STAGGER_CAP = 8; STAGGER_MS = 25L  // 错峰建连，平摊 TC
 
 ### 5.3.1 慢连接抢占（治「收尾塌到 KB 级」，**不要删**）
 
-网盘 CDN 是**按连接**限速的，且个别连接会落在慢节点上。真机日志（70.6MB 文件，当时 `YunX-DL` 的诊断输出，日志已删）实测：
+网盘 CDN 是**按连接**限速的，且个别连接会落在慢节点上。真机日志（70.6MB 文件，当时 `Sluice-DL` 的诊断输出，日志已删）实测：
 
 ```
 runTask 诊断: id=16 在飞=1 used=1/64 剩主池片=0 总速=3.2 KB/s 已下=70.6MB/70.6MB 剩余=25.0KB
@@ -2388,7 +2388,7 @@ private const val PREEMPT_ENDGAME_MIN_AGE_MS = 3_000L
 跨会话改线程数或服务器探测大小变化会使旧 `part_i` 区间错位 → 检测到签名不一致时**整目录清空重下**。改动分片规划算法会让所有用户的现存断点失效，需在 PR 里说明。
 
 分片缓存目录：`context.externalCacheDir/download_tmp/{taskId}/`
-（即 `/storage/emulated/0/Android/data/com.yunx.app/cache/download_tmp/{id}`）
+（即 `/storage/emulated/0/Android/data/com.sluice.app/cache/download_tmp/{id}`）
 
 ### 5.5 进度落盘必须节流（ANR 历史）
 

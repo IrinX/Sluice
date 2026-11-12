@@ -1,5 +1,5 @@
 <!--
-    YunX (云析) - A network drive share-link parser and high-speed downloader for Android.
+    Sluice (Sluice) - A network drive share-link parser and high-speed downloader for Android.
     Copyright (C) 2026 CYQawa
 
     This program is free software: you can redistribute it and/or modify
@@ -191,8 +191,8 @@
     <string name="rs_save">Enregistrer</string>
 
     <!-- Onboarding -->
-    <string name="rs_app_name">YunX</string>
-    <string name="rs_app_icon_desc">Icône YunX</string>
+    <string name="rs_app_name">Sluice</string>
+    <string name="rs_app_icon_desc">Icône Sluice</string>
     <string name="rs_onboarding_tagline">Analyse de liens Drive et vidéo · Aperçu en ligne · Téléchargements rapides</string>
     <string name="rs_fact_drives">10 drives</string>
     <string name="rs_fact_video_platforms">7 plateformes vidéo</string>
@@ -200,7 +200,7 @@
     <string name="rs_fact_free">Entièrement gratuit</string>
     <string name="rs_open_source_repo">Dépôt open source</string>
     <string name="rs_read_before_use">À lire avant utilisation</string>
-    <string name="rs_terms_intro">YunX est un outil open source. Les conditions et la clause de non-responsabilité sont ci-dessous.</string>
+    <string name="rs_terms_intro">Sluice est un outil open source. Les conditions et la clause de non-responsabilité sont ci-dessous.</string>
     <string name="rs_terms_title">Conditions d\'utilisation</string>
     <string name="rs_terms_1">Cette application est un outil open source d\'analyse et de téléchargement de liens de partage de drives, destiné uniquement à l\'étude personnelle et aux échanges techniques. Ne l\'utilisez à aucune fin commerciale.</string>
     <string name="rs_terms_2">Respectez les conditions d\'utilisation des drives que vous utilisez ainsi que les lois locales. N\'utilisez pas cette application pour télécharger ou diffuser des contenus contrefaisants ou illégaux.</string>
@@ -218,15 +218,15 @@
 
     <!-- Préparation des autorisations -->
     <string name="rs_permissions_title">Préparation des autorisations</string>
-    <string name="rs_permissions_intro_required">YunX n\'utilise que les autorisations système ci-dessous. L\'autorisation de stockage est requise pour enregistrer des fichiers sous Android 9 et antérieur ; les deux autres peuvent être ignorées et modifiées plus tard dans les Réglages.</string>
-    <string name="rs_permissions_intro_optional">YunX n\'utilise que les autorisations système ci-dessous. Elles peuvent toutes être ignorées et modifiées plus tard dans les Réglages.</string>
+    <string name="rs_permissions_intro_required">Sluice n\'utilise que les autorisations système ci-dessous. L\'autorisation de stockage est requise pour enregistrer des fichiers sous Android 9 et antérieur ; les deux autres peuvent être ignorées et modifiées plus tard dans les Réglages.</string>
+    <string name="rs_permissions_intro_optional">Sluice n\'utilise que les autorisations système ci-dessous. Elles peuvent toutes être ignorées et modifiées plus tard dans les Réglages.</string>
     <string name="rs_perm_notification_title">Autorisation de notification</string>
     <string name="rs_perm_notification_desc">La progression et les notifications de fin de téléchargement s\'affichent dans la barre de notifications, et le service de premier plan fonctionne plus stablement. Si elle est désactivée, les téléchargements continuent mais la progression n\'est plus visible.</string>
     <string name="rs_perm_granted">Activée</string>
     <string name="rs_perm_grant">Autoriser</string>
     <string name="rs_perm_go_settings">Ouvrir les réglages</string>
     <string name="rs_perm_background_title">Exécution en arrière-plan</string>
-    <string name="rs_perm_background_desc">Ajoutez YunX à la liste des applications exemptées d\'optimisation de la batterie pour que les téléchargements ne soient pas gelés lorsque l\'écran est verrouillé ou l\'application en arrière-plan (recommandé).</string>
+    <string name="rs_perm_background_desc">Ajoutez Sluice à la liste des applications exemptées d\'optimisation de la batterie pour que les téléchargements ne soient pas gelés lorsque l\'écran est verrouillé ou l\'application en arrière-plan (recommandé).</string>
     <string name="rs_perm_whitelisted">Liste blanche</string>
     <string name="rs_perm_storage_title">Autorisation de stockage</string>
     <string name="rs_perm_storage_desc_required">L\'enregistrement de fichiers dans le dossier Téléchargements du système nécessite l\'autorisation de stockage ; sous Android 9 et antérieur, elle est obligatoire.</string>

@@ -16,8 +16,8 @@
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
--keepnames class com.yunx.app.ui.login.XunleiVerifyWebViewScreen*
--keepnames class com.yunx.app.ui.login.XunleiLoginScreen*
+-keepnames class com.sluice.app.ui.login.XunleiVerifyWebViewScreen*
+-keepnames class com.sluice.app.ui.login.XunleiLoginScreen*
 
 # Gopeed（gomobile 桥接）：libgojni.so 内部用 FindClass 按「类名 + 方法名」反查这些类
 # （go/Seq、go/Universe$proxyerror、com/gopeed/libgopeed/*），R8 改名或裁剪会让 .so
@@ -44,9 +44,9 @@
 -dontwarn com.mikepenz.**
 
 # 反注入自检依赖入口类名（entryMismatch），显式保留
--keepnames class com.yunx.app.YunXApp
--keepnames class com.yunx.app.MainActivity
--keepnames class com.yunx.app.MainActivityIcon2
+-keepnames class com.sluice.app.SluiceApp
+-keepnames class com.sluice.app.MainActivity
+-keepnames class com.sluice.app.MainActivityIcon2
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.

@@ -1,5 +1,5 @@
 <!--
-    YunX (云析) - 繁體中文（zh-Hant）
+    Sluice (開閘) - 繁體中文（zh-Hant）
     ★ 僅供資源覆蓋，無需重複授權頭。i18n 批次 G8（前綴 vm_）。
 -->
 <resources>
@@ -38,7 +38,7 @@
     <string name="vm_link_target_guangya">光鴨雲盤</string>
     <string name="vm_link_target_lanzou">藍奏雲 / 優享版</string>
     <string name="vm_link_target_magnet">磁力連結</string>
-    <string name="vm_link_target_yunx">yunx:// 自有協議</string>
+    <string name="vm_link_target_yunx">sluice:// 自有協議</string>
     <string name="vm_link_target_share">分享選單</string>
     <string name="vm_link_target_process_text">選取文字解析</string>
     <string name="vm_link_target_share_sample">其它 App「分享 → 雲析」</string>
@@ -105,12 +105,12 @@
     <!-- 關於 -->
     <string name="vm_about_title">關於雲析</string>
     <string name="vm_about_intro_title">應用程式簡介</string>
-    <string name="vm_about_intro_desc">雲析（YunX）是一款網盤 / 影片分享連結解析與高速下載工具。貼上連結即可：網盤分享能瀏覽內容並高速下載，影片連結能解析出直連與原圖，圖片 / 影片 / 音訊都支援線上預覽播放。</string>
+    <string name="vm_about_intro_desc">雲析（Sluice）是一款網盤 / 影片分享連結解析與高速下載工具。貼上連結即可：網盤分享能瀏覽內容並高速下載，影片連結能解析出直連與原圖，圖片 / 影片 / 音訊都支援線上預覽播放。</string>
     <string name="vm_about_license">本專案基於 GNU AGPL-3.0 協議開源</string>
     <string name="vm_about_version_footer">雲析 v%1$s · Made with ❤ and deepseek</string>
     <string name="vm_about_icon">雲析圖示</string>
     <string name="vm_about_app_name">雲析</string>
-    <string name="vm_about_version_name">YunX · v%1$s (%2$d)</string>
+    <string name="vm_about_version_name">Sluice · v%1$s (%2$d)</string>
     <string name="vm_about_tagline">網盤 / 影片連結解析與高速下載</string>
     <string name="vm_about_supported_platforms">支援平台</string>
     <string name="vm_about_drives">網盤</string>

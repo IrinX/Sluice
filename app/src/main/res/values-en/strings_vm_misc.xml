@@ -1,5 +1,5 @@
 <!--
-    YunX - English (en)
+    Sluice - English (en)
     Generated for i18n batch G8 (prefix vm_).
 -->
 <resources>
@@ -38,20 +38,20 @@
     <string name="vm_link_target_guangya">Guangya Drive</string>
     <string name="vm_link_target_lanzou">Lanzou Cloud / Premium</string>
     <string name="vm_link_target_magnet">Magnet link</string>
-    <string name="vm_link_target_yunx">yunx:// custom scheme</string>
+    <string name="vm_link_target_yunx">sluice:// custom scheme</string>
     <string name="vm_link_target_share">Share menu</string>
     <string name="vm_link_target_process_text">Selected text parsing</string>
-    <string name="vm_link_target_share_sample">Other apps: Share → YunX</string>
-    <string name="vm_link_target_process_text_sample">Long-press selected text → Parse with YunX</string>
+    <string name="vm_link_target_share_sample">Other apps: Share → Sluice</string>
+    <string name="vm_link_target_process_text_sample">Long-press selected text → Parse with Sluice</string>
 
     <!-- Link handling -->
     <string name="vm_link_open_title">Link handling</string>
-    <string name="vm_link_open_intro">Tap a drive share link in a browser or another app and the system will ask which app to use — pick \"YunX\" and check \"Always\", then links will open here for parsing.</string>
-    <string name="vm_link_open_verified_zero">The \"Verified links\" entry in system settings will always stay at 0: verification requires hosting this app\'s verification file (assetlinks.json) on every drive domain\'s server, and none of those domains belong to this project, so a third-party app cannot do it (enabling automatic verification may even make YunX disappear from the chooser entirely).</string>
-    <string name="vm_link_open_manual_associate">The official workaround for third-party apps that cannot verify domains is to associate domains manually: in the system\'s \"Default opening → Open supported links\", check the drive domains for YunX. It works the same as verification (no more chooser), but is recorded under \"Links to open in this app\".</string>
+    <string name="vm_link_open_intro">Tap a drive share link in a browser or another app and the system will ask which app to use — pick \"Sluice\" and check \"Always\", then links will open here for parsing.</string>
+    <string name="vm_link_open_verified_zero">The \"Verified links\" entry in system settings will always stay at 0: verification requires hosting this app\'s verification file (assetlinks.json) on every drive domain\'s server, and none of those domains belong to this project, so a third-party app cannot do it (enabling automatic verification may even make Sluice disappear from the chooser entirely).</string>
+    <string name="vm_link_open_manual_associate">The official workaround for third-party apps that cannot verify domains is to associate domains manually: in the system\'s \"Default opening → Open supported links\", check the drive domains for Sluice. It works the same as verification (no more chooser), but is recorded under \"Links to open in this app\".</string>
     <string name="vm_link_open_disable_hint">Turning an item off = stop handling that kind of link (the system will hand it back to the browser or the drive\'s official app); changes take effect immediately, no restart needed.</string>
     <string name="vm_link_open_open_settings">Associate domains in system settings</string>
-    <string name="vm_link_open_settings_desc">Open \"Default opening → Open supported links\" and check the drive domains you want YunX to handle</string>
+    <string name="vm_link_open_settings_desc">Open \"Default opening → Open supported links\" and check the drive domains you want Sluice to handle</string>
     <string name="vm_link_open_enabled_count">Enabled %1$d / %2$d</string>
     <string name="vm_link_open_enabled_toast">Now handling \"%1$s\" links</string>
     <string name="vm_link_open_disabled_toast">No longer handling \"%1$s\" links</string>
@@ -103,14 +103,14 @@
     <string name="vm_update_open_github_page">Open GitHub page</string>
 
     <!-- About -->
-    <string name="vm_about_title">About YunX</string>
+    <string name="vm_about_title">About Sluice</string>
     <string name="vm_about_intro_title">About the app</string>
-    <string name="vm_about_intro_desc">YunX is a tool for parsing drive / video share links and downloading them at high speed. Paste a link: drive shares can be browsed and downloaded fast; video links are resolved into direct links and original images; images / videos / audio can all be previewed and played online.</string>
+    <string name="vm_about_intro_desc">Sluice is a tool for parsing drive / video share links and downloading them at high speed. Paste a link: drive shares can be browsed and downloaded fast; video links are resolved into direct links and original images; images / videos / audio can all be previewed and played online.</string>
     <string name="vm_about_license">This project is open source under GNU AGPL-3.0</string>
-    <string name="vm_about_version_footer">YunX v%1$s · Made with ❤ and deepseek</string>
-    <string name="vm_about_icon">YunX icon</string>
-    <string name="vm_about_app_name">YunX</string>
-    <string name="vm_about_version_name">YunX · v%1$s (%2$d)</string>
+    <string name="vm_about_version_footer">Sluice v%1$s · Made with ❤ and deepseek</string>
+    <string name="vm_about_icon">Sluice icon</string>
+    <string name="vm_about_app_name">Sluice</string>
+    <string name="vm_about_version_name">Sluice · v%1$s (%2$d)</string>
     <string name="vm_about_tagline">Drive / video link parsing and high-speed downloads</string>
     <string name="vm_about_supported_platforms">Supported platforms</string>
     <string name="vm_about_drives">Drives</string>

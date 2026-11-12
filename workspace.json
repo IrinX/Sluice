@@ -1,7 +1,7 @@
 {
   "modules": [
     {
-      "name": "YunX",
+      "name": "Sluice",
       "type": "JAVA_MODULE",
       "contentRoots": [
         {
@@ -2184,8 +2184,8 @@
   ],
   "kotlinSettings": [
     {
-      "name": "YunX",
-      "module": "YunX",
+      "name": "Sluice",
+      "module": "Sluice",
       "useProjectSettings": false,
       "sourceRoots": [],
       "configFileItems": [],
@@ -2242,7 +2242,7 @@
   ],
   "javaSettings": [
     {
-      "module": "YunX",
+      "module": "Sluice",
       "inheritedCompilerOutput": false,
       "excludeOutput": false,
       "compilerOutput": null,

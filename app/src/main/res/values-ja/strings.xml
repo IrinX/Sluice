@@ -1,8 +1,8 @@
 <!--
-    YunX - 日本語 (ja)
+    Sluice - 日本語 (ja)
 -->
 <resources>
-    <string name="process_text_action">YunX で解析</string>
+    <string name="process_text_action">Sluice で解析</string>
 
     <string name="language_follow_system">システムに従う</string>
     <string name="language_zh_hans">简体中文</string>
@@ -85,7 +85,7 @@
     <string name="section_link_open">リンク起動</string>
     <string name="settings_link_open">ストレージのリンクをワンタップで開く</string>
     <string name="section_about">このアプリについて</string>
-    <string name="settings_about_app">YunX について</string>
+    <string name="settings_about_app">Sluice について</string>
     <string name="settings_github_repo">GitHub リポジトリ</string>
 
     <!-- ================= 二次設定ページ ================= -->
@@ -122,7 +122,7 @@
     <string name="settings_export_log_desc">クラッシュログとアプリ情報を書き出し、問題の診断に役立てます</string>
     <string name="settings_export_auth_desc">8 文字以上のパスワードでストレージと動画サイトの Cookie/JWT を暗号化して書き出します</string>
     <string name="settings_import_auth_desc">暗号化または平文の認証バックアップを選び、ストレージと動画サイトのログインを復元します</string>
-    <string name="settings_link_open_desc">共有リンクを直接開いて解析（YunX へ共有も可）。プラットフォームごとに切り替えできます</string>
+    <string name="settings_link_open_desc">共有リンクを直接開いて解析（Sluice へ共有も可）。プラットフォームごとに切り替えできます</string>
     <string name="settings_about_app_desc">バージョン情報、対応プラットフォーム、技術説明</string>
     <string name="settings_github_repo_desc">%1$s · ソースコードと不具合報告</string>
 
@@ -155,7 +155,7 @@
     <string name="option_retry_never">再試行しない</string>
     <string name="option_retry_times">失敗時に最大 %1$d 回再試行</string>
     <string name="dialog_battery_title">バックグラウンドでダウンロードを継続</string>
-    <string name="dialog_battery_message">画面オフでもダウンロードを継続するには、YunX をバッテリー最適化の対象外に追加することをおすすめします。システム設定を開きますか？</string>
+    <string name="dialog_battery_message">画面オフでもダウンロードを継続するには、Sluice をバッテリー最適化の対象外に追加することをおすすめします。システム設定を開きますか？</string>
     <string name="action_go_settings">設定を開く</string>
     <string name="action_not_now">後で</string>
     <string name="dialog_mirror_title">GitHub ダウンロードミラー</string>
@@ -170,7 +170,7 @@
     <string name="dialog_proxy_port">プロキシポート（例：7890）</string>
     <string name="dialog_proxy_hint">プロキシは GitHub など海外リソースの高速化に使われます。無効時はすべて直接接続します。</string>
     <string name="dialog_engine_dir_title">Gopeed のダウンロード先を指定</string>
-    <string name="dialog_engine_dir_message">Gopeed は実際のファイルパスにしか保存できず、システムのファイル選択で得たフォルダは使えません。絶対パスを入力してください（例：%1$s/YunX）。</string>
+    <string name="dialog_engine_dir_message">Gopeed は実際のファイルパスにしか保存できず、システムのファイル選択で得たフォルダは使えません。絶対パスを入力してください（例：%1$s/Sluice）。</string>
     <string name="dialog_engine_dir_label">フォルダパス</string>
     <string name="dialog_log_title">ログを書き出す</string>
     <string name="dialog_log_choose">ログの書き出し方法を選択：</string>
@@ -266,4 +266,5 @@
     <string name="snack_proxy_port_invalid">プロキシポートは 1〜65535 の数値で入力してください</string>
     <string name="snack_proxy_enabled">プロキシを有効にしました：%1$s</string>
     <string name="snack_proxy_disabled">プロキシを無効にし、直接接続に戻しました</string>
+    <string name="app_name">Sluice</string>
 </resources>

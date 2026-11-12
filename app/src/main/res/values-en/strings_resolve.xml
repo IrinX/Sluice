@@ -1,5 +1,5 @@
 <!--
-    YunX (云析) - A network drive share-link parser and high-speed downloader for Android.
+    Sluice (Sluice) - A network drive share-link parser and high-speed downloader for Android.
     Copyright (C) 2026 CYQawa
 
     This program is free software: you can redistribute it and/or modify
@@ -191,8 +191,8 @@
     <string name="rs_save">Save</string>
 
     <!-- Onboarding -->
-    <string name="rs_app_name">YunX</string>
-    <string name="rs_app_icon_desc">YunX icon</string>
+    <string name="rs_app_name">Sluice</string>
+    <string name="rs_app_icon_desc">Sluice icon</string>
     <string name="rs_onboarding_tagline">Drive &amp; video link parsing · Online preview · High-speed downloads</string>
     <string name="rs_fact_drives">10+ drives</string>
     <string name="rs_fact_video_platforms">7 video platforms</string>
@@ -200,7 +200,7 @@
     <string name="rs_fact_free">Completely free</string>
     <string name="rs_open_source_repo">Open-source repository</string>
     <string name="rs_read_before_use">Please read before use</string>
-    <string name="rs_terms_intro">YunX is an open-source tool. The terms and disclaimer are below.</string>
+    <string name="rs_terms_intro">Sluice is an open-source tool. The terms and disclaimer are below.</string>
     <string name="rs_terms_title">User agreement</string>
     <string name="rs_terms_1">This app is an open-source drive share-link parsing and download tool for personal study and technical exchange only. Do not use it for any commercial purpose.</string>
     <string name="rs_terms_2">Please comply with the terms of service of the drives you use and with local laws. Do not use this app to download or distribute infringing or illegal content.</string>
@@ -218,15 +218,15 @@
 
     <!-- Permission preparation -->
     <string name="rs_permissions_title">Permission setup</string>
-    <string name="rs_permissions_intro_required">YunX only needs the system permissions below. Storage permission is required to save files on Android 9 and below; the other two can be skipped and changed later in Settings.</string>
-    <string name="rs_permissions_intro_optional">YunX only needs the system permissions below. All of them can be skipped and changed later in Settings.</string>
+    <string name="rs_permissions_intro_required">Sluice only needs the system permissions below. Storage permission is required to save files on Android 9 and below; the other two can be skipped and changed later in Settings.</string>
+    <string name="rs_permissions_intro_optional">Sluice only needs the system permissions below. All of them can be skipped and changed later in Settings.</string>
     <string name="rs_perm_notification_title">Notification permission</string>
     <string name="rs_perm_notification_desc">Download progress and completion reminders appear in the notification bar, and the foreground service runs more reliably. If disabled, downloads still work but progress is not visible.</string>
     <string name="rs_perm_granted">Enabled</string>
     <string name="rs_perm_grant">Grant</string>
     <string name="rs_perm_go_settings">Open settings</string>
     <string name="rs_perm_background_title">Background running</string>
-    <string name="rs_perm_background_desc">Add YunX to the battery optimization ignore list so downloads are not frozen when the screen is locked or the app is in the background (recommended).</string>
+    <string name="rs_perm_background_desc">Add Sluice to the battery optimization ignore list so downloads are not frozen when the screen is locked or the app is in the background (recommended).</string>
     <string name="rs_perm_whitelisted">Whitelisted</string>
     <string name="rs_perm_storage_title">Storage permission</string>
     <string name="rs_perm_storage_desc_required">Saving files to the system Downloads folder requires storage permission; on Android 9 and below it is mandatory.</string>

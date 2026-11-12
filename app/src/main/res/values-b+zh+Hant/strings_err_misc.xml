@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    YunX (云析) - A network drive share-link parser and high-speed downloader for Android.
+    Sluice (開閘) - A network drive share-link parser and high-speed downloader for Android.
     Copyright (C) 2026 CYQawa
 
     This program is free software: you can redistribute it and/or modify
@@ -209,7 +209,7 @@
     <string name="em_credential_legacy_key_missing">舊加密金鑰已不存在，無法解密歷史憑證</string>
 
     <!-- 日誌匯出 -->
-    <string name="em_log_export_title">雲析（YunX）日誌匯出\n</string>
+    <string name="em_log_export_title">雲析（Sluice）日誌匯出\n</string>
     <string name="em_log_export_time">匯出時間：%1$s\n</string>
     <string name="em_log_app_version">應用程式版本：%1$s（%2$d）\n</string>
     <string name="em_log_device">裝置：%1$s %2$s\n</string>

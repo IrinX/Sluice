@@ -1,6 +1,6 @@
 <!--
-    YunX - 日本語 (ja)
-    アプリ名は YunX のまま表記します。i18n バッチ G8（接頭辞 vm_）。
+    Sluice - 日本語 (ja)
+    アプリ名は Sluice のまま表記します。i18n バッチ G8（接頭辞 vm_）。
 -->
 <resources>
     <!-- 共通 -->
@@ -38,20 +38,20 @@
     <string name="vm_link_target_guangya">光鴨ドライブ</string>
     <string name="vm_link_target_lanzou">藍奏雲 / プレミアム</string>
     <string name="vm_link_target_magnet">マグネットリンク</string>
-    <string name="vm_link_target_yunx">yunx:// 独自スキーム</string>
+    <string name="vm_link_target_yunx">sluice:// 独自スキーム</string>
     <string name="vm_link_target_share">共有メニュー</string>
     <string name="vm_link_target_process_text">選択テキストの解析</string>
-    <string name="vm_link_target_share_sample">他のアプリ「共有 → YunX」</string>
-    <string name="vm_link_target_process_text_sample">テキストを長押し →「YunX で解析」</string>
+    <string name="vm_link_target_share_sample">他のアプリ「共有 → Sluice」</string>
+    <string name="vm_link_target_process_text_sample">テキストを長押し →「Sluice で解析」</string>
 
     <!-- リンク起動 -->
     <string name="vm_link_open_title">リンク起動</string>
-    <string name="vm_link_open_intro">ブラウザや他のアプリでドライブの共有リンクをタップすると、使用するアプリを尋ねられます。「YunX」を選んで「常に」にチェックすると、以降はリンクをタップするだけで解析画面が開きます。</string>
-    <string name="vm_link_open_verified_zero">システム設定の「確認済みのリンク」は常に 0 のままです。確認には各ドライブのドメインのサーバーに本アプリの確認ファイル（assetlinks.json）を置く必要がありますが、これらのドメインは本プロジェクトのものではないため、サードパーティ製アプリでは実現できません（自動確認を有効にすると、かえって YunX が選択画面から完全に消えることがあります）。</string>
-    <string name="vm_link_open_manual_associate">ドメインを確認できないサードパーティ製アプリについて公式が示す方法は、ドメインを手動で関連付けることです。システムの「デフォルトで開く → サポートされているリンクを開く」でドライブのドメインに YunX をチェックしてください。確認と同等に動作し（選択画面は表示されません）、「このアプリで開くリンク」に記録されるだけです。</string>
+    <string name="vm_link_open_intro">ブラウザや他のアプリでドライブの共有リンクをタップすると、使用するアプリを尋ねられます。「Sluice」を選んで「常に」にチェックすると、以降はリンクをタップするだけで解析画面が開きます。</string>
+    <string name="vm_link_open_verified_zero">システム設定の「確認済みのリンク」は常に 0 のままです。確認には各ドライブのドメインのサーバーに本アプリの確認ファイル（assetlinks.json）を置く必要がありますが、これらのドメインは本プロジェクトのものではないため、サードパーティ製アプリでは実現できません（自動確認を有効にすると、かえって Sluice が選択画面から完全に消えることがあります）。</string>
+    <string name="vm_link_open_manual_associate">ドメインを確認できないサードパーティ製アプリについて公式が示す方法は、ドメインを手動で関連付けることです。システムの「デフォルトで開く → サポートされているリンクを開く」でドライブのドメインに Sluice をチェックしてください。確認と同等に動作し（選択画面は表示されません）、「このアプリで開くリンク」に記録されるだけです。</string>
     <string name="vm_link_open_disable_hint">項目をオフにすると、その種類のリンクを処理しなくなります（システムがブラウザやドライブ公式アプリに戻します）。変更はすぐに反映され、再起動は不要です。</string>
     <string name="vm_link_open_open_settings">システム設定でドメインを関連付ける</string>
-    <string name="vm_link_open_settings_desc">「デフォルトで開く → サポートされているリンクを開く」を開き、YunX に処理させたいドライブのドメインをチェックしてください</string>
+    <string name="vm_link_open_settings_desc">「デフォルトで開く → サポートされているリンクを開く」を開き、Sluice に処理させたいドライブのドメインをチェックしてください</string>
     <string name="vm_link_open_enabled_count">有効 %1$d / %2$d</string>
     <string name="vm_link_open_enabled_toast">「%1$s」のリンクを引き受けました</string>
     <string name="vm_link_open_disabled_toast">「%1$s」のリンクを手放しました</string>
@@ -103,14 +103,14 @@
     <string name="vm_update_open_github_page">GitHub ページを開く</string>
 
     <!-- アプリについて -->
-    <string name="vm_about_title">YunX について</string>
+    <string name="vm_about_title">Sluice について</string>
     <string name="vm_about_intro_title">アプリの概要</string>
-    <string name="vm_about_intro_desc">YunX はドライブ / 動画の共有リンクを解析して高速ダウンロードするツールです。リンクを貼り付けるだけで、ドライブ共有は内容を閲覧して高速ダウンロードでき、動画リンクは直リンクと元画像を解析できます。画像 / 動画 / 音声はすべてオンラインプレビュー・再生に対応しています。</string>
+    <string name="vm_about_intro_desc">Sluice はドライブ / 動画の共有リンクを解析して高速ダウンロードするツールです。リンクを貼り付けるだけで、ドライブ共有は内容を閲覧して高速ダウンロードでき、動画リンクは直リンクと元画像を解析できます。画像 / 動画 / 音声はすべてオンラインプレビュー・再生に対応しています。</string>
     <string name="vm_about_license">本プロジェクトは GNU AGPL-3.0 ライセンスで公開されています</string>
-    <string name="vm_about_version_footer">YunX v%1$s · Made with ❤ and deepseek</string>
-    <string name="vm_about_icon">YunX アイコン</string>
-    <string name="vm_about_app_name">YunX</string>
-    <string name="vm_about_version_name">YunX · v%1$s (%2$d)</string>
+    <string name="vm_about_version_footer">Sluice v%1$s · Made with ❤ and deepseek</string>
+    <string name="vm_about_icon">Sluice アイコン</string>
+    <string name="vm_about_app_name">Sluice</string>
+    <string name="vm_about_version_name">Sluice · v%1$s (%2$d)</string>
     <string name="vm_about_tagline">ドライブ / 動画リンクの解析と高速ダウンロード</string>
     <string name="vm_about_supported_platforms">対応プラットフォーム</string>
     <string name="vm_about_drives">ドライブ</string>

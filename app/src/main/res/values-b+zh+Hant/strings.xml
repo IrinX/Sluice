@@ -1,5 +1,5 @@
 <!--
-    YunX (云析) - 繁體中文（zh-Hant）
+    Sluice (開閘) - 繁體中文（zh-Hant）
     ★ 僅供資源覆蓋，無需重複授權頭。
 -->
 <resources>
@@ -171,7 +171,7 @@
     <string name="dialog_proxy_port">代理連接埠（如 7890）</string>
     <string name="dialog_proxy_hint">代理用於加速 GitHub 等海外資源；未啟用時所有請求直連。</string>
     <string name="dialog_engine_dir_title">自訂 Gopeed 下載目錄</string>
-    <string name="dialog_engine_dir_message">Gopeed 只能依真實檔案路徑落盤，讀不了系統檔案選擇器給的目錄。請填一個絕對路徑，例如 %1$s/YunX。</string>
+    <string name="dialog_engine_dir_message">Gopeed 只能依真實檔案路徑落盤，讀不了系統檔案選擇器給的目錄。請填一個絕對路徑，例如 %1$s/Sluice。</string>
     <string name="dialog_engine_dir_label">目錄路徑</string>
     <string name="dialog_log_title">匯出日誌</string>
     <string name="dialog_log_choose">選擇日誌匯出方式：</string>
@@ -267,4 +267,5 @@
     <string name="snack_proxy_port_invalid">代理連接埠需為 1-65535 之間的數字</string>
     <string name="snack_proxy_enabled">代理已啟用：%1$s</string>
     <string name="snack_proxy_disabled">已關閉代理，恢復直連</string>
+    <string name="app_name">開閘</string>
 </resources>

@@ -1,8 +1,8 @@
 <!--
-    YunX - English (en)
+    Sluice - English (en)
 -->
 <resources>
-    <string name="process_text_action">Parse with YunX</string>
+    <string name="process_text_action">Parse with Sluice</string>
 
     <string name="language_follow_system">Follow system</string>
     <string name="language_zh_hans">简体中文</string>
@@ -85,7 +85,7 @@
     <string name="section_link_open">Link handling</string>
     <string name="settings_link_open">Open drive links with one tap</string>
     <string name="section_about">About</string>
-    <string name="settings_about_app">About YunX</string>
+    <string name="settings_about_app">About Sluice</string>
     <string name="settings_github_repo">GitHub repository</string>
 
     <!-- ================= Secondary settings pages ================= -->
@@ -122,7 +122,7 @@
     <string name="settings_export_log_desc">Export crash logs and app info to help diagnose issues</string>
     <string name="settings_export_auth_desc">Encrypt drive and video-platform cookies/JWT with a password of at least 8 characters, then export</string>
     <string name="settings_import_auth_desc">Pick an encrypted or plain-text credential backup to restore drive and video-platform sign-ins</string>
-    <string name="settings_link_open_desc">Open share links directly for parsing (or share to YunX); toggle per platform</string>
+    <string name="settings_link_open_desc">Open share links directly for parsing (or share to Sluice); toggle per platform</string>
     <string name="settings_about_app_desc">Version info, supported platforms and technical notes</string>
     <string name="settings_github_repo_desc">%1$s · Source code and issue tracker</string>
 
@@ -155,7 +155,7 @@
     <string name="option_retry_never">Never retry</string>
     <string name="option_retry_times">Retry up to %1$d times after failure</string>
     <string name="dialog_battery_title">Keep downloading in the background</string>
-    <string name="dialog_battery_message">To keep downloads running with the screen off, add YunX to the battery-optimization allowlist. Go to system settings?</string>
+    <string name="dialog_battery_message">To keep downloads running with the screen off, add Sluice to the battery-optimization allowlist. Go to system settings?</string>
     <string name="action_go_settings">Open settings</string>
     <string name="action_not_now">Not now</string>
     <string name="dialog_mirror_title">GitHub download mirror</string>
@@ -170,7 +170,7 @@
     <string name="dialog_proxy_port">Proxy port (e.g. 7890)</string>
     <string name="dialog_proxy_hint">The proxy speeds up overseas resources such as GitHub; when disabled, all requests go direct.</string>
     <string name="dialog_engine_dir_title">Custom Gopeed download folder</string>
-    <string name="dialog_engine_dir_message">Gopeed can only write to real file paths and cannot use folders from the system file picker. Enter an absolute path, e.g. %1$s/YunX.</string>
+    <string name="dialog_engine_dir_message">Gopeed can only write to real file paths and cannot use folders from the system file picker. Enter an absolute path, e.g. %1$s/Sluice.</string>
     <string name="dialog_engine_dir_label">Folder path</string>
     <string name="dialog_log_title">Export logs</string>
     <string name="dialog_log_choose">Choose how to export logs:</string>
@@ -266,4 +266,5 @@
     <string name="snack_proxy_port_invalid">The proxy port must be a number between 1 and 65535</string>
     <string name="snack_proxy_enabled">Proxy enabled: %1$s</string>
     <string name="snack_proxy_disabled">Proxy disabled; direct connection restored</string>
+    <string name="app_name">Sluice</string>
 </resources>

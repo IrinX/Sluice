@@ -1,5 +1,5 @@
 <!--
-    YunX - Français (fr)
+    Sluice - Français (fr)
     ★ Android 字符串资源里撇号必须转义为 \'，否则 aapt2 会报错。
     Généré pour la série i18n G8 (préfixe vm_).
 -->
@@ -39,20 +39,20 @@
     <string name="vm_link_target_guangya">Guangya Drive</string>
     <string name="vm_link_target_lanzou">Lanzou Cloud / Premium</string>
     <string name="vm_link_target_magnet">Lien magnet</string>
-    <string name="vm_link_target_yunx">Schéma personnalisé yunx://</string>
+    <string name="vm_link_target_yunx">Schéma personnalisé sluice://</string>
     <string name="vm_link_target_share">Menu de partage</string>
     <string name="vm_link_target_process_text">Analyse du texte sélectionné</string>
-    <string name="vm_link_target_share_sample">Autres applis : Partager → YunX</string>
-    <string name="vm_link_target_process_text_sample">Appui long sur le texte → Analyser avec YunX</string>
+    <string name="vm_link_target_share_sample">Autres applis : Partager → Sluice</string>
+    <string name="vm_link_target_process_text_sample">Appui long sur le texte → Analyser avec Sluice</string>
 
     <!-- Ouverture des liens -->
     <string name="vm_link_open_title">Ouverture des liens</string>
-    <string name="vm_link_open_intro">Touchez un lien de partage de drive dans un navigateur ou une autre application : le système vous demandera quelle application utiliser. Choisissez « YunX » et cochez « Toujours », puis les liens s\'ouvriront directement ici pour l\'analyse.</string>
-    <string name="vm_link_open_verified_zero">L\'entrée « Liens vérifiés » dans les réglages système restera toujours à 0 : la vérification exige de placer le fichier de vérification de cette application (assetlinks.json) sur le serveur de chaque domaine de drive, et ces domaines n\'appartiennent pas à ce projet, ce qu\'une application tierce ne peut pas faire (activer la vérification automatique peut même faire disparaître YunX du sélecteur).</string>
-    <string name="vm_link_open_manual_associate">La méthode officielle pour les applications tierces qui ne peuvent pas vérifier de domaine est d\'associer les domaines manuellement : dans « Ouverture par défaut → Ouvrir les liens pris en charge » du système, cochez les domaines de drive pour YunX. Le résultat est identique à la vérification (plus de sélecteur), mais ils sont enregistrés dans « Liens à ouvrir dans cette application ».</string>
+    <string name="vm_link_open_intro">Touchez un lien de partage de drive dans un navigateur ou une autre application : le système vous demandera quelle application utiliser. Choisissez « Sluice » et cochez « Toujours », puis les liens s\'ouvriront directement ici pour l\'analyse.</string>
+    <string name="vm_link_open_verified_zero">L\'entrée « Liens vérifiés » dans les réglages système restera toujours à 0 : la vérification exige de placer le fichier de vérification de cette application (assetlinks.json) sur le serveur de chaque domaine de drive, et ces domaines n\'appartiennent pas à ce projet, ce qu\'une application tierce ne peut pas faire (activer la vérification automatique peut même faire disparaître Sluice du sélecteur).</string>
+    <string name="vm_link_open_manual_associate">La méthode officielle pour les applications tierces qui ne peuvent pas vérifier de domaine est d\'associer les domaines manuellement : dans « Ouverture par défaut → Ouvrir les liens pris en charge » du système, cochez les domaines de drive pour Sluice. Le résultat est identique à la vérification (plus de sélecteur), mais ils sont enregistrés dans « Liens à ouvrir dans cette application ».</string>
     <string name="vm_link_open_disable_hint">Désactiver un élément = ne plus prendre en charge ce type de lien (le système le rendra au navigateur ou à l\'application officielle du drive) ; les modifications prennent effet immédiatement, sans redémarrage.</string>
     <string name="vm_link_open_open_settings">Associer les domaines dans les réglages système</string>
-    <string name="vm_link_open_settings_desc">Ouvrez « Ouverture par défaut → Ouvrir les liens pris en charge » et cochez pour YunX les domaines de drive à prendre en charge</string>
+    <string name="vm_link_open_settings_desc">Ouvrez « Ouverture par défaut → Ouvrir les liens pris en charge » et cochez pour Sluice les domaines de drive à prendre en charge</string>
     <string name="vm_link_open_enabled_count">Activés %1$d / %2$d</string>
     <string name="vm_link_open_enabled_toast">Les liens « %1$s » sont désormais pris en charge</string>
     <string name="vm_link_open_disabled_toast">Les liens « %1$s » ne sont plus pris en charge</string>
@@ -104,14 +104,14 @@
     <string name="vm_update_open_github_page">Ouvrir la page GitHub</string>
 
     <!-- À propos -->
-    <string name="vm_about_title">À propos de YunX</string>
+    <string name="vm_about_title">À propos de Sluice</string>
     <string name="vm_about_intro_title">À propos de l\'application</string>
-    <string name="vm_about_intro_desc">YunX est un outil d\'analyse et de téléchargement rapide de liens de partage de drives / vidéos. Collez un lien : les partages de drive peuvent être parcourus et téléchargés rapidement, les liens vidéo sont analysés en liens directs et images originales, et les images / vidéos / audios peuvent être prévisualisés et lus en ligne.</string>
+    <string name="vm_about_intro_desc">Sluice est un outil d\'analyse et de téléchargement rapide de liens de partage de drives / vidéos. Collez un lien : les partages de drive peuvent être parcourus et téléchargés rapidement, les liens vidéo sont analysés en liens directs et images originales, et les images / vidéos / audios peuvent être prévisualisés et lus en ligne.</string>
     <string name="vm_about_license">Ce projet est open source sous licence GNU AGPL-3.0</string>
-    <string name="vm_about_version_footer">YunX v%1$s · Made with ❤ and deepseek</string>
-    <string name="vm_about_icon">Icône YunX</string>
-    <string name="vm_about_app_name">YunX</string>
-    <string name="vm_about_version_name">YunX · v%1$s (%2$d)</string>
+    <string name="vm_about_version_footer">Sluice v%1$s · Made with ❤ and deepseek</string>
+    <string name="vm_about_icon">Icône Sluice</string>
+    <string name="vm_about_app_name">Sluice</string>
+    <string name="vm_about_version_name">Sluice · v%1$s (%2$d)</string>
     <string name="vm_about_tagline">Analyse de liens de drive / vidéo et téléchargements rapides</string>
     <string name="vm_about_supported_platforms">Plateformes prises en charge</string>
     <string name="vm_about_drives">Drives</string>

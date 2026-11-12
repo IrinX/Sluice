@@ -1,0 +1,59 @@
+/*
+ * YunX (云析) - A network drive share-link parser and high-speed downloader for Android.
+ * Copyright (C) 2026 CYQawa
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package com.sluice.app.util
+
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+
+/**
+ * 应用对外的仓库地址与代币创建页（引导页 / 设置页 / 关于页共用）。
+ *
+ * ★ 为什么要集中放：同一个仓库地址会在多个界面出现，就地写死的话改一处漏一处，
+ *   所以对外入口一律从这里取常量。
+ * ★ 新增对外入口（比如邮箱反馈）时，先往这里加常量，再到界面里引用。
+ */
+object AppLinks {
+    /** GitHub 仓库完整地址（点击用系统浏览器打开） */
+    const val GITHUB_REPO = "https://github.com/IrinX/YunX"
+
+    /** GitHub 仓库展示用短地址（去掉协议头，界面文字用；与 [GITHUB_REPO] 必须指向同一仓库） */
+    const val GITHUB_REPO_DISPLAY = "github.com/IrinX/YunX"
+
+    /**
+     * GitHub 个人访问令牌（classic）创建页，带 `scopes` 与 `description` 预填。
+     *
+     * ★ 为什么不用列表页 `https://github.com/settings/tokens`：登录后还要再点一次「Generate new token」，
+     *   手机上翻 GitHub 设置的成本比电脑高，直接把权限和备注填好省两步。
+     * ★ `scopes=public_repo` 必须与 Token 弹窗里「勾选 public_repo」那句话保持一致，
+     *   两边不一致会让人按文字去补勾权限。
+     */
+    const val GITHUB_TOKEN_PAGE = "https://github.com/settings/tokens/new?scopes=public_repo&description=YunX"
+
+    /**
+     * 用系统默认浏览器打开 [GITHUB_TOKEN_PAGE]；返回 false 表示这台设备上没有应用能处理 https。
+     *
+     * ★ 不做 `resolveActivity()` 预检：Android 11+ 包可见性会把「装了浏览器」
+     *   误判成「没装」，失败交给调用方退化成复制链接。
+     */
+    fun openGitHubTokenPage(context: Context): Boolean {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_TOKEN_PAGE))
+        return runCatching { context.startActivity(intent) }.isSuccess
+    }
+}

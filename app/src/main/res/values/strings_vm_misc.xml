@@ -38,20 +38,20 @@
     <string name="vm_link_target_guangya">光鸭云盘</string>
     <string name="vm_link_target_lanzou">蓝奏云 / 优享版</string>
     <string name="vm_link_target_magnet">磁力链接</string>
-    <string name="vm_link_target_yunx">yunx:// 自有协议</string>
+    <string name="vm_link_target_yunx">sluice:// 自有协议</string>
     <string name="vm_link_target_share">分享菜单</string>
     <string name="vm_link_target_process_text">选中文本解析</string>
-    <string name="vm_link_target_share_sample">其它 App「分享 → 云析」</string>
-    <string name="vm_link_target_process_text_sample">长按选中文字 →「用云析解析」</string>
+    <string name="vm_link_target_share_sample">其它 App「分享 → 开闸」</string>
+    <string name="vm_link_target_process_text_sample">长按选中文字 →「用开闸解析」</string>
 
     <!-- 链接唤起 -->
     <string name="vm_link_open_title">链接唤起</string>
-    <string name="vm_link_open_intro">在浏览器或其它 App 里点网盘分享链接，系统会问用哪个应用打开 —— 选「云析」并勾选「始终」，之后点链接就直接进来解析。</string>
-    <string name="vm_link_open_verified_zero">系统设置里那个「已验证的链接」会一直是 0：验证要求每个网盘域名的服务器上放置本应用的校验文件（assetlinks.json），而这些域名都不属于本项目，第三方 App 无法做到（开了自动验证反而可能让云析从选择器里彻底消失）。</string>
-    <string name="vm_link_open_manual_associate">官方对「无法验证域名的第三方 App」给出的做法是手动关联域名：在系统的「默认打开 → 打开支持的链接」里把网盘域名勾给云析，效果与验证相同（不再弹选择器），只是记在「要在此应用中打开的链接」里。</string>
+    <string name="vm_link_open_intro">在浏览器或其它 App 里点网盘分享链接，系统会问用哪个应用打开 —— 选「开闸」并勾选「始终」，之后点链接就直接进来解析。</string>
+    <string name="vm_link_open_verified_zero">系统设置里那个「已验证的链接」会一直是 0：验证要求每个网盘域名的服务器上放置本应用的校验文件（assetlinks.json），而这些域名都不属于本项目，第三方 App 无法做到（开了自动验证反而可能让开闸从选择器里彻底消失）。</string>
+    <string name="vm_link_open_manual_associate">官方对「无法验证域名的第三方 App」给出的做法是手动关联域名：在系统的「默认打开 → 打开支持的链接」里把网盘域名勾给开闸，效果与验证相同（不再弹选择器），只是记在「要在此应用中打开的链接」里。</string>
     <string name="vm_link_open_disable_hint">关掉某一项 = 不再接管那种链接（系统会重新交给浏览器或网盘官方 App）；改动立即生效，无需重启。</string>
     <string name="vm_link_open_open_settings">去系统设置关联域名</string>
-    <string name="vm_link_open_settings_desc">打开「默认打开 → 打开支持的链接」，把要接管的网盘域名勾给云析</string>
+    <string name="vm_link_open_settings_desc">打开「默认打开 → 打开支持的链接」，把要接管的网盘域名勾给开闸</string>
     <string name="vm_link_open_enabled_count">已启用 %1$d / %2$d</string>
     <string name="vm_link_open_enabled_toast">已接管「%1$s」的链接</string>
     <string name="vm_link_open_disabled_toast">已交出「%1$s」的链接</string>
@@ -103,14 +103,14 @@
     <string name="vm_update_open_github_page">打开 GitHub 页面</string>
 
     <!-- 关于 -->
-    <string name="vm_about_title">关于云析</string>
+    <string name="vm_about_title">关于开闸</string>
     <string name="vm_about_intro_title">应用简介</string>
-    <string name="vm_about_intro_desc">云析（YunX）是一款网盘 / 视频分享链接解析与高速下载工具。粘贴链接即可：网盘分享能浏览内容并高速下载，视频链接能解析出直链与原图，图片 / 视频 / 音频都支持在线预览播放。</string>
+    <string name="vm_about_intro_desc">开闸（Sluice）是一款网盘 / 视频分享链接解析与高速下载工具。粘贴链接即可：网盘分享能浏览内容并高速下载，视频链接能解析出直链与原图，图片 / 视频 / 音频都支持在线预览播放。</string>
     <string name="vm_about_license">本项目基于 GNU AGPL-3.0 协议开源</string>
-    <string name="vm_about_version_footer">云析 v%1$s · Made with ❤ and deepseek</string>
-    <string name="vm_about_icon">云析图标</string>
-    <string name="vm_about_app_name">云析</string>
-    <string name="vm_about_version_name">YunX · v%1$s (%2$d)</string>
+    <string name="vm_about_version_footer">开闸 v%1$s · Made with ❤ and deepseek</string>
+    <string name="vm_about_icon">开闸图标</string>
+    <string name="vm_about_app_name">开闸</string>
+    <string name="vm_about_version_name">Sluice · v%1$s (%2$d)</string>
     <string name="vm_about_tagline">网盘 / 视频链接解析与高速下载</string>
     <string name="vm_about_supported_platforms">支持平台</string>
     <string name="vm_about_drives">网盘</string>

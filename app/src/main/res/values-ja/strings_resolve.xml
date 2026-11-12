@@ -1,5 +1,5 @@
 <!--
-    YunX (云析) - A network drive share-link parser and high-speed downloader for Android.
+    Sluice (Sluice) - A network drive share-link parser and high-speed downloader for Android.
     Copyright (C) 2026 CYQawa
 
     This program is free software: you can redistribute it and/or modify
@@ -191,8 +191,8 @@
     <string name="rs_save">保存</string>
 
     <!-- オンボーディング -->
-    <string name="rs_app_name">YunX</string>
-    <string name="rs_app_icon_desc">YunX アイコン</string>
+    <string name="rs_app_name">Sluice</string>
+    <string name="rs_app_icon_desc">Sluice アイコン</string>
     <string name="rs_onboarding_tagline">ドライブ＆動画リンク解析 · オンラインプレビュー · 高速ダウンロード</string>
     <string name="rs_fact_drives">10 大ドライブ</string>
     <string name="rs_fact_video_platforms">7 大動画プラットフォーム</string>
@@ -200,7 +200,7 @@
     <string name="rs_fact_free">完全無料</string>
     <string name="rs_open_source_repo">オープンソースリポジトリ</string>
     <string name="rs_read_before_use">ご利用前にお読みください</string>
-    <string name="rs_terms_intro">YunX はオープンソースツールです。以下は利用規約と免責事項です</string>
+    <string name="rs_terms_intro">Sluice はオープンソースツールです。以下は利用規約と免責事項です</string>
     <string name="rs_terms_title">利用規約</string>
     <string name="rs_terms_1">本アプリはオープンソースのドライブ共有リンク解析・ダウンロードツールで、個人の学習・技術交流のみを目的としています。商業目的では使用しないでください。</string>
     <string name="rs_terms_2">利用するドライブの利用規約および現地の法令を遵守してください。本アプリを使用して権利侵害や違法なコンテンツをダウンロード・配布してはなりません。</string>
@@ -218,15 +218,15 @@
 
     <!-- 権限の準備 -->
     <string name="rs_permissions_title">権限の準備</string>
-    <string name="rs_permissions_intro_required">YunX は以下のシステム権限のみを使用します。ストレージ権限は Android 9 以下でファイルを保存するために必須です。残りの 2 つはスキップでき、後で「設定」から変更できます</string>
-    <string name="rs_permissions_intro_optional">YunX は以下のシステム権限のみを使用します。すべてスキップでき、後で「設定」から変更できます</string>
+    <string name="rs_permissions_intro_required">Sluice は以下のシステム権限のみを使用します。ストレージ権限は Android 9 以下でファイルを保存するために必須です。残りの 2 つはスキップでき、後で「設定」から変更できます</string>
+    <string name="rs_permissions_intro_optional">Sluice は以下のシステム権限のみを使用します。すべてスキップでき、後で「設定」から変更できます</string>
     <string name="rs_perm_notification_title">通知権限</string>
     <string name="rs_perm_notification_desc">ダウンロードの進捗や完了通知が通知バーに表示され、フォアグラウンドサービスも安定して動作します。オフにしてもダウンロードは続行されますが、進捗は表示されません。</string>
     <string name="rs_perm_granted">有効</string>
     <string name="rs_perm_grant">許可</string>
     <string name="rs_perm_go_settings">設定を開く</string>
     <string name="rs_perm_background_title">バックグラウンド実行</string>
-    <string name="rs_perm_background_desc">YunX を「バッテリー最適化の対象外」に追加すると、画面ロックやバックグラウンド移行後もダウンロードが停止されません（推奨）。</string>
+    <string name="rs_perm_background_desc">Sluice を「バッテリー最適化の対象外」に追加すると、画面ロックやバックグラウンド移行後もダウンロードが停止されません（推奨）。</string>
     <string name="rs_perm_whitelisted">許可済み</string>
     <string name="rs_perm_storage_title">ストレージ権限</string>
     <string name="rs_perm_storage_desc_required">システムの「ダウンロード」フォルダにファイルを保存するにはストレージ権限が必要です。Android 9 以下では必須です。</string>
