@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import android.content.Intent
@@ -99,10 +101,10 @@ fun LinkOpenScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
 
     BackHandler { onBack() }
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.vm_link_open_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

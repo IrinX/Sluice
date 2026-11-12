@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
 import android.graphics.Bitmap
 import android.webkit.CookieManager
@@ -165,10 +167,10 @@ fun BaiduLoginScreen(
     // 全局 Snackbar 宿主
     val snackbarHostState = rememberGlobalSnackbarHostState()
 
-    Scaffold(
+    CouiScaffoldCompat(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_baidu_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = { if (!isSaving && !isSavingManual) onBack() }) {

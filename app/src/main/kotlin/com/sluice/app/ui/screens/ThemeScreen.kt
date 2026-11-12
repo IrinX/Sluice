@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSliderCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
@@ -207,10 +209,10 @@ fun ThemeScreen(
         settingsRepo.appIconVariant = variant
     }
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.theme_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

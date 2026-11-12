@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Handler
@@ -180,10 +182,10 @@ fun XunleiVerifyWebViewScreen(
     BackHandler { onBack() }
     val snackbarHostState = rememberGlobalSnackbarHostState()
 
-    Scaffold(
+    CouiScaffoldCompat(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_xunlei_verify_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

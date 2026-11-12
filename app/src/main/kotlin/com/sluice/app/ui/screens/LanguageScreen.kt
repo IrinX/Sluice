@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiRadioButtonCompat
 import android.app.Activity
@@ -81,10 +83,10 @@ fun LanguageScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
 
     BackHandler { onBack() }
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.settings_language), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

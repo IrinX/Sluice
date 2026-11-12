@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -106,10 +108,10 @@ fun AboutScreen(
     val versionName = pkgInfo?.versionName ?: "1.0"
     val versionCode = pkgInfo?.versionCode ?: 1
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.vm_about_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

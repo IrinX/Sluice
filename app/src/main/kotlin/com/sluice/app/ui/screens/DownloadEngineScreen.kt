@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import android.Manifest
 import androidx.activity.compose.BackHandler
@@ -323,10 +325,10 @@ fun DownloadEngineScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         failure = GopeedEngine.lastError
     }
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.dl_engine_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -96,10 +98,10 @@ fun ILanzouLoginScreen(
     val snackbarHostState = rememberGlobalSnackbarHostState()
     BackHandler(enabled = !isSaving) { onBack() }
 
-    Scaffold(
+    CouiScaffoldCompat(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_ilanzou_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = { if (!isSaving) onBack() }) {

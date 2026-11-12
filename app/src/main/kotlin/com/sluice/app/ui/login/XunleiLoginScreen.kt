@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiOutlinedTextField
 import android.content.Intent
 import android.net.Uri
@@ -137,10 +139,10 @@ fun XunleiLoginScreen(
         viewModel.resetLoginStep()
     }
 
-    Scaffold(
+    CouiScaffoldCompat(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_xunlei_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {

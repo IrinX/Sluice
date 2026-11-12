@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import android.graphics.Bitmap
 import android.webkit.CookieManager
@@ -276,10 +278,10 @@ fun VideoLoginScreen(
     // 全局 Snackbar 宿主
     val snackbarHostState = rememberGlobalSnackbarHostState()
 
-    Scaffold(
+    CouiScaffoldCompat(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = {
                     Text(stringResource(R.string.lg_platform_login_title, platform.displayName), style = MaterialTheme.typography.titleLarge)
                 },
@@ -560,10 +562,10 @@ private fun ManualCookieLoginScreen(
 
     val snackbarHostState = rememberGlobalSnackbarHostState()
 
-    Scaffold(
+    CouiScaffoldCompat(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = {
                     Text(stringResource(R.string.lg_platform_login_title, platform.displayName), style = MaterialTheme.typography.titleLarge)
                 },

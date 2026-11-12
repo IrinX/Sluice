@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import androidx.activity.compose.BackHandler
@@ -99,10 +101,10 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
 
     BackHandler { onBack() }
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = {
                     Text(
                         text = stringResource(R.string.settings_network_update),

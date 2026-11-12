@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.login
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import android.content.Context
 import android.graphics.Bitmap
 import android.webkit.WebChromeClient
@@ -172,10 +174,10 @@ fun Pan123LoginScreen(
     // 全局 Snackbar 宿主
     val snackbarHostState = rememberGlobalSnackbarHostState()
 
-    Scaffold(
+    CouiScaffoldCompat(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = { Text(stringResource(R.string.lg_pan123_title), style = MaterialTheme.typography.titleLarge) },
                 navigationIcon = {
                     IconButton(onClick = { if (!isSaving && !isSavingManual && !isLoggingIn) onBack() }) {

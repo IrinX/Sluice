@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.preview
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import android.content.Context
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.gestures.awaitEachGesture
@@ -132,14 +134,14 @@ fun MediaPreviewScreen(
     // 只有调用方给了下载回调才显示按钮（网盘预览不传 → 顶栏保持原样）
     val downloadCurrent = request.onDownload?.takeIf { request.media.isNotEmpty() }
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         // ★ 底色必须显式给 surface：不给的话叠加在其它页面之上时，深色模式下会露出系统的黑底
         containerColor = MaterialTheme.colorScheme.surface,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             if (!immersive) {
-                TopAppBar(
+                CouiTopAppBarCompat(
                     title = {
                         Text(
                             text = title,

@@ -18,6 +18,8 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiTopAppBarCompat
+import com.sluice.app.ui.components.CouiScaffoldCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiRadioButtonCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
@@ -162,10 +164,10 @@ fun DownloadSettingsScreen(
 
     BackHandler { onBack() }
 
-    Scaffold(
+    CouiScaffoldCompat(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CouiTopAppBarCompat(
                 title = {
                     Text(
                         text = stringResource(R.string.settings_download_settings),
