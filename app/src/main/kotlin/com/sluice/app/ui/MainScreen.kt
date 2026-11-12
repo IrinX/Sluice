@@ -407,6 +407,8 @@ fun MainScreen(
     val announcementViewModel: AnnouncementViewModel = viewModel(
         factory = AnnouncementViewModel.Factory(announcementReadStore)
     )
+    // 公告服务是否已接入：设置页改完地址后这里会重组，顶栏入口跟着出现/消失
+    val announcementConfigured by AnnouncementApi.configured.collectAsState()
     val unreadAnnouncementCount by announcementViewModel.unreadCount.collectAsState()
     val popupAnnouncement by announcementViewModel.popup.collectAsState()
     LaunchedEffect(Unit) { announcementViewModel.checkStartup() }
@@ -1177,7 +1179,7 @@ fun MainScreen(
                             //   水滴形（见用户截图）。外层 Box 与 IconButton 同为 48dp 且不裁剪；
                             //   Box 仍是同一个 48dp 点击区，而角标自身没有 pointerInput，
                             //   点在角标上的事件照旧落到 IconButton，不影响点击。
-                            if (AnnouncementApi.isConfigured()) {
+                            if (announcementConfigured) {
                                 Box(
                                     modifier = Modifier.size(48.dp),
                                     contentAlignment = Alignment.Center

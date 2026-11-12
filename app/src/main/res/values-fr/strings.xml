@@ -268,4 +268,13 @@
     <string name="snack_proxy_enabled">Proxy activé : %1$s</string>
     <string name="snack_proxy_disabled">Proxy désactivé ; connexion directe rétablie</string>
     <string name="app_name">Sluice</string>
+    <string name="settings_announcement_server">Serveur d\'annonces</string>
+    <string name="settings_announcement_server_desc_set">Connecté : %1$s</string>
+    <string name="settings_announcement_server_desc_unset">Non configuré - l\'entrée de la barre supérieure est masquée</string>
+    <string name="dialog_announcement_title">Serveur d\'annonces</string>
+    <string name="dialog_announcement_label">URL du serveur</string>
+    <string name="dialog_announcement_hint">Laissez vide pour désactiver les annonces. Le serveur doit implémenter l\'API d\'annonces (voir le contrat dans la documentation du projet).</string>
+    <string name="snack_announcement_saved">Serveur d\'annonces connecté</string>
+    <string name="snack_announcement_cleared">Annonces désactivées</string>
+    <string name="snack_announcement_invalid">L\'URL doit commencer par http:// ou https://</string>
 </resources>

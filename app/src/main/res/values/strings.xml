@@ -302,4 +302,13 @@
     <string name="snack_proxy_port_invalid">代理端口需为 1-65535 之间的数字</string>
     <string name="snack_proxy_enabled">代理已启用：%1$s</string>
     <string name="snack_proxy_disabled">已关闭代理，恢复直连</string>
+    <string name="settings_announcement_server">公告服务地址</string>
+    <string name="settings_announcement_server_desc_set">已接入：%1$s</string>
+    <string name="settings_announcement_server_desc_unset">未配置，顶栏公告入口隐藏</string>
+    <string name="dialog_announcement_title">公告服务地址</string>
+    <string name="dialog_announcement_label">服务地址 URL</string>
+    <string name="dialog_announcement_hint">留空即关闭公告；地址需实现公告接口（见项目文档中的接口契约）</string>
+    <string name="snack_announcement_saved">公告服务已接入</string>
+    <string name="snack_announcement_cleared">已关闭公告</string>
+    <string name="snack_announcement_invalid">地址需以 http:// 或 https:// 开头</string>
 </resources>

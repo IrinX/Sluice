@@ -86,8 +86,9 @@ class SluiceApp : Application() {
         com.sluice.app.util.AppStrings.install(this)
         // 应用内公告的服务地址：读用户配置（空 = 未接入，顶栏公告入口不显示）
         runCatching {
-            com.sluice.app.data.announcement.AnnouncementApi.baseUrl =
+            com.sluice.app.data.announcement.AnnouncementApi.setBaseUrl(
                 com.sluice.app.data.prefs.SettingsRepository(this).announcementBaseUrl
+            )
         }
         com.sluice.app.data.network.XunleiDeviceFingerprint.init(this)
         // 123 云盘的设备标识（loginuuid）：账号密码登录与所有业务请求都要带，必须跨启动保持稳定，

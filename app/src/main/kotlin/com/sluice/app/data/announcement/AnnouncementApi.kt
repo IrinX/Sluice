@@ -23,6 +23,9 @@ import com.sluice.app.R
 import com.sluice.app.data.network.HttpClients
 import com.sluice.app.util.AppStrings
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 import okhttp3.Request
 import org.json.JSONArray
@@ -90,8 +93,26 @@ object AnnouncementApi {
     @Volatile
     var baseUrl: String = ""
 
-    /** 是否已接入公告服务：未接入时顶栏入口隐藏，启动检查直接跳过 */
+    private val _configured = MutableStateFlow(false)
+
+    /**
+     * 是否已接入公告服务（顶栏入口的显示条件）。
+     * 用 StateFlow 而不是直接读 [isConfigured]：在设置页改完地址后，主界面要能立即重组
+     * 把入口显出来 / 收回去，而不是等下次冷启动。
+     */
+    val configured: StateFlow<Boolean> = _configured.asStateFlow()
+
+    /** 是否已接入公告服务：非 Compose 场合（启动检查、数据层）直接用这个 */
     fun isConfigured(): Boolean = baseUrl.isNotBlank()
+
+    /**
+     * 设置服务地址（启动时从偏好读取、设置页保存后各调一次）。
+     * 传空串 = 关闭公告：请求直接返回失败，顶栏入口隐藏。
+     */
+    fun setBaseUrl(value: String) {
+        baseUrl = value.trim().trimEnd('/')
+        _configured.value = baseUrl.isNotBlank()
+    }
 
     /**
      * 列表分页大小 = 接口上限 100。

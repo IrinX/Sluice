@@ -268,4 +268,13 @@
     <string name="snack_proxy_enabled">代理已啟用：%1$s</string>
     <string name="snack_proxy_disabled">已關閉代理，恢復直連</string>
     <string name="app_name">開閘</string>
+    <string name="settings_announcement_server">公告服務位址</string>
+    <string name="settings_announcement_server_desc_set">已接入：%1$s</string>
+    <string name="settings_announcement_server_desc_unset">未設定，頂欄公告入口隱藏</string>
+    <string name="dialog_announcement_title">公告服務位址</string>
+    <string name="dialog_announcement_label">服務位址 URL</string>
+    <string name="dialog_announcement_hint">留空即關閉公告；位址需實作公告介面（見專案文件中的介面契約）</string>
+    <string name="snack_announcement_saved">公告服務已接入</string>
+    <string name="snack_announcement_cleared">已關閉公告</string>
+    <string name="snack_announcement_invalid">位址需以 http:// 或 https:// 開頭</string>
 </resources>

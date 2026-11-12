@@ -267,4 +267,13 @@
     <string name="snack_proxy_enabled">Proxy enabled: %1$s</string>
     <string name="snack_proxy_disabled">Proxy disabled; direct connection restored</string>
     <string name="app_name">Sluice</string>
+    <string name="settings_announcement_server">Announcement server</string>
+    <string name="settings_announcement_server_desc_set">Connected: %1$s</string>
+    <string name="settings_announcement_server_desc_unset">Not set - the top bar entry is hidden</string>
+    <string name="dialog_announcement_title">Announcement server</string>
+    <string name="dialog_announcement_label">Server URL</string>
+    <string name="dialog_announcement_hint">Leave empty to turn announcements off. The server must implement the announcement API (see the contract in the project docs).</string>
+    <string name="snack_announcement_saved">Announcement server connected</string>
+    <string name="snack_announcement_cleared">Announcements turned off</string>
+    <string name="snack_announcement_invalid">The URL must start with http:// or https://</string>
 </resources>

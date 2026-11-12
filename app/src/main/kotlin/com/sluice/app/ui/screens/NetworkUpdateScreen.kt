@@ -34,6 +34,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.outlined.Cloud
+import androidx.compose.material.icons.outlined.Campaign
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.SystemUpdate
 import androidx.compose.material3.AlertDialog
@@ -62,6 +63,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.sluice.app.R
+import com.sluice.app.data.announcement.AnnouncementApi
 import com.sluice.app.data.network.HttpClients
 import com.sluice.app.data.prefs.SettingsRepository
 import com.sluice.app.data.update.UpdateChecker
@@ -89,6 +91,9 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     var proxyHost by remember { mutableStateOf(settingsRepo.proxyHost) }
     var proxyPort by remember { mutableStateOf(settingsRepo.proxyPort.toString()) }
     var showProxyDialog by remember { mutableStateOf(false) }
+    // 应用内公告服务地址：空 = 未接入（顶栏公告入口隐藏）
+    var announcementUrl by remember { mutableStateOf(settingsRepo.announcementBaseUrl) }
+    var showAnnouncementDialog by remember { mutableStateOf(false) }
 
     BackHandler { onBack() }
 
@@ -177,6 +182,21 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
 
             Spacer(modifier = Modifier.height(ListGroupGap))
 
+            // 公告服务：填上自己的服务地址后，顶栏才会出现公告入口（地址为空 = 关闭公告）
+            SettingsItem(
+                icon = Icons.Outlined.Campaign,
+                shape = listGroupShape(ListGroupPos.MIDDLE),
+                title = stringResource(R.string.settings_announcement_server),
+                description = if (announcementUrl.isNotBlank()) {
+                    stringResource(R.string.settings_announcement_server_desc_set, announcementUrl)
+                } else {
+                    stringResource(R.string.settings_announcement_server_desc_unset)
+                },
+                onClick = { showAnnouncementDialog = true }
+            )
+
+            Spacer(modifier = Modifier.height(ListGroupGap))
+
             // 网络代理：HTTP 代理（Clash/v2ray 等本地代理），未启用时直连
             SettingsItem(
                 icon = Icons.Outlined.Security,
@@ -241,6 +261,65 @@ fun NetworkUpdateScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             },
             dismissButton = {
                 TextButton(onClick = { showMirrorDialog = false }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
+        )
+    }
+
+    // 公告服务地址弹窗（留空 = 关闭公告，顶栏入口隐藏）
+    if (showAnnouncementDialog) {
+        var urlInput by remember { mutableStateOf(announcementUrl) }
+        AlertDialog(
+            onDismissRequest = { showAnnouncementDialog = false },
+            title = { Text(stringResource(R.string.dialog_announcement_title)) },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    OutlinedTextField(
+                        value = urlInput,
+                        onValueChange = { urlInput = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text(stringResource(R.string.dialog_announcement_label)) },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri),
+                        singleLine = true
+                    )
+                    Text(
+                        text = stringResource(R.string.dialog_announcement_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        val raw = urlInput.trim()
+                        when {
+                            raw.isBlank() -> {
+                                settingsRepo.announcementBaseUrl = ""
+                                announcementUrl = ""
+                                AnnouncementApi.setBaseUrl("")
+                                showAnnouncementDialog = false
+                                SnackbarController.show(AppStrings.get(R.string.snack_announcement_cleared))
+                            }
+
+                            !raw.startsWith("http://") && !raw.startsWith("https://") ->
+                                SnackbarController.show(AppStrings.get(R.string.snack_announcement_invalid))
+
+                            else -> {
+                                val normalized = raw.trimEnd('/')
+                                settingsRepo.announcementBaseUrl = normalized
+                                announcementUrl = normalized
+                                AnnouncementApi.setBaseUrl(normalized)
+                                showAnnouncementDialog = false
+                                SnackbarController.show(AppStrings.get(R.string.snack_announcement_saved))
+                            }
+                        }
+                    }
+                ) { Text(stringResource(R.string.action_confirm)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showAnnouncementDialog = false }) {
                     Text(stringResource(R.string.action_cancel))
                 }
             }
