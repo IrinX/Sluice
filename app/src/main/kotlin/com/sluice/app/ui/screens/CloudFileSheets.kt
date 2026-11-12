@@ -673,10 +673,10 @@ private fun ShareStep(
                 Text(stringResource(R.string.csa_passcode), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Spacer(modifier = Modifier.height(6.dp))
                 // 间距置 0 + checkedShape 指回未选中形状：避免两段之间出现缝/豁口（选中态由填充色表达）
-                ButtonGroup(
-                    overflowIndicator = {},
-                    horizontalArrangement = Arrangement.spacedBy(0.dp)
-                ) {
+                // material3 1.5.0-alpha27 把 ButtonGroup 的 content 改成了非 @Composable 的
+                // ButtonGroupScope，旧写法编不过；此处只需要并排两个分段按钮，直接用 Row 承载，
+                // 形状仍取 ButtonGroupDefaults 的 connected 系列，观感与之前一致。
+                Row(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
                     ToggleButton(
                         enabled = !operating,
                         checked = !withPassword,
