@@ -857,7 +857,7 @@ fun MainScreen(
                 context.getSharedPreferences("sluice_prefs", android.content.Context.MODE_PRIVATE)
                     .edit()
                     .putBoolean("onboarding_shown", true)
-                    .apply(),
+                    .apply()
                 showOnboarding = false
             }
         )
@@ -1570,7 +1570,7 @@ fun MainScreen(
                                     context.getSharedPreferences("sluice_prefs", android.content.Context.MODE_PRIVATE)
                                         .edit()
                                         .putBoolean("onboarding_shown", false)
-                                        .apply(),
+                                        .apply()
                                     showAbout = false
                                     showOnboarding = true
                                 }
@@ -1675,7 +1675,7 @@ fun MainScreen(
                     context.getSharedPreferences("sluice_prefs", android.content.Context.MODE_PRIVATE)
                         .edit()
                         .putString("ignored_version", release.tagName)
-                        .apply(),
+                        .apply()
                     showUpdateSheet = false
                 }
             )
