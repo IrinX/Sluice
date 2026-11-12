@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.items
 
+import com.sluice.app.ui.components.CouiFabCompat
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.fadeIn
@@ -169,7 +170,7 @@ fun BoxScope.CustomFabMenu(
 
         // ---------- 主 FAB ----------
         AnimatedVisibility(visible = visible) {
-            FloatingActionButton(
+            CouiFabCompat(
                 onClick = { onCheckedChange(!expanded) },
                 modifier = Modifier.size(52.dp),
                 containerColor = MaterialTheme.colorScheme.primaryContainer,

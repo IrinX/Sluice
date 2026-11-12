@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.components
 
+import com.sluice.app.ui.components.CouiSmallFabCompat
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -72,7 +73,7 @@ internal fun ScrollToTopButton(
         exit = fadeOut(effectsFast()) + scaleOut(spatialFast(), targetScale = 0.8f),
         modifier = modifier
     ) {
-        SmallFloatingActionButton(
+        CouiSmallFabCompat(
             onClick = { scope.launch { listState.animateScrollToItem(0) } },
             shape = CircleShape,
             containerColor = MaterialTheme.colorScheme.secondaryContainer,

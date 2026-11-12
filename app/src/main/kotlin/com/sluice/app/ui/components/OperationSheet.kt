@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.components
 
+import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.ColumnScope
@@ -57,7 +58,7 @@ internal fun OperationSheet(
     sheetState: SheetState = rememberOperationSheetState(busy),
     content: @Composable ColumnScope.() -> Unit
 ) {
-    ModalBottomSheet(
+    CouiModalBottomSheetCompat(
         sheetState = sheetState,
         onDismissRequest = { if (!busy) onDismiss() },
         sheetGesturesEnabled = !busy,

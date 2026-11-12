@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
@@ -100,7 +101,7 @@ fun UpdateSheet(
     // GitHub 下载方式选择弹窗（命中网盘链接时，直连/镜像/页面被折叠进这一个入口）
     var showGithubOptions by remember { mutableStateOf(false) }
 
-    ModalBottomSheet(
+    CouiModalBottomSheetCompat(
         onDismissRequest = onLater,
         sheetState = sheetState,
         containerColor = MaterialTheme.colorScheme.surface

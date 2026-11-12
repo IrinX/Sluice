@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiModalBottomSheetCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiSwitchCompat
 import androidx.compose.animation.AnimatedContent
@@ -861,7 +862,7 @@ fun DriveScreen(
     // GitHub 卡片「更多」菜单：浏览我的主页 / 配置 Token / 清除 Token（清除由上层做二次确认）
     if (showGitHubSheet) {
         val sheetState = rememberModalBottomSheetState()
-        ModalBottomSheet(
+        CouiModalBottomSheetCompat(
             onDismissRequest = { showGitHubSheet = false },
             sheetState = sheetState
         ) {

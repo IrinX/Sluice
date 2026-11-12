@@ -18,6 +18,7 @@
 
 package com.sluice.app.ui.screens
 
+import com.sluice.app.ui.components.CouiFabCompat
 import com.sluice.app.ui.components.CouiCardCompat
 import com.sluice.app.ui.components.CouiCheckboxCompat
 import android.Manifest
@@ -265,7 +266,7 @@ fun DownloadScreen(
         // 添加任务 FAB（手动粘贴直链 / 磁力链接的唯一入口）
         // ★ 曾经被 c829083「添加关于页」误删（连同 permissionLauncher/hasPermission 变成死代码、
         //   空状态文案却还在说「点击右下角按钮」）——恢复时注意别再连着删掉。
-        FloatingActionButton(
+        CouiFabCompat(
             onClick = {
                 if (needLegacyPermission && !hasPermission) {
                     permissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
