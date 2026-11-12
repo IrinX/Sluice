@@ -128,6 +128,9 @@ import com.sluice.app.data.gopeed.GopeedEngine
 import com.sluice.app.data.network.HttpClients
 import com.sluice.app.data.prefs.SettingsRepository
 import com.sluice.app.data.update.UpdateChecker
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
+import com.itos.coui.layout.Item as CouiItem
+import com.itos.coui.theme.CouiTheme
 import com.sluice.app.ui.SnackbarController
 import com.sluice.app.ui.components.YunXLoading
 import com.sluice.app.ui.theme.ListGroupGap
@@ -1299,66 +1302,63 @@ internal fun SettingsItem(
     /** 容器变换源侧修饰符（sharedBounds）；普通行不传 */
     modifier: Modifier = Modifier
 ) {
+    // COUI 行：外观（卡片底色、行距、图标尺寸、按下反馈）交给 CouiItem；
+    // 点击/长按仍由本组件安装，因为 COUI Item 不提供长按（设置页长按进隐藏开发菜单要用）。
     val interactionSource = remember { MutableInteractionSource() }
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(shape)
-            .then(
-                if (checked != null) Modifier.toggleable(
+    CouiItem(
+        modifier = modifier.then(
+            if (checked != null) {
+                Modifier.toggleable(
                     value = checked,
                     role = Role.Switch,
                     interactionSource = interactionSource,
                     indication = ripple(bounded = true),
                     onValueChange = { onClick() }
-                ) else Modifier.combinedClickable(
+                )
+            } else {
+                Modifier.combinedClickable(
                     interactionSource = interactionSource,
                     indication = ripple(bounded = true),
                     onClick = onClick,
                     onLongClick = onLongClick
                 )
-            ),
-        shape = shape,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerLow
-        )
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+            }
+        ),
+        icon = {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                tint = CouiTheme.colorScheme.onSurfaceVariant
             )
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Medium
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = description,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
+        },
+        title = {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Medium
+            )
+        },
+        summary = {
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodySmall,
+                color = CouiTheme.colorScheme.onSurfaceVariant
+            )
+        },
+        trailing = {
             if (trailing != null) {
                 trailing()
             } else {
                 Icon(
-                    imageVector = Icons.Outlined.ChevronRight,
+                    imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.outline
+                    tint = CouiTheme.colorScheme.onSurfaceVariant
                 )
             }
-        }
-    }
+        },
+        // 点击由外层的 toggleable/combinedClickable 接管，这里不再重复安装
+        onClick = null
+    )
 }
 
 /** 线程数单选行（用于弹窗两列布局，每行占半宽） */
